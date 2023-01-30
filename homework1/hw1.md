@@ -46,7 +46,7 @@ done
 
 ### Task 2
 
-The output of the above program shows that the "f1" is ahead of "f2" every time. I have tested this program for 5 times and results always share the same pattern.
+The output of the above program shows that the "f1" is ahead of "f2" every time. I have tested this program for 5 times and results always share the same pattern. The following figure is part of the final output.
 
 ![task1_out](C:\Users\13503\OneDrive\COMP536(cloud)\homework\homework1\task1_out.PNG)
 
@@ -62,41 +62,28 @@ As far as I am concerned, it seems to be guaranteed because thousands of records
 
 ### Task 1
 
-To implement this task, I write three scripts. Two of them only contain a while loop to run the program for 1000 times. Here I  
-
-```shell
-#!/bin/bash
-i=0
-while (( $i<1000 ))
-do
-    ./ver1 > /dev/null
-    i=`expr $i + 1`
-done
-```
-
-```shell
-#!/bin/bash
-i=0
-while (( $i<1000 ))
-do
-    ./ver2 > /dev/null
-    i=`expr $i + 1`
-done
-```
-
-And another script measures the execution time spent on programs and record the running time of each execution as following.
+To implement this task, I write the following script to measure the execution time spent on programs each run and record the running time of each execution accordingly. 
 
 ```shell
 #!/bin/bash
 echo "ver1 time"
-/usr/bin/time ./task2_ver1.sh
+i=0
+while (( $i<1000 ))
+do
+    /usr/bin/time ./ver1 > /dev/null
+    i=`expr $i + 1`
+done
+
 echo "ver2 time"
-/usr/bin/time ./task2_ver2.sh
+i=0
+while (( $i<1000 ))
+do
+    /usr/bin/time ./ver2 > /dev/null
+    i=`expr $i + 1`
+done
 ```
 
-And the output of the program is as following.
 
-![task2_out](C:\Users\13503\OneDrive\COMP536(cloud)\homework\homework1\task2_out.PNG)
 
 
 
