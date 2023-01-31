@@ -89,15 +89,30 @@ done
 
 ### Task 2
 
+The program version1 is faster and less variable than program version2. The difference in the speed is explained in the above passage. Since the version2 needs more time to execute, the operating system may switch among different contexts during the execution more possibly. However, some threads may not suffer this kind of performance loss. Hence, the time on the program version2 is more variable.
 
+![cdf1](D:\Desktop\Projects\comp536\homework1\cdf1.png)
 
 
 
 ### Task 3
 
+Program version1 almost spends no time in the kernel mode since library call doesn't need to switch mode from user to system and hardly cause context switch.
 
+![cdf2](D:\Desktop\Projects\comp536\homework1\cdf2.png)
+
+![cdf3](D:\Desktop\Projects\comp536\homework1\cdf3.png)
 
 
 
 ### Task 4
+
+Both of them don't have the exactly same execution time. However, the distribution of execution time of the program version2 is more dispersive. Methods for stabilize the execution time include
+
+* use library call instead of system call
+* minimize the number of processes on the machine during the execution
+* avoid triggering system interrupt in the program
+* minimize the number of file I/O operations in the program
+* accumulate more information to send via network rather than send them respectively
+* avoid triggering exception in the program
 
