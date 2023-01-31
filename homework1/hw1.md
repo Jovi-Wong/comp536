@@ -46,7 +46,7 @@ done
 
 ### Task 2
 
-The output of the above program shows that the "f1" is ahead of "f2" every time. I have tested this program for 5 times and results always share the same pattern. The following figure is part of the final output.
+The output of the above program shows that the "f1" is ahead of "f2" every time. I have tested this program for 5 times and results always share the same pattern. The following figure is a part of the final output.
 
 ![task1_out](C:\Users\13503\OneDrive\COMP536(cloud)\homework\homework1\task1_out.PNG)
 
