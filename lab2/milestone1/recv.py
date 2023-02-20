@@ -13,6 +13,10 @@ from scapy.all import (
 )
 from scapy.layers.inet import _IPOption_HDR
 
+class ECMP(Packet):
+    name = "EcmpPacket"
+    fields_desc = [XByteField("isFirstHop", 1)]
+
 
 def get_if():
     ifs=get_if_list()
@@ -50,7 +54,7 @@ def main():
     iface = ifaces[0]
     print("sniffing on %s" % iface)
     sys.stdout.flush()
-    sniff(filter="tcp", iface = iface,
+    sniff(filter="ECMP", iface = iface,
           prn = lambda x: handle_pkt(x))
 
 if __name__ == '__main__':
