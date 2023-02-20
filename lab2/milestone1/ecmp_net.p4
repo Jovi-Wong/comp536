@@ -29,7 +29,7 @@ header ipv4_t {
 }
 
 struct ecmp_t {
-    bit<1>    isFirstHop;
+    bit<8>    isFirstHop;
 }
 
 struct metadata {}
@@ -124,7 +124,7 @@ control MyIngress(inout headers hdr,
     }
 
     table ipv4_table {
-        key = { hdr.ipv4.dstAddr: lpm; }
+        key = { hdr.ipv4.dstAddr: exact; }
         actions = 
         {
             ipv4_forward;
@@ -135,9 +135,9 @@ control MyIngress(inout headers hdr,
     }
 
     apply {
-        if (hdr.ecmp == 0) {
+        if (hdr.ecmp.isFirstHop == 0) {
             ipv4_table.apply();
-        } else if (hdr.ecmp == 1) {
+        } else {
             ecmp_port.apply();
             ecmp_table.apply();
         }

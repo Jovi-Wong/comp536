@@ -2,6 +2,7 @@ import os
 import sys
 
 from scapy.all import (
+    Packet,
     FieldLenField,
     FieldListField,
     IntField,
