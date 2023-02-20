@@ -1,0 +1,18 @@
+{
+    "target": "bmv2",
+    "p4info": "build/load_balance.p4.p4info.txt",
+    "bmv2_json": "build/load_balance.json",
+    "table_entries": [
+        {
+            "table": "MyIngress.ipv4_table",
+            "match": {
+                "hdr.ipv4.dstAddr": ["10.0.4.2", 32]
+            },
+            "action_name": "ipv4_forward",
+            "action_params": {
+                "dstAddr": "00:00:00:04:03:00",
+                "port": 1
+            }
+        }
+    ]
+}

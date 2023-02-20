@@ -1,0 +1,38 @@
+{
+    "target": "bmv2",
+    "p4info": "build/load_balance.p4.p4info.txt",
+    "bmv2_json": "build/load_balance.json",
+    "table_entries": [
+        {
+            "table": "MyIngress.ecmp_port",
+            "match": {
+                "hdr.ipv4.dstAddr": ["10.0.4.2", 32]
+            },
+            "action_name": "set_random_port",
+            "action_params": {
+                "base": 1,
+                "cnt": 3
+            }
+        },
+        {
+            "table": "MyIngress.ecmp_table",
+            "match": {
+                "standard_metadata.egressPort": 1
+            },
+            "action_name": "ecmp_forward",
+            "action_params": {
+                "dstAddr": "00:00:00:02:04:00"
+            }
+        },
+        {
+            "table": "MyIngress.ecmp_table",
+            "match": {
+                "standard_metadata.egressPort": 2
+            },
+            "action_name": "ecmp_forward",
+            "action_params": {
+                "dstAddr": "00:00:00:03:04:00"
+            }
+        }
+    ]
+}
