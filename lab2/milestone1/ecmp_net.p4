@@ -8,7 +8,8 @@ typedef bit<48> macAddr_t;
 typedef bit<32> ip4Addr_t;
 
 const bit<16> TYPE_ECMP = 0x3814;
-const bit<16> TYPE_IPV4 = 0x800;
+const bit<16> TYPE_IPV4 = 0x0800;
+const bit<16> TYPE_QURY = 0x9723;
 
 header ethernet_t {
     macAddr_t dstAddr;
@@ -43,6 +44,11 @@ header tcp_t {
     bit<16> window;
     bit<16> checksum;
     bit<16> urgentPtr;
+}
+
+header len_t {
+    bit<16> port;
+    bit<32> count;
 }
 
 struct metadata {}
@@ -172,6 +178,8 @@ control MyIngress(inout headers hdr,
 control MyEgress(inout headers hdr,
                  inout metadata meta,
                  inout standard_metadata_t standard_metadata) {
+    register<bit<64>> p1Counter;
+    register<bit<64>> p2Counter;
     apply {}
 }
 
