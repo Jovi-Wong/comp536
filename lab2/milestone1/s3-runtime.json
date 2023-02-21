@@ -5,6 +5,12 @@
     "table_entries": [
         {
             "table": "MyIngress.ipv4_table",
+            "default_action": true,
+            "action_name": "MyIngress.drop",
+            "action_params": {}
+        },
+        {
+            "table": "MyIngress.ipv4_table",
             "match": {
                 "hdr.ipv4.dstAddr": "10.0.4.2"
             },
