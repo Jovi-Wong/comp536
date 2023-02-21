@@ -112,6 +112,7 @@ class ExerciseTopo(Topo):
 
 
     def parse_switch_node(self, node):
+        print(node)
         assert(len(node.split('-')) == 2)
         sw_name, sw_port = node.split('-')
         try:
