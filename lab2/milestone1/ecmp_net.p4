@@ -1,5 +1,5 @@
 /* INCLUDES */
-#include <cores.p4>
+#include <core.p4>
 #include <v1model.p4>
 
 /* HEADERS */
@@ -59,22 +59,24 @@ parser MyParser(packet_in packet,
                 inout standard_metadata_t standard_metadata) {
 
     state start {
+        transition parse_ether;
+    }
+    
+    state parse_ether {
         packet.extract(hdr.ethernet);
         transition select(hdr.ethernet.etherType) {
             TYPE_IPV4: parse_ipv4;
-            TYPE_ECMP: parse_ecmp;
             default: accept;
         }
     }
 
     state parse_ipv4 {
         packet.extract(hdr.ipv4);
-        transition accept;
+        transition parse_tcp;
     }
 
-    state parse_ecmp {
-        packet.extract(hdr.ecmp);
-        hdr.ethernet.etherType = Type_ECMP;
+    state parse_tcp {
+        packet.extract(hdr.tcp);
         transition accept;
     }
 }
@@ -152,9 +154,10 @@ control MyIngress(inout headers hdr,
     }
 
     apply {
-        if (hdr.ecmp.isFirstHop == 0) {
+        if (hdr.ethernet.etherType == TYPE_IPV4) {
             ipv4_table.apply();
         } else {
+            hdr.ethernet.etherType = TYPE_IPV4;
             ecmp_port.apply();
             ecmp_table.apply();
         }
