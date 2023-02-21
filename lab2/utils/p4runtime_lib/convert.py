@@ -58,6 +58,7 @@ def decodeNum(encoded_number):
 
 def encode(x, bitwidth):
     'Tries to infer the type of `x` and encode it'
+    print("x = {0}, bitwidth = {1}".format(x, bitwidth))
     byte_len = bitwidthToBytes(bitwidth)
     if (type(x) == list or type(x) == tuple) and len(x) == 1:
         x = x[0]
