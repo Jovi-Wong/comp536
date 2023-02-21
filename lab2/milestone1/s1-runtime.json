@@ -39,6 +39,17 @@
             "action_params": {
                 "dstAddr": "00:00:00:03:04:00"
             }
+        },
+        {
+            "table": "MyIngress.ipv4_table",
+            "match": {
+                "hdr.ipv4.dstAddr": "10.0.4.2"
+            },
+            "action_name": "ipv4_forward",
+            "action_params": {
+                "dstAddr": "00:00:00:04:03:00",
+                "port": 2
+            }
         }
     ]
 }
