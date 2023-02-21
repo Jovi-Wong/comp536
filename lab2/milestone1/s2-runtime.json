@@ -6,7 +6,7 @@
         {
             "table": "MyIngress.ipv4_table",
             "default_action": true,
-            "action_name": "MyIngress.MyIngress.drop",
+            "action_name": "MyIngress.drop",
             "action_params": {}
         },
         {
