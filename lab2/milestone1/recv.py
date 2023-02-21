@@ -1,15 +1,7 @@
 import os
 import sys
 
-from scapy.all import (
-    FieldLenField,
-    FieldListField,
-    IntField,
-    IPOption,
-    ShortField,
-    get_if_list,
-    sniff
-)
+from scapy.all import FieldLenField, FieldListField, IntField, IPOption, ShortField, get_if_list, sniff
 from scapy.layers.inet import _IPOption_HDR
 
 def get_if():
