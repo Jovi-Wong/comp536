@@ -152,6 +152,7 @@ class P4InfoHelper(object):
         return self.get_action_param(action_name, id=param_id).name
 
     def get_action_param_pb(self, action_name, param_name, value):
+        print("func = get_action_param_pb, action_name = {0}, param_name= {1}, value = {2}".format(action_name, param_name, value))
         p4info_param = self.get_action_param(action_name, param_name)
         p4runtime_param = p4runtime_pb2.Action.Param()
         p4runtime_param.param_id = p4info_param.id
