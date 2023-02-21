@@ -196,17 +196,20 @@ class ExerciseRunner:
         self.create_network()
         self.net.start()
         sleep(1)
-
+        print("create network successfully!")
         # some programming that must happen after the net has started
         self.program_hosts()
+        print("program hosts")
         self.program_switches()
-
+        print("program switches")
         # wait for that to finish. Not sure how to do this better
         sleep(1)
 
         self.do_net_cli()
+        print("do_net_cli")
         # stop right after the CLI is exited
         self.net.stop()
+        print("stop")
 
 
     def parse_links(self, unparsed_links):

@@ -169,6 +169,9 @@ def validateTableEntry(flow, p4info_helper, runtime_json):
 
 
 def insertTableEntry(sw, flow, p4info_helper):
+    print("*********INSERT TABLE ENTRIES***********")
+    print("sw = {0}, flow = {1}, p4info = {2}".format(sw, flow, p4info_helper))
+
     table_name = flow['table']
     match_fields = flow.get('match') # None if not found
     action_name = flow['action_name']
