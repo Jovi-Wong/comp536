@@ -12,7 +12,7 @@
         {
             "table": "MyIngress.ecmp_port",
             "match": {
-                "hdr.ipv4.dstAddr": ["10.0.4.2", 32]
+                "hdr.ipv4.dstAddr": "10.0.4.2"
             },
             "action_name": "set_random_port",
             "action_params": {
