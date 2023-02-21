@@ -67,12 +67,19 @@ parser MyParser(packet_in packet,
         packet.extract(hdr.ethernet);
         transition select(hdr.ethernet.etherType) {
             TYPE_IPV4: parse_ipv4;
+            TYPE_ECMP: parse_ecmp;
             default: accept;
         }
     }
 
     state parse_ipv4 {
         packet.extract(hdr.ipv4);
+        transition parse_tcp;
+    }
+
+    state parse_ecmp {
+        packet.extract(hdr.ipv4);
+        hdr.ethernet.etherType = TYPE_IPV4;
         transition parse_tcp;
     }
 
@@ -118,17 +125,16 @@ control MyIngress(inout headers hdr,
             drop;
             NoAction;
         }
-        default_action = "drop";
+        default_action = drop();
     }
 
     action ecmp_forward(macAddr_t dstAddr) {
-        hdr.ecmp = 0;
         hdr.ethernet.dstAddr = dstAddr;
         hdr.ipv4.ttl = hdr.ipv4.ttl - 1;
     }
 
     table ecmp_table {
-        key = { standard_metadata.egressPort: exact; }
+        key = { standard_metadata.egress_spec: exact; }
         actions = {
             ecmp_forward;
             NoAction;
