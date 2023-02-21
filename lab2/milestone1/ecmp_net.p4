@@ -207,9 +207,9 @@ control MyDeparser(packet_out packet,
 /* SWITCH */
 V1Switch(
     MyParser(),
-    MyVerifyChecksum(),
+    MyVerification(),
     MyIngress(),
     MyEgress(),
-    MyComputeChecksum(),
+    MyComputation(),
     MyDeparser()
 ) main;
