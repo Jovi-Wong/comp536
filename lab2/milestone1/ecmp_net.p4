@@ -125,7 +125,6 @@ control MyIngress(inout headers hdr,
             drop;
             NoAction;
         }
-        default_action = drop();
     }
 
     action ecmp_forward(macAddr_t dstAddr) {
@@ -140,7 +139,6 @@ control MyIngress(inout headers hdr,
             NoAction;
         }
         size = 32;
-        default_action = NoAction();
     }
 
     action ipv4_forward(macAddr_t dstAddr, egressSpec_t port) {
@@ -157,7 +155,6 @@ control MyIngress(inout headers hdr,
             drop;
         }
         size = 32;
-        default_action = drop();
     }
 
     apply {
