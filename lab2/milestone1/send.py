@@ -1,13 +1,7 @@
 import random
 import socket
 import sys
-
 from scapy.all import IP, TCP, Ether, Packet, get_if_hwaddr, get_if_list, sendp
-
-class ECMP(Packet):
-    name = "EcmpPacket"
-    fields_desc = [XByteField("isFirstHop", 1)]
-
 
 def get_if():
     iface=None # "h1-eth0"
@@ -31,7 +25,7 @@ def main():
 
     print("sending on interface %s to %s" % (iface, str(addr)))
     pkt =  Ether(src=get_if_hwaddr(iface), dst='ff:ff:ff:ff:ff:ff')
-    pkt = pkt / IP(dst=addr) / ECMP(isFirstHop=1) / sys.argv[2]
+    pkt = pkt / IP(dst=addr) / TCP(dport=1234, sport=random.randint(49152,65535)) / sys.argv[2]
     pkt.show2()
     sendp(pkt, iface=iface, verbose=False)
 

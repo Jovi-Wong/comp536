@@ -7,6 +7,8 @@ typedef bit<9>  egressSpec_t;
 typedef bit<48> macAddr_t;
 typedef bit<32> ip4Addr_t;
 
+const bit<16> TYPE_ECMP = 0x3814;
+
 header ethernet_t {
     macAddr_t dstAddr;
     macAddr_t srcAddr;
@@ -28,8 +30,18 @@ header ipv4_t {
     ip4Addr_t dstAddr;
 }
 
-struct ecmp_t {
-    bit<8>    isFirstHop;
+header tcp_t {
+    bit<16> srcPort;
+    bit<16> dstPort;
+    bit<32> seqNo;
+    bit<32> ackNo;
+    bit<4>  dataOffset;
+    bit<3>  res;
+    bit<3>  ecn;
+    bit<6>  ctrl;
+    bit<16> window;
+    bit<16> checksum;
+    bit<16> urgentPtr;
 }
 
 struct metadata {}
@@ -37,7 +49,7 @@ struct metadata {}
 struct headers {
     ethernet_t   ethernet;
     ipv4_t       ipv4;
-    ecmp_t       ecmp;
+    tcp_t        tcp;
 }
 
 /* PARSER */
@@ -45,22 +57,25 @@ parser MyParser(packet_in packet,
                 out headers hdr,
                 inout metadata meta,
                 inout standard_metadata_t standard_metadata) {
+
     state start {
         packet.extract(hdr.ethernet);
         transition select(hdr.ethernet.etherType) {
             TYPE_IPV4: parse_ipv4;
-            default: acctpt;
+            TYPE_ECMP: parse_ecmp;
+            default: accept;
         }
     }
 
     state parse_ipv4 {
         packet.extract(hdr.ipv4);
-        transition parse_ecmp;
+        transition accept;
     }
 
     state parse_ecmp {
         packet.extract(hdr.ecmp);
-        transition acctpt;
+        hdr.ethernet.etherType = Type_ECMP;
+        transition accept;
     }
 }
 
@@ -81,7 +96,9 @@ control MyIngress(inout headers hdr,
             { 
                 hdr.ipv4.srcAddr,
                 hdr.ipv4.dstAddr,
-                hdr.ipv4.protocol
+                hdr.ipv4.protocol,
+                hdr.tcp.srcPort,
+                hdr.tcp.dstPort
             },
             cnt);
     }
@@ -148,26 +165,7 @@ control MyIngress(inout headers hdr,
 control MyEgress(inout headers hdr,
                  inout metadata meta,
                  inout standard_metadata_t standard_metadata) {
-    
-    action rewrite_mac(bit<48> smac) {
-        hdr.ethernet.srcAddr = smac;
-    }
-    action drop() {
-        mark_to_drop(standard_metadata);
-    }
-    table send_frame {
-        key = {
-            standard_metadata.egress_port: exact;
-        }
-        actions = {
-            rewrite_mac;
-            drop;
-        }
-        size = 256;
-    }
-    apply {
-        send_frame.apply();
-    }
+    apply {}
 }
 
 /* COMPUTATION */
@@ -198,6 +196,7 @@ control MyDeparser(packet_out packet,
     apply {
         packet.emit(hdr.ethernet);
         packet.emit(hdr.ipv4);
+        packet.emit(hdr.tcp);
     }
 }
 

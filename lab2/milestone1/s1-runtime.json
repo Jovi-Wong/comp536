@@ -10,14 +10,14 @@
             },
             "action_name": "set_random_port",
             "action_params": {
-                "base": 1,
-                "cnt": 3
+                "base": 2,
+                "cnt": 4
             }
         },
         {
             "table": "MyIngress.ecmp_table",
             "match": {
-                "standard_metadata.egressPort": 1
+                "standard_metadata.egressPort": 2
             },
             "action_name": "ecmp_forward",
             "action_params": {
@@ -27,7 +27,7 @@
         {
             "table": "MyIngress.ecmp_table",
             "match": {
-                "standard_metadata.egressPort": 2
+                "standard_metadata.egressPort": 3
             },
             "action_name": "ecmp_forward",
             "action_params": {
