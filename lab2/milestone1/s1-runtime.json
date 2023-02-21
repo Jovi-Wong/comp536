@@ -21,9 +21,6 @@
             }
         },
         {
-            
-        }
-        {
             "table": "MyIngress.ecmp_table",
             "match": {
                 "standard_metadata.egress_spec": 2
