@@ -1,7 +1,7 @@
 {
     "target": "bmv2",
-    "p4info": "build/basic_tunnel.p4.p4info.txt",
-    "bmv2_json": "build/basic_tunnel.json",
+    "p4info": "build/ecmp_net.p4.p4info.txt",
+    "bmv2_json": "build/ecmp_net.json",
     "table_entries": [
         {
             "table": "MyIngress.ipv4_table",
