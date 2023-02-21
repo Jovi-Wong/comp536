@@ -1,7 +1,7 @@
 {
     "target": "bmv2",
     "p4info": "build/ecmp_net.p4.p4info.txt",
-    "bmv2_json": "build/load_balance.json",
+    "bmv2_json": "build/ecmp_net.json",
     "table_entries": [
         {
             "table": "MyIngress.ecmp_port",
