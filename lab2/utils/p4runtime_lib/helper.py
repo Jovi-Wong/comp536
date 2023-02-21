@@ -165,6 +165,7 @@ class P4InfoHelper(object):
                         action_name=None,
                         action_params=None,
                         priority=None):
+        print("table_name = {0}, match_fields = {1}, default_action = {2}, action_name= {3}, action_params = {4}, priority={5}",format(table_name, match_fields, default_action, action_params, priority))
         table_entry = p4runtime_pb2.TableEntry()
         table_entry.table_id = self.get_tables_id(table_name)
 
