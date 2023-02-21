@@ -11,7 +11,7 @@
             "action_name": "ipv4_forward",
             "action_params": {
                 "dstAddr": "00:00:00:00:04:02",
-                "port": 2
+                "port": 3
             }
         }
     ]
