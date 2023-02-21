@@ -8,6 +8,7 @@ typedef bit<48> macAddr_t;
 typedef bit<32> ip4Addr_t;
 
 const bit<16> TYPE_ECMP = 0x3814;
+const bit<16> TYPE_IPV4 = 0x800;
 
 header ethernet_t {
     macAddr_t dstAddr;
