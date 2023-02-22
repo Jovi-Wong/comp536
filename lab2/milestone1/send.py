@@ -1,13 +1,9 @@
 import random
 import socket
 import sys
-from scapy.all import IP, TCP, Ether, Packet, get_if_hwaddr, get_if_list, sendp, LongField
+from scapy.all import IP, TCP, Ether, get_if_hwaddr, get_if_list, sendp
 
-class PortThrouput(Packet):
-    name = "portThroughput"
-    fields_desc = [LongField("port2", 0),
-                   LongField("port3", 0)]
-
+from PortThroughput import PortThrouput
 
 def get_if():
     iface=None # "h1-eth0"
@@ -32,7 +28,7 @@ def main():
         addr = socket.gethostbyname(sys.argv[1])
         iface = get_if()
         print("sending query packet on interface %s to %s" % (iface, str(addr)))
-        pkt = Ether(src=get_if_hwaddr(iface), dst='ff:ff:ff:ff:ff:ff', type=0x9723) / IP(dst=addr) / TCP(dport=1234, sport=random.randint(49152,65535)) / "PortThrouput()"
+        pkt = Ether(src=get_if_hwaddr(iface), dst='ff:ff:ff:ff:ff:ff', type=0x9723) / IP(dst=addr) / PortThrouput()
         pkt.show2()
     sendp(pkt, iface=iface, verbose=False)
 
