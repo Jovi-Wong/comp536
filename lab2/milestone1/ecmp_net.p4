@@ -188,9 +188,9 @@ action portCounterCalc(in bit<32> pktLen,
     portCounter.read(len_sum, (bit<32>)port);
     bit<64> new_len_sum = len_sum + (bit<64>)pktLen;
     bit<32> index = (bit<32>)port;
-    portCounter.write(new_len_sum, port-2);
-    portCounter.read(port1Counter, REG_PORT2);
-    portCounter.read(port2Counter, REG_PORT3);
+    portCounter.write(port-2, new_len_sum);
+    portCounter.read(REG_PORT2, port1Counter);
+    portCounter.read(REG_PORT3, port2Counter);
 }
 
 control MyEgress(inout headers hdr,
