@@ -7,7 +7,7 @@ from scapy.layers.inet import _IPOption_HDR
 from PortThroughput import PortThrouput
 
 port2_throughput = 0
-port3_throughput = 0
+
 
 def get_if():
     iface=None
@@ -37,8 +37,11 @@ def handle_pkt(pkt):
     pkt.show2()
     msg = pkt["TCP"].payload.load
     if len(msg) == 18 and msg[0:2] == b'x\ffx\ff':
-        print("mark = {0}".format(msg[0:2]))
-        print("port2 = {0} and port3 = {1}".format(msg[2:10], msg[10:18]))
+        mark = msg[0:2]
+        port2_throughput = int.from_bytes(msg[2:10])
+        port3_throughput = int.from_bytes(msg[10:18])
+        print("mark = {0}".format(mark))
+        print("port2 = {0} and port3 = {1}".format(port2_throughput, port3_throughput))
 #    hexdump(pkt)
     sys.stdout.flush()
 
