@@ -1,7 +1,7 @@
 import random
 import socket
 import sys
-from scapy.all import IP, TCP, Ether, Packet, get_if_hwaddr, get_if_list, sendp
+from scapy.all import IP, TCP, Ether, Packet, get_if_hwaddr, get_if_list, sendp, LongField
 
 class PortThrouput(Packet):
     name = "portThroughput"
