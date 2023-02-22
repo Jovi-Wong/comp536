@@ -178,48 +178,33 @@ control MyIngress(inout headers hdr,
 
 /* EGRESS */
 register<bit<64>>(2) portCounter;
-// action portCounterCalc(in bit<32> pktLen,
-//                    in bit<9> port,
-//                    out bit<64> port1Counter,
-//                    out bit<64> port2Counter){
+action portCounterCalc(in bit<32> pktLen,
+                   in bit<9> port,
+                   out bit<64> port1Counter,
+                   out bit<64> port2Counter){
     
-//     bit<64> len_sum;
-//     portCounter.read(len_sum, (bit<32>)port);
-//     len_sum = len_sum + (bit<64>)pktLen;
-//     portCounter.write((bit<32>)port, len_sum);
-//     portCounter.read(port1Counter, REG_PORT2);
-//     portCounter.read(port2Counter, REG_PORT3);
-// }
+    bit<64> len_sum;
+    portCounter.read(len_sum, (bit<32>)port);
+    len_sum = len_sum + (bit<64>)pktLen;
+    portCounter.write((bit<32>)port, len_sum);
+    portCounter.read(port1Counter, REG_PORT2);
+    portCounter.read(port2Counter, REG_PORT3);
+}
 
 control MyEgress(inout headers hdr,
                  inout metadata meta,
                  inout standard_metadata_t standard_metadata) {
     apply {
-        
         if (hdr.ethernet.etherType == TYPE_ECMP) {
             hdr.ethernet.etherType = TYPE_IPV4;
-            if (standard_metadata.egress_spec == 2) {
-                bit<64> len_sum;
-                portCounter.read(len_sum, REG_PORT2);
-                len_sum = len_sum + (bit<64>) standard_metadata.packet_length;
-                portCounter.write(REG_PORT2, len_sum);
-            } else if (standard_metadata.egress_spec == 3) {
-                bit<64> len_sum;
-                portCounter.read(len_sum, REG_PORT3);
-                len_sum = len_sum + (bit<64>) standard_metadata.packet_length;
-                portCounter.write(REG_PORT3, len_sum);
-            }
-            // bit<64> counter1;
-            // bit<64> counter2;
-            // portCounterCalc(standard_metadata.packet_length, standard_metadata.egress_spec, counter1, counter2);
+            bit<64> counter1;
+            bit<64> counter2;
+            portCounterCalc(standard_metadata.packet_length, standard_metadata.egress_spec, counter1, counter2);
         } else if (hdr.ethernet.etherType == TYPE_QURY) {
             hdr.ethernet.etherType = TYPE_IPV4;
             bit<64> counter1;
             bit<64> counter2;
-            // portCounterCalc(standard_metadata.packet_length, standard_metadata.egress_spec, counter1, counter2);
-            
-            portCounter.read(counter1, REG_PORT2);
-            portCounter.read(counter2, REG_PORT3);
+            portCounterCalc(standard_metadata.packet_length, standard_metadata.egress_spec, counter1, counter2);
             hdr.lens.p2Count = counter1;
             hdr.lens.p3Count = counter2;
         }
