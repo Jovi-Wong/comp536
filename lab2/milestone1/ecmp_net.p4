@@ -179,9 +179,9 @@ control MyIngress(inout headers hdr,
 /* EGRESS */
 register<bit<64>>(2) portCounter;
 action portCounterCalc(in bit<32> pktLen,
-                   in bit<9> port,
-                   out bit<64> port1Counter,
-                   out bit<64> port2Counter){
+                       in bit<9> port,
+                       out bit<64> port1Counter,
+                       out bit<64> port2Counter){
     
     bit<64> len_sum;
     portCounter.read(len_sum, (bit<32>)port);
@@ -210,7 +210,7 @@ control MyEgress(inout headers hdr,
             bit<64> counter1 = 0;
             bit<64> counter2 = 0;
             bit<9> port = standard_metadata.egress_spec;
-            bit<64> pktLen = 0;
+            bit<32> pktLen = 0;
             portCounterCalc(pktLen, standard_metadata.egress_spec, counter1, counter2);
             hdr.lens.p2Count = counter1;
             hdr.lens.p3Count = counter2;
