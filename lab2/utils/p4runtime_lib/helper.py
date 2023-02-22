@@ -133,7 +133,6 @@ class P4InfoHelper(object):
             raise Exception("Unsupported match type with type %r" % match_type)
 
     def get_action_param(self, action_name, name=None, id=None):
-        print(self.p4info.actions)
         for a in self.p4info.actions:
             pre = a.preamble
             if pre.name == action_name:

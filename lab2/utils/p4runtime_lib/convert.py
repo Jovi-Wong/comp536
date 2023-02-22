@@ -63,7 +63,6 @@ def encode(x, bitwidth):
     if (type(x) == list or type(x) == tuple) and len(x) == 1:
         x = x[0]
     print("*************************************")
-    print("x = {0}, bitwidth = {1}".format(x, bitwidth))
     encoded_bytes = None
     if type(x) == str:
         if matchesMac(x):
