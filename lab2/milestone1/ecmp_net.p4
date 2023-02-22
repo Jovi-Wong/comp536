@@ -181,6 +181,7 @@ control MyEgress(inout headers hdr,
                  inout standard_metadata_t standard_metadata) {
     register<bit<64>>(2) portCounter;
     apply {
+        
         if (hdr.ethernet.etherType == TYPE_ECMP) {
             hdr.ethernet.etherType = TYPE_IPV4;
             if (standard_metadata.egress_spec == 2) {
@@ -195,6 +196,7 @@ control MyEgress(inout headers hdr,
                 portCounter.write(REG_PORT3, len_sum);
             }
         } else if (hdr.ethernet.etherType == TYPE_QURY) {
+            hdr.ethernet.etherType = TYPE_IPV4;
             portCounter.read(hdr.lens.p2Count, REG_PORT2);
             portCounter.read(hdr.lens.p3Count, REG_PORT3);
         }
