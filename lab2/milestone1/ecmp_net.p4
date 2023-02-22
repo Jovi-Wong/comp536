@@ -194,8 +194,8 @@ action portCounterCalc(in bit<32> pktLen,
 }
 
 control MyEgress(inout headers hdr,
-                 inout metadata meta,
-                 inout standard_metadata_t standard_metadata) {
+                 in metadata meta,
+                 in standard_metadata_t standard_metadata) {
     apply {
         if (hdr.ethernet.etherType == TYPE_ECMP) {
             hdr.ethernet.etherType = TYPE_IPV4;
