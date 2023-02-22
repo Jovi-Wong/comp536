@@ -30,17 +30,14 @@ class IPOption_MRI(IPOption):
                                    IntField("", 0),
                                    length_from=lambda pkt:pkt.count*4) ]
 def handle_pkt(pkt):
-    print("got a packet")
-    pkt.show2()
+    # print("got a packet")
+    # pkt.show2()
     msg = pkt["TCP"].payload.load
 
     if len(msg) == 18 and msg[0:2] == b'\xff\xff':
-        mark = msg[0:2]
         port2_throughput = int.from_bytes(msg[2:10], "big")
         port3_throughput = int.from_bytes(msg[10:18], "big")
-        print("mark = {0}".format(mark))
         print("Port2 = {0} bytes and Port3 = {1} bytes in total!".format(port2_throughput, port3_throughput))
-#    hexdump(pkt)
     sys.stdout.flush()
 
 
