@@ -36,9 +36,9 @@ def handle_pkt(pkt):
     print("got a packet")
     pkt.show2()
     msg = pkt["TCP"].payload.load
-    if len(msg) == 18 and msg[0:2] == b'\x00\x00':
+    if len(msg) == 18:
         print("port2 = {0} and port3 = {1}".format(msg[2:10], msg[10:18]))
-        print(msg)
+        print(pkt)
 #    hexdump(pkt)
     sys.stdout.flush()
 
