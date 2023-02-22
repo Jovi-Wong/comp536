@@ -17,7 +17,7 @@
             "action_name": "MyIngress.set_random_port",
             "action_params": {
                 "base": 2,
-                "cnt": 4
+                "cnt": 2
             }
         },
         {
