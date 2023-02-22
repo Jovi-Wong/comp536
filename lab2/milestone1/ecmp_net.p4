@@ -177,10 +177,11 @@ control MyIngress(inout headers hdr,
 }
 
 /* EGRESS */
+ register<bit<64>>(2) portCounter;
 control MyEgress(inout headers hdr,
                  inout metadata meta,
                  inout standard_metadata_t standard_metadata) {
-    register<bit<64>>(2) portCounter;
+   
     apply {
         
         if (hdr.ethernet.etherType == TYPE_ECMP) {

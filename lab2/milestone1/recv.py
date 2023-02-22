@@ -6,6 +6,9 @@ from scapy.layers.inet import _IPOption_HDR
 
 from PortThroughput import PortThrouput
 
+port2_throughput = 0
+port3_throughput = 0
+
 def get_if():
     iface=None
     for i in get_if_list():
