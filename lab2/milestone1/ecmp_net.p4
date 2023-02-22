@@ -177,16 +177,15 @@ control MyIngress(inout headers hdr,
 }
 
 /* EGRESS */
-
+register<bit<64>>(2) portCounter;
 action portCounterCalc(in bit<32> pktLen,
                    in bit<9> port,
                    out bit<64> port1Counter,
                    out bit<64> port2Counter){
     
-    register<bit<64>>(2) portCounter;
     bit<64> len_sum;
     portCounter.read(len_sum, port);
-    len_sum = len_sum + len;
+    len_sum = len_sum + pktLen;
     portCounter.write(port, len_sum);
     portCounter.read(port1Counter, REG_PORT2);
     portCounter.read(port2Counter, REG_PORT3);
@@ -196,7 +195,7 @@ control MyEgress(inout headers hdr,
                  inout metadata meta,
                  inout standard_metadata_t standard_metadata) {
     apply {
-        register<bit<64>>(2) portCounter;
+        
         if (hdr.ethernet.etherType == TYPE_ECMP) {
             hdr.ethernet.etherType = TYPE_IPV4;
             // if (standard_metadata.egress_spec == 2) {
