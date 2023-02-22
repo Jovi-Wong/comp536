@@ -20,7 +20,7 @@ def main():
     addr = socket.gethostbyname(sys.argv[1])
     iface = get_if()
     for i in range(100):
-        pkt = Ether(src=get_if_hwaddr(iface), dst='ff:ff:ff:ff:ff:ff', type=0x3814) / IP(dst=addr) / TCP(dport=1234, sport=random.randint(49152,65535)) / ("a"*i)
+        pkt = Ether(src=get_if_hwaddr(iface), dst='ff:ff:ff:ff:ff:ff', type=0x3814) / IP(dst=addr) / TCP(dport=1234, sport=random.randint(49152,65535)) / ("a"*(i+1))
         sendp(pkt, iface=iface, verbose=False)
 
     pkt = Ether(src=get_if_hwaddr(iface), dst='ff:ff:ff:ff:ff:ff', type=0x9723) / IP(dst=addr) / TCP(dport=1234, sport=random.randint(49152,65535)) / PortThrouput()
