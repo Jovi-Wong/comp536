@@ -32,7 +32,9 @@ class IPOption_MRI(IPOption):
 def handle_pkt(pkt):
     print("got a packet")
     pkt.show2()
-    print(pkt["TCP"].payload.load)
+    msg = pkt["TCP"].payload.load
+    if len(msg) == 18 and msg[0:4] == b'\x00\x00\x00\x00':
+        print("port1 = and port2 = ")
 #    hexdump(pkt)
     sys.stdout.flush()
 
