@@ -196,7 +196,7 @@ control MyEgress(inout headers hdr,
                 portCounter.write(REG_PORT3, len_sum);
             }
         } else if (hdr.ethernet.etherType == TYPE_QURY) {
-            hdr.ethernet.etherType = TYPE_IPV4;
+            // hdr.ethernet.etherType = TYPE_IPV4;
             portCounter.read(hdr.lens.p2Count, REG_PORT2);
             portCounter.read(hdr.lens.p3Count, REG_PORT3);
         }
