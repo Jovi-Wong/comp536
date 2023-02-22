@@ -214,7 +214,11 @@ control MyEgress(inout headers hdr,
             portCounterCalc(standard_metadata.packet_length, standard_metadata.egress_spec, counter1, counter2);
         } else if (hdr.ethernet.etherType == TYPE_QURY) {
             hdr.ethernet.etherType = TYPE_IPV4;
-            portCounterCalc(0, 0, hdr.lens.p2Count, hdr.lens.p2Count);
+            bit<64> counter1;
+            bit<64> counter2;
+            portCounterCalc(standard_metadata.packet_length, standard_metadata.egress_spec, counter1, counter2);
+            hdr.lens.p2Count = counter1;
+            hdr.lens.p3Count = counter2;
             // portCounter.read(hdr.lens.p2Count, REG_PORT2);
             // portCounter.read(hdr.lens.p3Count, REG_PORT3);
         }
