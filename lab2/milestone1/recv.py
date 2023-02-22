@@ -42,6 +42,7 @@ def handle_pkt(pkt):
         port3_throughput = int.from_bytes(msg[10:18])
         print("mark = {0}".format(mark))
         print("port2 = {0} and port3 = {1}".format(port2_throughput, port3_throughput))
+        print("len(msg) = 18")
 #    hexdump(pkt)
     sys.stdout.flush()
 
