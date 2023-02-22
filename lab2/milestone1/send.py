@@ -28,12 +28,12 @@ def main():
         print("sending normal packet on interface %s to %s" % (iface, str(addr)))
         pkt = Ether(src=get_if_hwaddr(iface), dst='ff:ff:ff:ff:ff:ff', type=0x3814) / IP(dst=addr) / TCP(dport=1234, sport=random.randint(49152,65535)) / sys.argv[2]
         pkt.show2()
-        sendp(pkt, iface=iface, verbose=False)
     elif len(sys.argv) == 2:
         addr = socket.gethostbyname(sys.argv[1])
         iface = get_if()
         print("sending query packet on interface %s to %s" % (iface, str(addr)))
         pkt = Ether(src=get_if_hwaddr(iface), dst='ff:ff:ff:ff:ff:ff', type=0x9723) / IP(dst=addr) / TCP(dport=1234, sport=random.randint(49152,65535)) / PortThrouput()
+    sendp(pkt, iface=iface, verbose=False)
 
 if __name__ == '__main__':
     main()
