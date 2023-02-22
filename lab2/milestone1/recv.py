@@ -39,7 +39,8 @@ def main():
     iface = ifaces[0]
     print("sniffing on %s" % iface)
     sys.stdout.flush()
-    sniff(iface = iface, prn = lambda x: handle_pkt(x))
+    recv_pkt = sniff(filter="tcp", iface = iface, prn = lambda x: handle_pkt(x))
+    print(recv_pkt)
 
 if __name__ == '__main__':
     main()
