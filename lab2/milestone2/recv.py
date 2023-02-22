@@ -32,7 +32,6 @@ class IPOption_MRI(IPOption):
 def handle_pkt(pkt):
     print("got a packet")
     pkt.show2()
-    print(pkt["TCP"])
     msg = pkt["TCP"].payload.load
 
     if len(msg) == 18 and msg[0:2] == b'\xff\xff':

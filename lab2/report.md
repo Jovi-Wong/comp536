@@ -89,6 +89,12 @@ sudo python3 ./send.py [address]
 
 ### Task 1
 
+I have send 100 packets from h1 to h2 with payload range from 1 to 100. And the result shows that the port2 of switch1 transmits 4565 bytes and port3 of switch2 transmits 5885 bytes in total.
+
+
+
+<img src="D:\Documents\GitHub\comp536\lab2\asset\m2t1-lb.PNG" alt="m2t1-lb" style="zoom:67%;" />
+
 
 
 
