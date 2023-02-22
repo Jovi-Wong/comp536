@@ -187,8 +187,12 @@ action portCounterCalc(in bit<32> pktLen,
     portCounter.read(len_sum, (bit<32>)port);
     len_sum = len_sum + (bit<64>)pktLen;
     portCounter.write((bit<32>)port, len_sum);
-    portCounter.read(port1Counter, REG_PORT2);
-    portCounter.read(port2Counter, REG_PORT3);
+    bit<64> counter1 = 0;
+    bit<64> counter2 = 0;
+    portCounter.read(counter1, REG_PORT2);
+    portCounter.read(counter2, REG_PORT3);
+    port1Counter = counter1;
+    port2Counter = counter2;
 }
 
 control MyEgress(inout headers hdr,
@@ -205,8 +209,9 @@ control MyEgress(inout headers hdr,
             hdr.ethernet.etherType = TYPE_IPV4;
             bit<64> counter1 = 0;
             bit<64> counter2 = 0;
-            bit<9> port = standard_metadata.egress_spec; 
-            portCounterCalc(0, port, counter1, counter2);
+            bit<9> port = standard_metadata.egress_spec;
+            bit<64> pktLen = 0;
+            portCounterCalc(pktLen, standard_metadata.egress_spec, counter1, counter2);
             hdr.lens.p2Count = counter1;
             hdr.lens.p3Count = counter2;
         }
