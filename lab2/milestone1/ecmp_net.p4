@@ -100,7 +100,6 @@ control MyVerification(inout headers hdr, inout metadata meta) {
     apply {  }
 }
 
-register<bit<64>>(2) portCounter;
 
 
 
@@ -108,7 +107,8 @@ register<bit<64>>(2) portCounter;
 control MyIngress(inout headers hdr,
                   inout metadata meta,
                   inout standard_metadata_t standard_metadata) {
-    
+    register<bit<64>>(2) portCounter;
+
     action portCounterCalc(in bit<32> pktLen,
                         in bit<9> port,
                         out bit<64> port1Counter,
