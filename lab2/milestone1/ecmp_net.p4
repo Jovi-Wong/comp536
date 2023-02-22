@@ -11,6 +11,9 @@ const bit<16> TYPE_ECMP = 0x3814;
 const bit<16> TYPE_IPV4 = 0x0800;
 const bit<16> TYPE_QURY = 0x9723;
 
+const bit<32> REG_PORT2 = 0x0000;
+const bit<32> REG_PORT3 = 0x0001;
+
 header ethernet_t {
     macAddr_t dstAddr;
     macAddr_t srcAddr;
@@ -47,8 +50,8 @@ header tcp_t {
 }
 
 header len_t {
-    bit<16> port;
-    bit<32> count;
+    bit<64> p2Count;
+    bit<64> p3Count;
 }
 
 struct metadata {}
@@ -57,6 +60,7 @@ struct headers {
     ethernet_t   ethernet;
     ipv4_t       ipv4;
     tcp_t        tcp;
+    len_t        lens;
 }
 
 /* PARSER */
@@ -71,11 +75,7 @@ parser MyParser(packet_in packet,
     
     state parse_ether {
         packet.extract(hdr.ethernet);
-        transition select(hdr.ethernet.etherType) {
-            TYPE_IPV4: parse_ipv4;
-            TYPE_ECMP: parse_ecmp;
-            default: accept;
-        }
+        transition parse_ipv4;
     }
 
     state parse_ipv4 {
@@ -83,14 +83,13 @@ parser MyParser(packet_in packet,
         transition parse_tcp;
     }
 
-    state parse_ecmp {
-        packet.extract(hdr.ipv4);
-        hdr.ethernet.etherType = TYPE_IPV4;
-        transition parse_tcp;
-    }
-
     state parse_tcp {
         packet.extract(hdr.tcp);
+        transition parse_qury;
+    }
+
+    state parse_qury {
+        packet.extract(hdr.lens);
         transition accept;
     }
 }
@@ -166,8 +165,10 @@ control MyIngress(inout headers hdr,
     apply {
         if (hdr.ethernet.etherType == TYPE_IPV4) {
             ipv4_table.apply();
-        } else {
-            hdr.ethernet.etherType = TYPE_IPV4;
+        } else if (hdr.ethernet.etherType == TYPE_ECMP) {
+            ecmp_port.apply();
+            ecmp_table.apply();
+        } else if (hdr.ethernet.etherType == TYPE_QURY) {
             ecmp_port.apply();
             ecmp_table.apply();
         }
@@ -178,9 +179,26 @@ control MyIngress(inout headers hdr,
 control MyEgress(inout headers hdr,
                  inout metadata meta,
                  inout standard_metadata_t standard_metadata) {
-    register<bit<64>> p1Counter;
-    register<bit<64>> p2Counter;
-    apply {}
+    register<bit<64>>(2) portCounter;
+    apply {
+        if (hdr.ethernet.etherType == TYPE_ECMP) {
+            hdr.ethernet.etherType = TYPE_IPV4;
+            if (standard_metadata.egress_spec == 2) {
+                bit<64> len_sum;
+                portCounter.read(len_sum, REG_PORT2);
+                len_sum = len_sum + (bit<64>) standard_metadata.packet_length;
+                portCounter.write(REG_PORT2, len_sum);
+            } else if (standard_metadata.egress_spec == 3) {
+                bit<64> len_sum;
+                portCounter.read(len_sum, REG_PORT3);
+                len_sum = len_sum + (bit<64>) standard_metadata.packet_length;
+                portCounter.write(REG_PORT3, len_sum);
+            }
+        } else if (hdr.ethernet.etherType == TYPE_QURY) {
+            portCounter.read(hdr.lens.p2Count, REG_PORT2);
+            portCounter.read(hdr.lens.p3Count, REG_PORT3);
+        }
+    }
 }
 
 /* COMPUTATION */
@@ -212,6 +230,7 @@ control MyDeparser(packet_out packet,
         packet.emit(hdr.ethernet);
         packet.emit(hdr.ipv4);
         packet.emit(hdr.tcp);
+        packet.emit(hdr.lens);
     }
 }
 
