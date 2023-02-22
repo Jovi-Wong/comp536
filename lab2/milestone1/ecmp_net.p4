@@ -204,6 +204,7 @@ control MyEgress(inout headers hdr,
             portCounterCalc(standard_metadata.packet_length, standard_metadata.egress_spec, counter1, counter2);
         } else if (hdr.ethernet.etherType == TYPE_QURY) {
             hdr.ethernet.etherType = TYPE_IPV4;
+            hdr.lens.mark = 0x11;
             bit<64> counter1;
             bit<64> counter2;
             portCounterCalc(0, standard_metadata.egress_spec, counter1, counter2);
