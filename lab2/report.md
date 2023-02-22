@@ -41,16 +41,46 @@ Define the topological structure in the following JSON file named "topology.json
 
 ### Task 2
 
-My implementation is to define a new ethernet type named *TYPE_ECMP* which indicates this packet has not been processed by any switch. Then I change this value to *TYPE_IPV4* after be sent to any port.
+My implementation is to define a new ethernet type named *TYPE_ECMP* which indicates this packet has not been processed by any switch. Then I change this value to *TYPE_IPV4* after be sent to any port. And I also create three tables in the ingress control block to deal with these headers. In order to send normal packets,  we only need to follow the following scheme.
+
+```shell
+sudo python3 ./send.py [address] [message]
+```
+
+After the other host is running a receiving program by input the following command.
+
+```shell
+sudo python3 ./recv.py
+```
+
 
 
 
 ### Task 3
+To record how many bytes are transmitted through each port at switch 1, I utilize a regsister array as well as a action to manipulate it. Besides, a new ethernet type named 
 
+*TYPE_QURY* is defined. This new type of packet contains 18 bytes in the payload which first 2 bytes are b'\xff\xff' to mark itself and last two 8 bytes to record how many bytes are transmitted through each port. Then I handle this type of packet is the recv.py file by converting it to int and showing the result in the handle_pkt function as following.
 
+```python
+def handle_pkt(pkt):
+    print("got a packet")
+    pkt.show2()
+    msg = pkt["TCP"].payload.load
 
+    if len(msg) == 18 and msg[0:2] == b'\xff\xff':
+        mark = msg[0:2]
+        port2_throughput = int.from_bytes(msg[2:10], "big")
+        port3_throughput = int.from_bytes(msg[10:18], "big")
+        print("mark = {0}".format(mark))
+        print("Port2 = {0} bytes and Port3 = {1} bytes in total!".format(port2_throughput, port3_throughput))
+    sys.stdout.flush()
+```
 
+In order to send this special packet, we only need to follow the following scheme.
 
+```shell
+sudo python3 ./send.py [address]
+```
 
 
 

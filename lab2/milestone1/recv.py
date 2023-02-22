@@ -39,7 +39,7 @@ def handle_pkt(pkt):
         port2_throughput = int.from_bytes(msg[2:10], "big")
         port3_throughput = int.from_bytes(msg[10:18], "big")
         print("mark = {0}".format(mark))
-        print("port2 = {0} and port3 = {1}".format(port2_throughput, port3_throughput))
+        print("Port2 = {0} bytes and Port3 = {1} bytes in total!".format(port2_throughput, port3_throughput))
 #    hexdump(pkt)
     sys.stdout.flush()
 
