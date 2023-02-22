@@ -133,8 +133,6 @@ class P4InfoHelper(object):
             raise Exception("Unsupported match type with type %r" % match_type)
 
     def get_action_param(self, action_name, name=None, id=None):
-        print("^^^^^^^^^^^^^^^")
-        print("func=get_action_param, action_name = {0}, name = {1}, id = {2}".format(action_name, name, id))
         print(self.p4info.actions)
         for a in self.p4info.actions:
             pre = a.preamble
@@ -155,8 +153,7 @@ class P4InfoHelper(object):
         return self.get_action_param(action_name, id=param_id).name
 
     def get_action_param_pb(self, action_name, param_name, value):
-        print("------------")
-        print("func = get_action_param_pb, action_name = {0}, param_name= {1}, value = {2}".format(action_name, param_name, value))
+
         p4info_param = self.get_action_param(action_name, param_name)
         p4runtime_param = p4runtime_pb2.Action.Param()
         p4runtime_param.param_id = p4info_param.id
@@ -170,7 +167,6 @@ class P4InfoHelper(object):
                         action_name=None,
                         action_params=None,
                         priority=None):
-        print("table_name = {0}, match_fields = {1}, default_action = {2}, action_name= {3}, action_params = {4}, priority={5}".format(table_name, match_fields, default_action, action_name, action_params, priority))
         table_entry = p4runtime_pb2.TableEntry()
         table_entry.table_id = self.get_tables_id(table_name)
 
