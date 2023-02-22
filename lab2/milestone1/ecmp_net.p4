@@ -199,13 +199,13 @@ control MyEgress(inout headers hdr,
             hdr.ethernet.etherType = TYPE_IPV4;
             bit<64> counter1;
             bit<64> counter2;
-            bit<9> port = standard_metadata.egress_spec - 2; 
+            bit<9> port = standard_metadata.egress_spec; 
             portCounterCalc(standard_metadata.packet_length, port, counter1, counter2);
         } else if (hdr.ethernet.etherType == TYPE_QURY) {
             hdr.ethernet.etherType = TYPE_IPV4;
             bit<64> counter1;
             bit<64> counter2;
-            bit<9> port = standard_metadata.egress_spec - 2; 
+            bit<9> port = standard_metadata.egress_spec; 
             portCounterCalc(standard_metadata.packet_length, port, counter1, counter2);
             hdr.lens.p2Count = counter1;
             hdr.lens.p3Count = counter2;
