@@ -102,16 +102,16 @@ control MyVerification(inout headers hdr, inout metadata meta) {
 
 /* INGRESS */
 
-register<bit<32>>(1) nextPort;
+// register<bit<32>>(1) nextPort;
 
-action set_nextPort(in bit<64> N,
-                     out bit<32> port) {
-    bit<64> cur_port;
-    nextPort.read(cur_port, 0);
-    bit<64> next_port = (cur_port + 1) % N;
-    nextPort.write(0, next_port);
-    nextPort.read(port, 0);
-}
+// action set_nextPort(in bit<64> N,
+//                      out bit<32> port) {
+//     bit<64> cur_port;
+//     nextPort.read(cur_port, 0);
+//     bit<64> next_port = (cur_port + 1) % N;
+//     nextPort.write(0, next_port);
+//     nextPort.read(port, 0);
+// }
 
 control MyIngress(inout headers hdr,
                   inout metadata meta,
@@ -131,9 +131,9 @@ control MyIngress(inout headers hdr,
             cnt);
     }
 
-    action set_next_port(in bit<64> N, out bit<32> port) {
+    // action set_next_port(in bit<64> N, out bit<32> port) {
 
-    }
+    // }
 
     action drop() {
         mark_to_drop(standard_metadata);
