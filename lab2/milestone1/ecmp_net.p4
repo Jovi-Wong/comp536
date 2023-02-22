@@ -187,7 +187,7 @@ action portCounterCalc(in bit<32> pktLen,
     bit<64> len_sum;
     portCounter.read(len_sum, (bit<32>)port);
     bit<64> new_len_sum = len_sum + (bit<64>)pktLen;
-    bit<32> index = (bit<32>)port;
+    bit<32> index = (bit<32>)port - 2;
     portCounter.write(index, new_len_sum);
     portCounter.read( port1Counter, REG_PORT2);
     portCounter.read( port2Counter, REG_PORT3);
