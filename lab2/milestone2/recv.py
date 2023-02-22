@@ -4,8 +4,6 @@ import sys
 from scapy.all import FieldLenField, FieldListField, IntField, IPOption, ShortField, get_if_list, sniff
 from scapy.layers.inet import _IPOption_HDR
 
-from PortThroughput import PortThrouput
-
 def get_if():
     iface=None
     for i in get_if_list():

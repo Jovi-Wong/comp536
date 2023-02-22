@@ -104,6 +104,14 @@ control MyVerification(inout headers hdr, inout metadata meta) {
 
 
 /* INGRESS */
+
+register<bit<16>>(1) nextPort;
+
+action set_nextPort(in bit<16> N,
+                    out bit<9> port) {
+    
+}
+
 control MyIngress(inout headers hdr,
                   inout metadata meta,
                   inout standard_metadata_t standard_metadata) {
