@@ -3,6 +3,12 @@ import socket
 import sys
 from scapy.all import IP, TCP, Ether, Packet, get_if_hwaddr, get_if_list, sendp
 
+class PortThrouput(Packet):
+    name = "portThroughput"
+    fields_desc = [LongField("port2", 0),
+                   LongField("port3", 0)]
+
+
 def get_if():
     iface=None # "h1-eth0"
     for i in get_if_list():
@@ -16,18 +22,18 @@ def get_if():
 
 def main():
 
-    if len(sys.argv)<3:
-        print('pass 2 arguments: <destination> "<message>"')
-        exit(1)
-
-    addr = socket.gethostbyname(sys.argv[1])
-    iface = get_if()
-
-    print("sending on interface %s to %s" % (iface, str(addr)))
-    pkt = Ether(src=get_if_hwaddr(iface), dst='ff:ff:ff:ff:ff:ff', type=0x3814) / IP(dst=addr) / TCP(dport=1234, sport=random.randint(49152,65535)) / sys.argv[2]
-    pkt.show2()
-    sendp(pkt, iface=iface, verbose=False)
-
+    if len(sys.argv) == 3:
+        addr = socket.gethostbyname(sys.argv[1])
+        iface = get_if()
+        print("sending normal packet on interface %s to %s" % (iface, str(addr)))
+        pkt = Ether(src=get_if_hwaddr(iface), dst='ff:ff:ff:ff:ff:ff', type=0x3814) / IP(dst=addr) / TCP(dport=1234, sport=random.randint(49152,65535)) / sys.argv[2]
+        pkt.show2()
+        sendp(pkt, iface=iface, verbose=False)
+    elif len(sys.argv) == 2:
+        addr = socket.gethostbyname(sys.argv[1])
+        iface = get_if()
+        print("sending query packet on interface %s to %s" % (iface, str(addr)))
+        pkt = Ether(src=get_if_hwaddr(iface), dst='ff:ff:ff:ff:ff:ff', type=0x9723) / IP(dst=addr) / TCP(dport=1234, sport=random.randint(49152,65535)) / PortThrouput()
 
 if __name__ == '__main__':
     main()
