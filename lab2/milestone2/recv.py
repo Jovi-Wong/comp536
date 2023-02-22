@@ -31,7 +31,7 @@ class IPOption_MRI(IPOption):
                                    length_from=lambda pkt:pkt.count*4) ]
 def handle_pkt(pkt):
     # print("got a packet")
-    # pkt.show2()
+    pkt.show2()
     msg = pkt["TCP"].payload.load
 
     if len(msg) == 18 and msg[0:2] == b'\xff\xff':
