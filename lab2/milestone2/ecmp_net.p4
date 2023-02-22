@@ -100,19 +100,10 @@ control MyVerification(inout headers hdr, inout metadata meta) {
     apply {  }
 }
 
+
+
+
 /* INGRESS */
-
-// register<bit<32>>(1) nextPort;
-
-// action set_nextPort(in bit<64> N,
-//                      out bit<32> port) {
-//     bit<64> cur_port;
-//     nextPort.read(cur_port, 0);
-//     bit<64> next_port = (cur_port + 1) % N;
-//     nextPort.write(0, next_port);
-//     nextPort.read(port, 0);
-// }
-
 control MyIngress(inout headers hdr,
                   inout metadata meta,
                   inout standard_metadata_t standard_metadata) {
@@ -130,10 +121,6 @@ control MyIngress(inout headers hdr,
             },
             cnt);
     }
-
-    // action set_next_port(in bit<64> N, out bit<32> port) {
-
-    // }
 
     action drop() {
         mark_to_drop(standard_metadata);
@@ -198,8 +185,8 @@ register<bit<64>>(2) portCounter;
 action portCounterCalc(in bit<32> pktLen,
                     in bit<9> port,
                     out bit<64> port1Counter,
-                    out bit<64> port2Counter) {
-
+                    out bit<64> port2Counter){
+    
     bit<64> len_sum;
     portCounter.read(len_sum, (bit<32>)port);
     bit<64> new_len_sum = len_sum + (bit<64>)pktLen;
