@@ -102,23 +102,25 @@ control MyVerification(inout headers hdr, inout metadata meta) {
 
 register<bit<64>>(2) portCounter;
 
-action portCounterCalc(in bit<32> pktLen,
-                       in bit<9> port,
-                       out bit<64> port1Counter,
-                       out bit<64> port2Counter){
-    
-    bit<64> len_sum;
-    portCounter.read(len_sum, (bit<32>)port);
-    bit<64> new_len_sum = len_sum + (bit<64>)pktLen;
-    portCounter.write((bit<32>)port, new_len_sum);
-    portCounter.read(port1Counter, REG_PORT2);
-    portCounter.read(port2Counter, REG_PORT3);
-}
+
 
 /* INGRESS */
 control MyIngress(inout headers hdr,
                   inout metadata meta,
                   inout standard_metadata_t standard_metadata) {
+    
+    action portCounterCalc(in bit<32> pktLen,
+                        in bit<9> port,
+                        out bit<64> port1Counter,
+                        out bit<64> port2Counter){
+        
+        bit<64> len_sum;
+        portCounter.read(len_sum, (bit<32>)port);
+        bit<64> new_len_sum = len_sum + (bit<64>)pktLen;
+        portCounter.write((bit<32>)port, new_len_sum);
+        portCounter.read(port1Counter, REG_PORT2);
+        portCounter.read(port2Counter, REG_PORT3);
+    }
 
     action set_random_port(bit<16> base, bit<32> cnt) {
         hash(standard_metadata.egress_spec,
