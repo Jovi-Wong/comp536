@@ -32,7 +32,7 @@ class IPOption_MRI(IPOption):
 def handle_pkt(pkt):
     print("got a packet")
     pkt.show2()
-    print(pkt.payload)
+    print(pkt["TCP"].payload)
 #    hexdump(pkt)
     sys.stdout.flush()
 
