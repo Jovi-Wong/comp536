@@ -208,8 +208,8 @@ control MyEgress(inout headers hdr,
             bit<64> counter1;
             bit<64> counter2;
             portCounterCalc(0, standard_metadata.egress_spec, counter1, counter2);
-            hdr.lens.p2Count = (bit<64>) 0x22;
-            hdr.lens.p3Count = (bit<64>) 0x33;
+            hdr.lens.p2Count = counter1;
+            hdr.lens.p3Count = counter2;
         }
     }
 }
