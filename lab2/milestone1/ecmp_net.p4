@@ -177,30 +177,47 @@ control MyIngress(inout headers hdr,
 }
 
 /* EGRESS */
- register<bit<64>>(2) portCounter;
+
+action portCounterCalc(in bit<32> pktLen,
+                   in bit<9> port,
+                   out bit<64> port1Counter,
+                   out bit<64> port2Counter){
+    
+    register<bit<64>>(2) portCounter;
+    bit<64> len_sum;
+    portCounter.read(len_sum, port);
+    len_sum = len_sum + len;
+    portCounter.write(port, len_sum);
+    portCounter.read(port1Counter, REG_PORT2);
+    portCounter.read(port2Counter, REG_PORT3);
+}
+
 control MyEgress(inout headers hdr,
                  inout metadata meta,
                  inout standard_metadata_t standard_metadata) {
-   
     apply {
-        
+        register<bit<64>>(2) portCounter;
         if (hdr.ethernet.etherType == TYPE_ECMP) {
             hdr.ethernet.etherType = TYPE_IPV4;
-            if (standard_metadata.egress_spec == 2) {
-                bit<64> len_sum;
-                portCounter.read(len_sum, REG_PORT2);
-                len_sum = len_sum + (bit<64>) standard_metadata.packet_length;
-                portCounter.write(REG_PORT2, len_sum);
-            } else if (standard_metadata.egress_spec == 3) {
-                bit<64> len_sum;
-                portCounter.read(len_sum, REG_PORT3);
-                len_sum = len_sum + (bit<64>) standard_metadata.packet_length;
-                portCounter.write(REG_PORT3, len_sum);
-            }
+            // if (standard_metadata.egress_spec == 2) {
+            //     bit<64> len_sum;
+            //     portCounter.read(len_sum, REG_PORT2);
+            //     len_sum = len_sum + (bit<64>) standard_metadata.packet_length;
+            //     portCounter.write(REG_PORT2, len_sum);
+            // } else if (standard_metadata.egress_spec == 3) {
+            //     bit<64> len_sum;
+            //     portCounter.read(len_sum, REG_PORT3);
+            //     len_sum = len_sum + (bit<64>) standard_metadata.packet_length;
+            //     portCounter.write(REG_PORT3, len_sum);
+            // }
+            bit<64> counter1;
+            bit<64> counter2;
+            portCounterCalc(standard_metadata.packet_length, standard_metadata.egress_spec, counter1, counter2);
         } else if (hdr.ethernet.etherType == TYPE_QURY) {
             hdr.ethernet.etherType = TYPE_IPV4;
-            portCounter.read(hdr.lens.p2Count, REG_PORT2);
-            portCounter.read(hdr.lens.p3Count, REG_PORT3);
+            portCounterCalc(0, 0, hdr.lens.p2Count, hdr.lens.p2Count);
+            // portCounter.read(hdr.lens.p2Count, REG_PORT2);
+            // portCounter.read(hdr.lens.p3Count, REG_PORT3);
         }
     }
 }
