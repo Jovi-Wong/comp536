@@ -19,27 +19,6 @@
                 "dstAddr": "00:00:00:00:04:02",
                 "port": 3
             }
-        },
-        {
-            "table": "MyIngress.ecmp_port",
-            "match": {
-                "hdr.ipv4.dstAddr": "10.0.4.2"
-            },
-            "action_name": "MyIngress.set_random_port",
-            "action_params": {
-                "base": 3,
-                "cnt": 1
-            }
-        },
-        {
-            "table": "MyIngress.ecmp_table",
-            "match": {
-                "standard_metadata.egress_spec": 3
-            },
-            "action_name": "MyIngress.ecmp_forward",
-            "action_params": {
-                "dstAddr": "00:00:00:00:04:02"
-            }
         }
     ]
 }
