@@ -116,7 +116,7 @@ action set_curPort(in bit<9> N,
     bit<9> nextPort;
     bit<48> nextTimeStamp;
     firstPktTime.read(nextTimeStamp, 0);
-    if (timeDiff > 100000) {
+    if (timeDiff > 150000) {
         nextPort = (prevPort + 1) % N + 2;
         nextTimeStamp = stdmeta.ingress_global_timestamp;
     } else {
