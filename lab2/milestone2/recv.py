@@ -15,19 +15,6 @@ def get_if():
         exit(1)
     return iface
 
-# class IPOption_MRI(IPOption):
-#     name = "MRI"
-#     option = 31
-#     fields_desc = [ _IPOption_HDR,
-#                     FieldLenField("length", None, fmt="B",
-#                                   length_of="swids",
-#                                   adjust=lambda pkt,l:l+4),
-#                     ShortField("count", 0),
-#                     FieldListField("swids",
-#                                    [],
-#                                    IntField("", 0),
-#                                    length_from=lambda pkt:pkt.count*4) ]
-
 recv_pkt_ids = []
     
 def handle_pkt(pkt):
@@ -44,6 +31,14 @@ def handle_pkt(pkt):
 #    hexdump(pkt)
     sys.stdout.flush()
 
+def count_out_of_order_pkt(ids):
+    n = len(ids)
+    ans = 0
+    for i in range(n):
+        for j in range(i+1,n):
+            if ids[i] > ids[j]:
+                ans += 1
+    return ans
 
 def main():
     ifaces = [i for i in os.listdir('/sys/class/net/') if 'eth' in i]
@@ -51,6 +46,7 @@ def main():
     print("sniffing on %s" % iface)
     sys.stdout.flush()
     sniff(filter="tcp", iface = iface, prn = lambda x: handle_pkt(x))
+    print("Unordered packets number = {0}".format(count_out_of_order_pkt(recv_pkt_ids)))
 
 if __name__ == '__main__':
     main()
