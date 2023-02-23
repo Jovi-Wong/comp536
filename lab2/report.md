@@ -91,13 +91,17 @@ sudo python3 ./send.py [address]
 
 I have send 100 packets from h1 to h2 with payload range from 1 to 100. And the result shows that the port2 of switch1 transmits 4565 bytes and port3 of switch2 transmits 5885 bytes in total.
 
-<img src="D:\Documents\GitHub\comp536\lab2\asset\m2t1-lb.PNG" alt="m2t1-lb" style="zoom:67%;" />
+<img src="D:\Documents\GitHub\comp536\lab2\asset\m2t1-lb.PNG" alt="m2t1-lb" style="zoom:100%;" />
 
 
 
 ### Task 2
 
+In order to achieve per-packet flow control, I replace the hash function with a register holding the index of previous port for message transmission. And the result of this policy shows that the port2 of switch1 transmits 5250 bytes and port3 of switch2 transmits 5200 bytes in total. This result is much better than the previous one.
 
+
+
+![m2t2-lb](D:\Documents\GitHub\comp536\lab2\asset\m2t2-lb.PNG)
 
 
 
