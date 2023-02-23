@@ -23,7 +23,7 @@ def main():
         pkt = Ether(src=get_if_hwaddr(iface), dst='ff:ff:ff:ff:ff:ff', type=0x3814) / IP(dst=addr) / TCP(dport=1234, sport=random.randint(49152,65535), seq=i) / ("a"*(i+1))
         sendp(pkt, iface=iface, verbose=False)
 
-    pkt = Ether(src=get_if_hwaddr(iface), dst='ff:ff:ff:ff:ff:ff', type=0x9723) / IP(dst=addr) / TCP(dport=1234, sport=random.randint(49152,65535)) / PortThrouput()
+    pkt = Ether(src=get_if_hwaddr(iface), dst='ff:ff:ff:ff:ff:ff', type=0x9723) / IP(dst=addr) / TCP(dport=1234, sport=random.randint(49152,65535), seq=100) / PortThrouput()
     sendp(pkt, iface=iface, verbose=False)
 
 if __name__ == '__main__':
