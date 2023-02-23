@@ -111,7 +111,7 @@ action set_nextPort(in bit<16> N,
                     out bit<9> port) {
     bit<16> curPort;
     nextPort.read(curPort, 0);
-    curPort = (curPort % N) + 2;
+    curPort = (curPort+1) % N + 2;
     nextPort.write(0, curPort);
     port = (bit<9>) curPort;
 }
