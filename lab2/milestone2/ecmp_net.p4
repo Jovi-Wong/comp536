@@ -109,39 +109,19 @@ register<bit<16>>(1) nextPort;
 
 action set_nextPort(in bit<16> N,
                     out bit<9> port) {
-    
+    bit<16> curPort;
+    nextPort.read(curPort, 0);
+    curPort = (curPort % N) + 2;
+    nextPort.write(0, curPort);
+    port = (bit<9>) curPort;
 }
 
 control MyIngress(inout headers hdr,
                   inout metadata meta,
                   inout standard_metadata_t standard_metadata) {
 
-    action set_random_port(bit<16> base, bit<32> cnt) {
-        hash(standard_metadata.egress_spec,
-            HashAlgorithm.crc16,
-            base,
-            { 
-                hdr.ipv4.srcAddr,
-                hdr.ipv4.dstAddr,
-                hdr.ipv4.protocol,
-                hdr.tcp.srcPort,
-                hdr.tcp.dstPort
-            },
-            cnt);
-    }
-
     action drop() {
         mark_to_drop(standard_metadata);
-    }
-
-    table ecmp_port {
-        key = {hdr.ipv4.dstAddr: exact;}
-        actions = 
-        {
-            set_random_port;
-            drop;
-            NoAction;
-        }
     }
 
     action ecmp_forward(macAddr_t dstAddr) {
@@ -178,10 +158,10 @@ control MyIngress(inout headers hdr,
         if (hdr.ethernet.etherType == TYPE_IPV4) {
             ipv4_table.apply();
         } else if (hdr.ethernet.etherType == TYPE_ECMP) {
-            ecmp_port.apply();
+            set_nextPort(2, standard_metadata.egress_spec);
             ecmp_table.apply();
         } else if (hdr.ethernet.etherType == TYPE_QURY) {
-            ecmp_port.apply();
+            set_nextPort(2, standard_metadata.egress_spec);
             ecmp_table.apply();
         }
     }

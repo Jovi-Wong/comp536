@@ -4,23 +4,6 @@
     "bmv2_json": "build/ecmp_net.json",
     "table_entries": [
         {
-            "table": "MyIngress.ecmp_port",
-            "default_action": true,
-            "action_name": "MyIngress.drop",
-            "action_params": {}
-        },
-        {
-            "table": "MyIngress.ecmp_port",
-            "match": {
-                "hdr.ipv4.dstAddr": "10.0.4.2"
-            },
-            "action_name": "MyIngress.set_random_port",
-            "action_params": {
-                "base": 2,
-                "cnt": 2
-            }
-        },
-        {
             "table": "MyIngress.ecmp_table",
             "match": {
                 "standard_metadata.egress_spec": 2
