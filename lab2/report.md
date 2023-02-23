@@ -133,13 +133,15 @@ As result, there are 58 out-of-order packets in total.
 
 ### Task 1
 
-
+To implement the flowlet switching, I set 10ms latency to the route via switch2 and 110ms latency to the route via switch3. Hence, the $\delta = 100$ms which indicates we need to change egress port every 100ms. I use a register to hold the current egress port and an extra register named firstPktTime to hold the ingress time of the first packet in the current burst. When a new packet comes in, we will compare its timestamp with the firstPktTime to determine whether change the egress port or not.
 
 
 
 ### Task 2
 
+The result of experiment shows that the flowlet switching can cause less packet reordering than the per-packet
 
+![m3t1](D:\Documents\GitHub\comp536\lab2\asset\m3t1.PNG)
 
 
 
