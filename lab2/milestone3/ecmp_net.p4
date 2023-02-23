@@ -113,10 +113,14 @@ action set_curPort(in bit<9> N,
     bit<48> timeDiff = stdmeta.ingress_global_timestamp - lastTime;
     bit<9> prevPort;
     curPort.read(prevPort, 0);
+    bit<9> nextPort;
     if (timeDiff > 100000) {
-        stdmeta.egress_spec = (prevPort + 1) % N + 2;
-        curPort.write(0, stdmeta.egress_spec);
+        nextPort = (prevPort + 1) % N + 2;
+    } else {
+        nextPort = prevPort;
     }
+    curPort.write(0, nextPort);
+    stdmeta.egree_spec = nextPort;
 }
 
 control MyIngress(inout headers hdr,
