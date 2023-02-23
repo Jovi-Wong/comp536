@@ -93,6 +93,20 @@ I have send 100 packets from h1 to h2 with payload range from 1 to 100. And the 
 
 <img src="D:\Documents\GitHub\comp536\lab2\asset\m2t1-lb.PNG" alt="m2t1-lb" style="zoom:100%;" />
 
+I have written and test all scripts, so you only need to run
+
+```shell
+sudo python3 ./send.py
+```
+
+on host1 after run
+
+```shell
+sudo python3 ./recv.py
+```
+
+on host2. And it is also true for all following tasks.
+
 
 
 ### Task 2
@@ -126,10 +140,6 @@ As result, there are 58 out-of-order packets in total.
 ### Task 2
 
 
-
-
-
-### Task 3
 
 
 
