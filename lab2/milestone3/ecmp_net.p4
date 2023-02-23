@@ -101,19 +101,21 @@ control MyVerification(inout headers hdr, inout metadata meta) {
 }
 
 
-
-
 /* INGRESS */
 
-register<bit<16>>(1) nextPort;
+register<bit<48>>(1) firstPktTime;
+register<bit<9>>(1) curPort;
 
-action set_nextPort(in bit<16> N,
-                    out bit<9> port) {
-    bit<16> curPort;
-    nextPort.read(curPort, 0);
-    curPort = (curPort+1) % N + 2;
-    nextPort.write(0, curPort);
-    port = (bit<9>) curPort;
+action set_curPort(in bit<9> N,
+                   out standard_metadata_t stdmeta,
+                   out bit<9> port) {
+    bit<48> lastTime;
+    firstpktTime.read(lastTime, 0);
+    bit<48> timeDiff = stdmeta.ingress_global - lastTime;
+    curPort.read(port, 0);
+    if (timeDiff > 100000) {
+        port = (port + 1) % N + 2;
+    }
 }
 
 control MyIngress(inout headers hdr,
@@ -158,10 +160,10 @@ control MyIngress(inout headers hdr,
         if (hdr.ethernet.etherType == TYPE_IPV4) {
             ipv4_table.apply();
         } else if (hdr.ethernet.etherType == TYPE_ECMP) {
-            set_nextPort(2, standard_metadata.egress_spec);
+            set_curPort(2, standard_metadata.egress_spec);
             ecmp_table.apply();
         } else if (hdr.ethernet.etherType == TYPE_QURY) {
-            set_nextPort(2, standard_metadata.egress_spec);
+            set_curPort(2, standard_metadata.egress_spec);
             ecmp_table.apply();
         }
     }
