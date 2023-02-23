@@ -27,9 +27,13 @@ class IPOption_MRI(IPOption):
                                    [],
                                    IntField("", 0),
                                    length_from=lambda pkt:pkt.count*4) ]
+
+recv_pkt_id = []
+    
 def handle_pkt(pkt):
     print("got a packet")
     pkt.show2()
+
     msg = pkt["TCP"].payload.load
 
     if len(msg) == 18 and msg[0:2] == b'\xff\xff':
