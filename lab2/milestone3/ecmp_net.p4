@@ -111,9 +111,10 @@ action set_curPort(in bit<9> N,
     bit<48> lastTime;
     firstPktTime.read(lastTime, 0);
     bit<48> timeDiff = stdmeta.ingress_global_timestamp - lastTime;
-    curPort.read(stdmeta.egress_spec, 0);
+    bit<9> prevPort;
+    curPort.read(prevPort, 0);
     if (timeDiff > 100000) {
-        stdmeta.egress_spec = (stdmeta.egress_spec + 1) % N + 2;
+        stdmeta.egress_spec = (prevPort + 1) % N + 2;
     }
 }
 
