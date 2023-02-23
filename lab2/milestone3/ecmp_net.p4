@@ -110,7 +110,7 @@ action set_curPort(in bit<9> N,
                    out standard_metadata_t stdmeta,
                    out bit<9> port) {
     bit<48> lastTime;
-    firstpktTime.read(lastTime, 0);
+    firstPktTime.read(lastTime, 0);
     bit<48> timeDiff = stdmeta.ingress_global - lastTime;
     curPort.read(port, 0);
     if (timeDiff > 100000) {
