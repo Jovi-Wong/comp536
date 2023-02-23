@@ -115,6 +115,7 @@ action set_curPort(in bit<9> N,
     curPort.read(prevPort, 0);
     if (timeDiff > 100000) {
         stdmeta.egress_spec = (prevPort + 1) % N + 2;
+        curPort.write(0, stdmeta.egress_spec);
     }
 }
 
