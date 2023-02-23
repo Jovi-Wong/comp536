@@ -1,8 +1,8 @@
 import os
 import sys
 
-from scapy.all import FieldLenField, FieldListField, IntField, IPOption, ShortField, get_if_list, sniff
-from scapy.layers.inet import _IPOption_HDR
+from scapy.all import get_if_list, sniff
+# from scapy.layers.inet import _IPOption_HDR
 
 def get_if():
     iface=None
@@ -15,27 +15,28 @@ def get_if():
         exit(1)
     return iface
 
-class IPOption_MRI(IPOption):
-    name = "MRI"
-    option = 31
-    fields_desc = [ _IPOption_HDR,
-                    FieldLenField("length", None, fmt="B",
-                                  length_of="swids",
-                                  adjust=lambda pkt,l:l+4),
-                    ShortField("count", 0),
-                    FieldListField("swids",
-                                   [],
-                                   IntField("", 0),
-                                   length_from=lambda pkt:pkt.count*4) ]
+# class IPOption_MRI(IPOption):
+#     name = "MRI"
+#     option = 31
+#     fields_desc = [ _IPOption_HDR,
+#                     FieldLenField("length", None, fmt="B",
+#                                   length_of="swids",
+#                                   adjust=lambda pkt,l:l+4),
+#                     ShortField("count", 0),
+#                     FieldListField("swids",
+#                                    [],
+#                                    IntField("", 0),
+#                                    length_from=lambda pkt:pkt.count*4) ]
 
-recv_pkt_id = []
+recv_pkt_ids = []
     
 def handle_pkt(pkt):
     print("got a packet")
     pkt.show2()
 
     msg = pkt["TCP"].payload.load
-
+    print(pkt["TCP"].payload.seq)
+    recv_pkt_ids.append(pkt["TCP"].payload.seq)
     if len(msg) == 18 and msg[0:2] == b'\xff\xff':
         port2_throughput = int.from_bytes(msg[2:10], "big")
         port3_throughput = int.from_bytes(msg[10:18], "big")
