@@ -120,7 +120,7 @@ action set_curPort(in bit<9> N,
         nextPort = prevPort;
     }
     curPort.write(0, nextPort);
-    stdmeta.egree_spec = nextPort;
+    stdmeta.egress_spec = nextPort;
 }
 
 control MyIngress(inout headers hdr,
