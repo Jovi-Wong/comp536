@@ -37,8 +37,6 @@ Define the topological structure in the following JSON file named "topology.json
 }
 ```
 
-
-
 ### Task 2
 
 My implementation is to define a new ethernet type named *TYPE_ECMP* which indicates this packet has not been processed by any switch. Then I change this value to *TYPE_IPV4* after be sent to any port. And I also create three tables in the ingress control block to deal with these headers. In order to send normal packets,  we only need to follow the following scheme.
@@ -52,9 +50,6 @@ After the other host is running a receiving program by input the following comma
 ```shell
 sudo python3 ./recv.py
 ```
-
-
-
 
 ### Task 3
 To record how many bytes are transmitted through each port at switch 1, I utilize a regsister array as well as a action to manipulate it. Besides, a new ethernet type named 
@@ -81,6 +76,12 @@ In order to send this special packet, we only need to follow the following schem
 ```shell
 sudo python3 ./send.py [address]
 ```
+
+And the result is shown as below.
+
+![m1t3](D:\Documents\GitHub\comp536\lab2\asset\m1t3.PNG)
+
+
 
 
 
