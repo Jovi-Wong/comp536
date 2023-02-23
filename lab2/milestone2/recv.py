@@ -35,8 +35,8 @@ def handle_pkt(pkt):
     pkt.show2()
 
     msg = pkt["TCP"].payload.load
-    print(pkt["TCP"].payload.seq)
-    recv_pkt_ids.append(pkt["TCP"].payload.seq)
+    print(pkt["TCP"].seq)
+    recv_pkt_ids.append(pkt["TCP"].seq)
     if len(msg) == 18 and msg[0:2] == b'\xff\xff':
         port2_throughput = int.from_bytes(msg[2:10], "big")
         port3_throughput = int.from_bytes(msg[10:18], "big")
