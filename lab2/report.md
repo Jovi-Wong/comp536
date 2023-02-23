@@ -121,11 +121,11 @@ In order to achieve per-packet flow control, I replace the hash function with a 
 
 ### Task 3
 
- I set the path via switch 2 with latency 100ms. Besides, I choose the global inversions mentioned in the leetcode 775 as the approach to count out-of-ordered packets.
+ I set the path via switch 2 with latency 110ms and 10ms to the other path. Besides, I choose the global inversions mentioned in the leetcode 775 as the approach to count out-of-ordered packets.
 
-![m2t3-unordered](D:\Documents\GitHub\comp536\lab2\asset\m2t3-unordered.PNG)
+![m2t3](D:\Documents\GitHub\comp536\lab2\asset\m2t3.PNG)
 
-As result, there are 58 out-of-order packets in total.
+As result, there are 61 out-of-order packets in total.
 
 
 
@@ -139,9 +139,9 @@ To implement the flowlet switching, I set 10ms latency to the route via switch2 
 
 ### Task 2
 
-The result of experiment shows that the flowlet switching can cause less packet reordering than the per-packet
+The result of experiment posted below shows that the flowlet switching is 29.5% less than the per-packet switching in packet reordering. But it is about 1% more than the per-packet switching in inbalance. 
 
 ![m3t1](D:\Documents\GitHub\comp536\lab2\asset\m3t1.PNG)
 
-
+In short, the flowlet switching combines the best of the per-packet switching and the per-flow switching.
 
