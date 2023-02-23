@@ -159,10 +159,10 @@ control MyIngress(inout headers hdr,
         if (hdr.ethernet.etherType == TYPE_IPV4) {
             ipv4_table.apply();
         } else if (hdr.ethernet.etherType == TYPE_ECMP) {
-            set_curPort(2, standard_metadata.egress_spec);
+            set_curPort(2, standard_metadata);
             ecmp_table.apply();
         } else if (hdr.ethernet.etherType == TYPE_QURY) {
-            set_curPort(2, standard_metadata.egress_spec);
+            set_curPort(2, standard_metadata);
             ecmp_table.apply();
         }
     }
