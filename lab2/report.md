@@ -107,7 +107,11 @@ In order to achieve per-packet flow control, I replace the hash function with a 
 
 ### Task 3
 
- 
+ I set the path via switch 2 with latency 100ms. Besides, I choose the global inversions mentioned in the leetcode 775 as the approach to count out-of-ordered packets.
+
+![m2t3-unordered](D:\Documents\GitHub\comp536\lab2\asset\m2t3-unordered.PNG)
+
+As result, there are 58 out-of-order packets in total.
 
 
 
