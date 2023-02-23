@@ -107,14 +107,13 @@ register<bit<48>>(1) firstPktTime;
 register<bit<9>>(1) curPort;
 
 action set_curPort(in bit<9> N,
-                   in standard_metadata_t stdmeta,
-                   out bit<9> port) {
+                   inout standard_metadata_t stdmeta) {
     bit<48> lastTime;
     firstPktTime.read(lastTime, 0);
     bit<48> timeDiff = stdmeta.ingress_global_timestamp - lastTime;
-    curPort.read(port, 0);
+    curPort.read(stdmeta.egress_spec, 0);
     if (timeDiff > 100000) {
-        port = (port + 1) % N + 2;
+        stdmeta.egress_spec = (stdmeta.egress_spec + 1) % N + 2;
     }
 }
 
