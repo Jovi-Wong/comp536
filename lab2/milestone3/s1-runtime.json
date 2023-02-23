@@ -1,0 +1,27 @@
+{
+    "target": "bmv2",
+    "p4info": "build/ecmp_net.p4.p4info.txt",
+    "bmv2_json": "build/ecmp_net.json",
+    "table_entries": [
+        {
+            "table": "MyIngress.ecmp_table",
+            "match": {
+                "standard_metadata.egress_spec": 2
+            },
+            "action_name": "MyIngress.ecmp_forward",
+            "action_params": {
+                "dstAddr": "00:00:00:02:04:00"
+            }
+        },
+        {
+            "table": "MyIngress.ecmp_table",
+            "match": {
+                "standard_metadata.egress_spec": 3
+            },
+            "action_name": "MyIngress.ecmp_forward",
+            "action_params": {
+                "dstAddr": "00:00:00:03:04:00"
+            }
+        }
+    ]
+}
