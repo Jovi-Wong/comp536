@@ -1,0 +1,48 @@
+{
+  "target": "bmv2",
+  "p4info": "build/ms2-3.p4.p4info.txt",
+  "bmv2_json": "build/ms2-3.json",
+  "clone_session_entries": [
+    {
+        "clone_session_id": 1,
+        "replicas": [
+            {"egress_port": 1, "instance": 1}
+        ]
+    }
+  ],
+  "table_entries": [
+    {
+      "table": "MyIngress.Ops",
+      "default_action": true,
+      "action_name": "MyIngress.drop",
+      "action_params": { }
+    },
+    {
+      "table": "MyIngress.Ops",
+      "match": {
+        "hdr.kvsQuery.queryType": 0
+      },
+      "action_name": "MyIngress.get",
+      "action_params": {
+      }
+    },
+    {
+      "table": "MyIngress.Ops",
+      "match": {
+        "hdr.kvsQuery.queryType": 1
+      },
+      "action_name": "MyIngress.put",
+      "action_params": {
+      }
+    },
+    {
+      "table": "MyIngress.Ops",
+      "match": {
+        "hdr.kvsQuery.queryType": 2
+      },
+      "action_name": "MyIngress.rangeGet",
+      "action_params": {
+      }
+    }
+  ]
+}

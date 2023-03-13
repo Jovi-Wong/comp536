@@ -1,0 +1,117 @@
+pkg_info {
+  arch: "v1model"
+}
+tables {
+  preamble {
+    id: 33611181
+    name: "MyIngress.ACL"
+    alias: "ACL"
+  }
+  match_fields {
+    id: 1
+    name: "hdr.kvsQuery.clientID"
+    bitwidth: 32
+    match_type: EXACT
+  }
+  match_fields {
+    id: 2
+    name: "standard_metadata.ingress_port"
+    bitwidth: 9
+    match_type: EXACT
+  }
+  action_refs {
+    id: 16840967
+  }
+  action_refs {
+    id: 16803623
+  }
+  action_refs {
+    id: 16800567
+    annotations: "@defaultonly"
+    scope: DEFAULT_ONLY
+  }
+  size: 1024
+}
+actions {
+  preamble {
+    id: 16800567
+    name: "NoAction"
+    alias: "NoAction"
+  }
+}
+actions {
+  preamble {
+    id: 16840967
+    name: "MyIngress.setAlice"
+    alias: "setAlice"
+  }
+}
+actions {
+  preamble {
+    id: 16803623
+    name: "MyIngress.setBob"
+    alias: "setBob"
+  }
+}
+registers {
+  preamble {
+    id: 369154410
+    name: "MyIngress.requestCounts"
+    alias: "requestCounts"
+  }
+  type_spec {
+    bitstring {
+      bit {
+        bitwidth: 32
+      }
+    }
+  }
+  size: 2
+}
+registers {
+  preamble {
+    id: 369128674
+    name: "MyIngress.pingPongCounts1"
+    alias: "pingPongCounts1"
+  }
+  type_spec {
+    bitstring {
+      bit {
+        bitwidth: 32
+      }
+    }
+  }
+  size: 2
+}
+registers {
+  preamble {
+    id: 369154366
+    name: "MyIngress.pingPongCounts2"
+    alias: "pingPongCounts2"
+  }
+  type_spec {
+    bitstring {
+      bit {
+        bitwidth: 32
+      }
+    }
+  }
+  size: 2
+}
+registers {
+  preamble {
+    id: 369129213
+    name: "MyIngress.rateLimitRequests"
+    alias: "rateLimitRequests"
+  }
+  type_spec {
+    bitstring {
+      bit {
+        bitwidth: 32
+      }
+    }
+  }
+  size: 2
+}
+type_info {
+}

@@ -1,0 +1,160 @@
+
+[2020-11-19 04:03:10.740] /p4.v1.P4Runtime/SetForwardingPipelineConfig
+---
+Message too long (255739 bytes)! Skipping log...
+---
+
+[2020-11-19 04:03:11.000] /p4.v1.P4Runtime/Write
+---
+election_id {
+  low: 1
+}
+updates {
+  type: MODIFY
+  entity {
+    table_entry {
+      table_id: 33581078
+      action {
+        action {
+          action_id: 16805608
+        }
+      }
+      is_default_action: true
+    }
+  }
+}
+---
+
+[2020-11-19 04:03:11.095] /p4.v1.P4Runtime/Write
+---
+election_id {
+  low: 1
+}
+updates {
+  type: INSERT
+  entity {
+    table_entry {
+      table_id: 33581078
+      match {
+        field_id: 1
+        exact {
+          value: "\000"
+        }
+      }
+      action {
+        action {
+          action_id: 16810522
+        }
+      }
+    }
+  }
+}
+---
+
+[2020-11-19 04:03:11.106] /p4.v1.P4Runtime/Write
+---
+election_id {
+  low: 1
+}
+updates {
+  type: INSERT
+  entity {
+    table_entry {
+      table_id: 33581078
+      match {
+        field_id: 1
+        exact {
+          value: "\001"
+        }
+      }
+      action {
+        action {
+          action_id: 16829933
+        }
+      }
+    }
+  }
+}
+---
+
+[2020-11-19 04:03:11.113] /p4.v1.P4Runtime/Write
+---
+election_id {
+  low: 1
+}
+updates {
+  type: INSERT
+  entity {
+    table_entry {
+      table_id: 33581078
+      match {
+        field_id: 1
+        exact {
+          value: "\002"
+        }
+      }
+      action {
+        action {
+          action_id: 16813393
+        }
+      }
+    }
+  }
+}
+---
+
+[2020-11-19 04:03:11.120] /p4.v1.P4Runtime/Write
+---
+election_id {
+  low: 1
+}
+updates {
+  type: INSERT
+  entity {
+    table_entry {
+      table_id: 33560387
+      match {
+        field_id: 1
+        lpm {
+          value: "\n\000\001\001"
+          prefix_len: 32
+        }
+      }
+      action {
+        action {
+          action_id: 16826124
+          params {
+            param_id: 1
+            value: "\n\000\001\001"
+          }
+          params {
+            param_id: 2
+            value: "\000\001"
+          }
+        }
+      }
+    }
+  }
+}
+---
+
+[2020-11-19 04:03:11.219] /p4.v1.P4Runtime/Write
+---
+election_id {
+  low: 1
+}
+updates {
+  type: INSERT
+  entity {
+    packet_replication_engine_entry {
+      clone_session_entry {
+        session_id: 1
+        replicas {
+          egress_port: 1
+          instance: 1
+        }
+      }
+    }
+  }
+}
+---

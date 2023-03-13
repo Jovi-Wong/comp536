@@ -1,0 +1,59 @@
+{
+  "target": "bmv2",
+  "p4info": "build/ms1.p4.p4info.txt",
+  "bmv2_json": "build/ms1.json",
+  "clone_session_entries": [
+    {
+        "clone_session_id": 1,
+        "replicas": [
+            {"egress_port": 1, "instance": 1}
+        ]
+    }
+  ],
+  "table_entries": [
+    {
+      "table": "MyIngress.Ops",
+      "default_action": true,
+      "action_name": "MyIngress.drop",
+      "action_params": { }
+    },
+    {
+      "table": "MyIngress.Ops",
+      "match": {
+        "hdr.kvsQuery.queryType": 0
+      },
+      "action_name": "MyIngress.get",
+      "action_params": {
+      }
+    },
+    {
+      "table": "MyIngress.Ops",
+      "match": {
+        "hdr.kvsQuery.queryType": 1
+      },
+      "action_name": "MyIngress.put",
+      "action_params": {
+      }
+    },
+    {
+      "table": "MyIngress.Ops",
+      "match": {
+        "hdr.kvsQuery.queryType": 2
+      },
+      "action_name": "MyIngress.rangeGet",
+      "action_params": {
+      }
+    },
+    {
+      "table": "MyIngress.Forwarding",
+      "match": {
+        "hdr.ipv4.dstAddr": ["10.0.1.1", 32]
+      },
+      "action_name": "MyIngress.set_nhop",
+      "action_params": {
+        "nhop_ipv4": "10.0.1.1",
+        "port" : 1
+      }
+    }
+  ]
+}

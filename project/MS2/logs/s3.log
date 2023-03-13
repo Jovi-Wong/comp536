@@ -1,0 +1,1133 @@
+Calling target program-options parser
+Adding interface s3-eth1 as port 1
+[04:17:38.046] [bmv2] [D] [thread 4410] Adding interface s3-eth1 as port 1
+I1119 04:17:38.074659812    4410 server_builder.cc:247]      Synchronous server. Num CQs: 1, Min pollers: 1, Max Pollers: 2147483647, CQ timeout (msec): 1000
+Server listening on 0.0.0.0:50054
+[04:17:38.079] [bmv2] [I] [thread 4410] Starting Thrift server on port 9093
+[04:17:38.079] [bmv2] [I] [thread 4410] Thrift server was started
+New connection
+P4Runtime SetForwardingPipelineConfig
+[04:17:39.763] [bmv2] [W] [thread 4426] [P4Runtime] p4::tmp::P4DeviceConfig is deprecated
+[04:17:39.779] [bmv2] [D] [thread 4426] Set default default entry for table 'MyIngress.Ops': NoAction - 
+[04:17:39.779] [bmv2] [D] [thread 4426] Set default default entry for table 'tbl_act': act_0 - 
+[04:17:39.779] [bmv2] [D] [thread 4426] Set default default entry for table 'tbl_act_0': act - 
+[04:17:39.780] [bmv2] [D] [thread 4426] Set default default entry for table 'tbl_act_1': act_1 - 
+P4Runtime Write
+device_id: 3
+election_id {
+  low: 1
+}
+updates {
+  type: MODIFY
+  entity {
+    table_entry {
+      table_id: 33581078
+      action {
+        action {
+          action_id: 16805608
+        }
+      }
+      is_default_action: true
+    }
+  }
+}
+[04:17:39.796] [bmv2] [D] [thread 4426] Set default entry for table 'MyIngress.Ops': MyIngress.drop - 
+P4Runtime Write
+device_id: 3
+election_id {
+  low: 1
+}
+updates {
+  type: INSERT
+  entity {
+    table_entry {
+      table_id: 33581078
+      match {
+        field_id: 1
+        exact {
+          value: "\000"
+        }
+      }
+      action {
+        action {
+          action_id: 16810522
+        }
+      }
+    }
+  }
+}
+[04:17:39.800] [bmv2] [D] [thread 4426] Entry 0 added to table 'MyIngress.Ops'
+[04:17:39.800] [bmv2] [D] [thread 4426] Dumping entry 0
+Match key:
+* hdr.kvsQuery.queryType: EXACT     00
+Action entry: MyIngress.get - 
+
+P4Runtime Write
+device_id: 3
+election_id {
+  low: 1
+}
+updates {
+  type: INSERT
+  entity {
+    table_entry {
+      table_id: 33581078
+      match {
+        field_id: 1
+        exact {
+          value: "\001"
+        }
+      }
+      action {
+        action {
+          action_id: 16829933
+        }
+      }
+    }
+  }
+}
+[04:17:39.803] [bmv2] [D] [thread 4426] Entry 1 added to table 'MyIngress.Ops'
+[04:17:39.803] [bmv2] [D] [thread 4426] Dumping entry 1
+Match key:
+* hdr.kvsQuery.queryType: EXACT     01
+Action entry: MyIngress.put - 
+
+P4Runtime Write
+device_id: 3
+election_id {
+  low: 1
+}
+updates {
+  type: INSERT
+  entity {
+    table_entry {
+      table_id: 33581078
+      match {
+        field_id: 1
+        exact {
+          value: "\002"
+        }
+      }
+      action {
+        action {
+          action_id: 16813393
+        }
+      }
+    }
+  }
+}
+[04:17:39.807] [bmv2] [D] [thread 4426] Entry 2 added to table 'MyIngress.Ops'
+[04:17:39.807] [bmv2] [D] [thread 4426] Dumping entry 2
+Match key:
+* hdr.kvsQuery.queryType: EXACT     02
+Action entry: MyIngress.rangeGet - 
+
+P4Runtime Write
+device_id: 3
+election_id {
+  low: 1
+}
+updates {
+  type: INSERT
+  entity {
+    packet_replication_engine_entry {
+      clone_session_entry {
+        session_id: 1
+        replicas {
+          egress_port: 1
+          instance: 1
+        }
+      }
+    }
+  }
+}
+[04:17:39.809] [bmv2] [D] [thread 4426] mgrp node created for mgid 32769
+[04:17:39.809] [bmv2] [D] [thread 4426] node created for rid 1
+[04:17:39.809] [bmv2] [D] [thread 4426] node associated with mgid 32769
+Connection removed
+[04:17:39.992] [bmv2] [D] [thread 4435] [0.0] [cxt 0] Processing packet received on port 1
+[04:17:39.994] [bmv2] [D] [thread 4435] [0.0] [cxt 0] Parser 'parser': start
+[04:17:39.994] [bmv2] [D] [thread 4435] [0.0] [cxt 0] Parser 'parser' entering state 'start'
+[04:17:39.994] [bmv2] [D] [thread 4435] [0.0] [cxt 0] Extracting header 'ethernet'
+[04:17:39.994] [bmv2] [D] [thread 4435] [0.0] [cxt 0] Parser state 'start': key is 86dd
+[04:17:39.994] [bmv2] [T] [thread 4435] [0.0] [cxt 0] Bytes parsed: 14
+[04:17:39.994] [bmv2] [D] [thread 4435] [0.0] [cxt 0] Parser 'parser': end
+[04:17:39.994] [bmv2] [D] [thread 4435] [0.0] [cxt 0] Pipeline 'ingress': start
+[04:17:39.994] [bmv2] [T] [thread 4435] [0.0] [cxt 0] ms2-3.p4(219) Condition "hdr.response[0].isValid()" (node_2) is false
+[04:17:39.994] [bmv2] [D] [thread 4435] [0.0] [cxt 0] Pipeline 'ingress': end
+[04:17:39.994] [bmv2] [D] [thread 4435] [0.0] [cxt 0] Egress port is 0
+[04:17:39.994] [bmv2] [D] [thread 4436] [0.0] [cxt 0] Pipeline 'egress': start
+[04:17:39.994] [bmv2] [D] [thread 4436] [0.0] [cxt 0] Pipeline 'egress': end
+[04:17:39.994] [bmv2] [D] [thread 4436] [0.0] [cxt 0] Deparser 'deparser': start
+[04:17:39.994] [bmv2] [T] [thread 4436] [0.0] [cxt 0] Skipping checksum 'cksum' update because condition not met
+[04:17:39.994] [bmv2] [D] [thread 4436] [0.0] [cxt 0] Deparsing header 'ethernet'
+[04:17:39.994] [bmv2] [D] [thread 4436] [0.0] [cxt 0] Deparser 'deparser': end
+[04:17:39.994] [bmv2] [D] [thread 4440] [0.0] [cxt 0] Transmitting packet of size 110 out of port 0
+[04:17:39.994] [bmv2] [D] [thread 4435] [1.0] [cxt 0] Processing packet received on port 1
+[04:17:39.994] [bmv2] [D] [thread 4435] [1.0] [cxt 0] Parser 'parser': start
+[04:17:39.994] [bmv2] [D] [thread 4435] [1.0] [cxt 0] Parser 'parser' entering state 'start'
+[04:17:39.994] [bmv2] [D] [thread 4435] [1.0] [cxt 0] Extracting header 'ethernet'
+[04:17:39.994] [bmv2] [D] [thread 4435] [1.0] [cxt 0] Parser state 'start': key is 86dd
+[04:17:39.994] [bmv2] [T] [thread 4435] [1.0] [cxt 0] Bytes parsed: 14
+[04:17:39.994] [bmv2] [D] [thread 4435] [1.0] [cxt 0] Parser 'parser': end
+[04:17:39.994] [bmv2] [D] [thread 4435] [1.0] [cxt 0] Pipeline 'ingress': start
+[04:17:39.994] [bmv2] [T] [thread 4435] [1.0] [cxt 0] ms2-3.p4(219) Condition "hdr.response[0].isValid()" (node_2) is false
+[04:17:39.994] [bmv2] [D] [thread 4435] [1.0] [cxt 0] Pipeline 'ingress': end
+[04:17:39.994] [bmv2] [D] [thread 4435] [1.0] [cxt 0] Egress port is 0
+[04:17:39.994] [bmv2] [D] [thread 4436] [1.0] [cxt 0] Pipeline 'egress': start
+[04:17:39.995] [bmv2] [D] [thread 4436] [1.0] [cxt 0] Pipeline 'egress': end
+[04:17:39.995] [bmv2] [D] [thread 4436] [1.0] [cxt 0] Deparser 'deparser': start
+[04:17:39.995] [bmv2] [T] [thread 4436] [1.0] [cxt 0] Skipping checksum 'cksum' update because condition not met
+[04:17:39.995] [bmv2] [D] [thread 4436] [1.0] [cxt 0] Deparsing header 'ethernet'
+[04:17:39.995] [bmv2] [D] [thread 4436] [1.0] [cxt 0] Deparser 'deparser': end
+[04:17:39.995] [bmv2] [D] [thread 4440] [1.0] [cxt 0] Transmitting packet of size 208 out of port 0
+[04:17:39.995] [bmv2] [D] [thread 4435] [2.0] [cxt 0] Processing packet received on port 1
+[04:17:39.995] [bmv2] [D] [thread 4435] [2.0] [cxt 0] Parser 'parser': start
+[04:17:39.995] [bmv2] [D] [thread 4435] [2.0] [cxt 0] Parser 'parser' entering state 'start'
+[04:17:39.995] [bmv2] [D] [thread 4435] [2.0] [cxt 0] Extracting header 'ethernet'
+[04:17:39.995] [bmv2] [D] [thread 4435] [2.0] [cxt 0] Parser state 'start': key is 86dd
+[04:17:39.995] [bmv2] [T] [thread 4435] [2.0] [cxt 0] Bytes parsed: 14
+[04:17:39.995] [bmv2] [D] [thread 4435] [2.0] [cxt 0] Parser 'parser': end
+[04:17:39.995] [bmv2] [D] [thread 4435] [2.0] [cxt 0] Pipeline 'ingress': start
+[04:17:39.995] [bmv2] [T] [thread 4435] [2.0] [cxt 0] ms2-3.p4(219) Condition "hdr.response[0].isValid()" (node_2) is false
+[04:17:39.995] [bmv2] [D] [thread 4435] [2.0] [cxt 0] Pipeline 'ingress': end
+[04:17:39.995] [bmv2] [D] [thread 4435] [2.0] [cxt 0] Egress port is 0
+[04:17:39.995] [bmv2] [D] [thread 4436] [2.0] [cxt 0] Pipeline 'egress': start
+[04:17:39.995] [bmv2] [D] [thread 4436] [2.0] [cxt 0] Pipeline 'egress': end
+[04:17:39.995] [bmv2] [D] [thread 4436] [2.0] [cxt 0] Deparser 'deparser': start
+[04:17:39.995] [bmv2] [T] [thread 4436] [2.0] [cxt 0] Skipping checksum 'cksum' update because condition not met
+[04:17:39.995] [bmv2] [D] [thread 4436] [2.0] [cxt 0] Deparsing header 'ethernet'
+[04:17:39.995] [bmv2] [D] [thread 4436] [2.0] [cxt 0] Deparser 'deparser': end
+[04:17:39.995] [bmv2] [D] [thread 4440] [2.0] [cxt 0] Transmitting packet of size 208 out of port 0
+[04:17:39.995] [bmv2] [D] [thread 4435] [3.0] [cxt 0] Processing packet received on port 1
+[04:17:39.995] [bmv2] [D] [thread 4435] [3.0] [cxt 0] Parser 'parser': start
+[04:17:39.995] [bmv2] [D] [thread 4435] [3.0] [cxt 0] Parser 'parser' entering state 'start'
+[04:17:39.995] [bmv2] [D] [thread 4435] [3.0] [cxt 0] Extracting header 'ethernet'
+[04:17:39.995] [bmv2] [D] [thread 4435] [3.0] [cxt 0] Parser state 'start': key is 86dd
+[04:17:39.995] [bmv2] [T] [thread 4435] [3.0] [cxt 0] Bytes parsed: 14
+[04:17:39.995] [bmv2] [D] [thread 4435] [3.0] [cxt 0] Parser 'parser': end
+[04:17:39.995] [bmv2] [D] [thread 4435] [3.0] [cxt 0] Pipeline 'ingress': start
+[04:17:39.995] [bmv2] [T] [thread 4435] [3.0] [cxt 0] ms2-3.p4(219) Condition "hdr.response[0].isValid()" (node_2) is false
+[04:17:39.995] [bmv2] [D] [thread 4435] [3.0] [cxt 0] Pipeline 'ingress': end
+[04:17:39.995] [bmv2] [D] [thread 4435] [3.0] [cxt 0] Egress port is 0
+[04:17:39.996] [bmv2] [D] [thread 4436] [3.0] [cxt 0] Pipeline 'egress': start
+[04:17:39.996] [bmv2] [D] [thread 4436] [3.0] [cxt 0] Pipeline 'egress': end
+[04:17:39.996] [bmv2] [D] [thread 4436] [3.0] [cxt 0] Deparser 'deparser': start
+[04:17:39.996] [bmv2] [T] [thread 4436] [3.0] [cxt 0] Skipping checksum 'cksum' update because condition not met
+[04:17:39.996] [bmv2] [D] [thread 4436] [3.0] [cxt 0] Deparsing header 'ethernet'
+[04:17:39.996] [bmv2] [D] [thread 4436] [3.0] [cxt 0] Deparser 'deparser': end
+[04:17:39.996] [bmv2] [D] [thread 4440] [3.0] [cxt 0] Transmitting packet of size 208 out of port 0
+[04:17:39.996] [bmv2] [D] [thread 4435] [4.0] [cxt 0] Processing packet received on port 1
+[04:17:39.996] [bmv2] [D] [thread 4435] [4.0] [cxt 0] Parser 'parser': start
+[04:17:39.996] [bmv2] [D] [thread 4435] [4.0] [cxt 0] Parser 'parser' entering state 'start'
+[04:17:39.996] [bmv2] [D] [thread 4435] [4.0] [cxt 0] Extracting header 'ethernet'
+[04:17:39.996] [bmv2] [D] [thread 4435] [4.0] [cxt 0] Parser state 'start': key is 86dd
+[04:17:39.996] [bmv2] [T] [thread 4435] [4.0] [cxt 0] Bytes parsed: 14
+[04:17:39.996] [bmv2] [D] [thread 4435] [4.0] [cxt 0] Parser 'parser': end
+[04:17:39.996] [bmv2] [D] [thread 4435] [4.0] [cxt 0] Pipeline 'ingress': start
+[04:17:39.996] [bmv2] [T] [thread 4435] [4.0] [cxt 0] ms2-3.p4(219) Condition "hdr.response[0].isValid()" (node_2) is false
+[04:17:39.996] [bmv2] [D] [thread 4435] [4.0] [cxt 0] Pipeline 'ingress': end
+[04:17:39.996] [bmv2] [D] [thread 4435] [4.0] [cxt 0] Egress port is 0
+[04:17:39.996] [bmv2] [D] [thread 4436] [4.0] [cxt 0] Pipeline 'egress': start
+[04:17:39.996] [bmv2] [D] [thread 4436] [4.0] [cxt 0] Pipeline 'egress': end
+[04:17:39.996] [bmv2] [D] [thread 4436] [4.0] [cxt 0] Deparser 'deparser': start
+[04:17:39.996] [bmv2] [T] [thread 4436] [4.0] [cxt 0] Skipping checksum 'cksum' update because condition not met
+[04:17:39.996] [bmv2] [D] [thread 4436] [4.0] [cxt 0] Deparsing header 'ethernet'
+[04:17:39.996] [bmv2] [D] [thread 4436] [4.0] [cxt 0] Deparser 'deparser': end
+[04:17:39.996] [bmv2] [D] [thread 4440] [4.0] [cxt 0] Transmitting packet of size 90 out of port 0
+[04:17:39.997] [bmv2] [D] [thread 4435] [5.0] [cxt 0] Processing packet received on port 1
+[04:17:39.997] [bmv2] [D] [thread 4435] [5.0] [cxt 0] Parser 'parser': start
+[04:17:39.997] [bmv2] [D] [thread 4435] [5.0] [cxt 0] Parser 'parser' entering state 'start'
+[04:17:39.997] [bmv2] [D] [thread 4435] [5.0] [cxt 0] Extracting header 'ethernet'
+[04:17:39.997] [bmv2] [D] [thread 4435] [5.0] [cxt 0] Parser state 'start': key is 86dd
+[04:17:39.997] [bmv2] [T] [thread 4435] [5.0] [cxt 0] Bytes parsed: 14
+[04:17:39.997] [bmv2] [D] [thread 4435] [5.0] [cxt 0] Parser 'parser': end
+[04:17:39.997] [bmv2] [D] [thread 4435] [5.0] [cxt 0] Pipeline 'ingress': start
+[04:17:39.997] [bmv2] [T] [thread 4435] [5.0] [cxt 0] ms2-3.p4(219) Condition "hdr.response[0].isValid()" (node_2) is false
+[04:17:39.997] [bmv2] [D] [thread 4435] [5.0] [cxt 0] Pipeline 'ingress': end
+[04:17:39.997] [bmv2] [D] [thread 4435] [5.0] [cxt 0] Egress port is 0
+[04:17:39.997] [bmv2] [D] [thread 4436] [5.0] [cxt 0] Pipeline 'egress': start
+[04:17:39.997] [bmv2] [D] [thread 4436] [5.0] [cxt 0] Pipeline 'egress': end
+[04:17:39.997] [bmv2] [D] [thread 4436] [5.0] [cxt 0] Deparser 'deparser': start
+[04:17:39.997] [bmv2] [T] [thread 4436] [5.0] [cxt 0] Skipping checksum 'cksum' update because condition not met
+[04:17:39.997] [bmv2] [D] [thread 4436] [5.0] [cxt 0] Deparsing header 'ethernet'
+[04:17:39.997] [bmv2] [D] [thread 4436] [5.0] [cxt 0] Deparser 'deparser': end
+[04:17:39.997] [bmv2] [D] [thread 4440] [5.0] [cxt 0] Transmitting packet of size 110 out of port 0
+[04:17:39.997] [bmv2] [D] [thread 4435] [6.0] [cxt 0] Processing packet received on port 1
+[04:17:39.997] [bmv2] [D] [thread 4435] [6.0] [cxt 0] Parser 'parser': start
+[04:17:39.997] [bmv2] [D] [thread 4435] [6.0] [cxt 0] Parser 'parser' entering state 'start'
+[04:17:39.997] [bmv2] [D] [thread 4435] [6.0] [cxt 0] Extracting header 'ethernet'
+[04:17:39.997] [bmv2] [D] [thread 4435] [6.0] [cxt 0] Parser state 'start': key is 86dd
+[04:17:39.997] [bmv2] [T] [thread 4435] [6.0] [cxt 0] Bytes parsed: 14
+[04:17:39.997] [bmv2] [D] [thread 4435] [6.0] [cxt 0] Parser 'parser': end
+[04:17:39.997] [bmv2] [D] [thread 4435] [6.0] [cxt 0] Pipeline 'ingress': start
+[04:17:39.997] [bmv2] [T] [thread 4435] [6.0] [cxt 0] ms2-3.p4(219) Condition "hdr.response[0].isValid()" (node_2) is false
+[04:17:39.997] [bmv2] [D] [thread 4435] [6.0] [cxt 0] Pipeline 'ingress': end
+[04:17:39.997] [bmv2] [D] [thread 4435] [6.0] [cxt 0] Egress port is 0
+[04:17:39.997] [bmv2] [D] [thread 4436] [6.0] [cxt 0] Pipeline 'egress': start
+[04:17:39.997] [bmv2] [D] [thread 4436] [6.0] [cxt 0] Pipeline 'egress': end
+[04:17:39.997] [bmv2] [D] [thread 4436] [6.0] [cxt 0] Deparser 'deparser': start
+[04:17:39.997] [bmv2] [T] [thread 4436] [6.0] [cxt 0] Skipping checksum 'cksum' update because condition not met
+[04:17:39.997] [bmv2] [D] [thread 4436] [6.0] [cxt 0] Deparsing header 'ethernet'
+[04:17:39.997] [bmv2] [D] [thread 4436] [6.0] [cxt 0] Deparser 'deparser': end
+[04:17:39.997] [bmv2] [D] [thread 4440] [6.0] [cxt 0] Transmitting packet of size 196 out of port 0
+[04:17:39.997] [bmv2] [D] [thread 4435] [7.0] [cxt 0] Processing packet received on port 1
+[04:17:39.997] [bmv2] [D] [thread 4435] [7.0] [cxt 0] Parser 'parser': start
+[04:17:39.997] [bmv2] [D] [thread 4435] [7.0] [cxt 0] Parser 'parser' entering state 'start'
+[04:17:39.997] [bmv2] [D] [thread 4435] [7.0] [cxt 0] Extracting header 'ethernet'
+[04:17:39.997] [bmv2] [D] [thread 4435] [7.0] [cxt 0] Parser state 'start': key is 86dd
+[04:17:39.997] [bmv2] [T] [thread 4435] [7.0] [cxt 0] Bytes parsed: 14
+[04:17:39.997] [bmv2] [D] [thread 4435] [7.0] [cxt 0] Parser 'parser': end
+[04:17:39.997] [bmv2] [D] [thread 4435] [7.0] [cxt 0] Pipeline 'ingress': start
+[04:17:39.997] [bmv2] [T] [thread 4435] [7.0] [cxt 0] ms2-3.p4(219) Condition "hdr.response[0].isValid()" (node_2) is false
+[04:17:39.997] [bmv2] [D] [thread 4435] [7.0] [cxt 0] Pipeline 'ingress': end
+[04:17:39.997] [bmv2] [D] [thread 4435] [7.0] [cxt 0] Egress port is 0
+[04:17:39.997] [bmv2] [D] [thread 4436] [7.0] [cxt 0] Pipeline 'egress': start
+[04:17:39.997] [bmv2] [D] [thread 4436] [7.0] [cxt 0] Pipeline 'egress': end
+[04:17:39.997] [bmv2] [D] [thread 4436] [7.0] [cxt 0] Deparser 'deparser': start
+[04:17:39.997] [bmv2] [T] [thread 4436] [7.0] [cxt 0] Skipping checksum 'cksum' update because condition not met
+[04:17:39.997] [bmv2] [D] [thread 4436] [7.0] [cxt 0] Deparsing header 'ethernet'
+[04:17:39.997] [bmv2] [D] [thread 4436] [7.0] [cxt 0] Deparser 'deparser': end
+[04:17:39.997] [bmv2] [D] [thread 4440] [7.0] [cxt 0] Transmitting packet of size 196 out of port 0
+[04:17:40.728] [bmv2] [D] [thread 4435] [8.0] [cxt 0] Processing packet received on port 1
+[04:17:40.728] [bmv2] [D] [thread 4435] [8.0] [cxt 0] Parser 'parser': start
+[04:17:40.728] [bmv2] [D] [thread 4435] [8.0] [cxt 0] Parser 'parser' entering state 'start'
+[04:17:40.728] [bmv2] [D] [thread 4435] [8.0] [cxt 0] Extracting header 'ethernet'
+[04:17:40.728] [bmv2] [D] [thread 4435] [8.0] [cxt 0] Parser state 'start': key is 86dd
+[04:17:40.728] [bmv2] [T] [thread 4435] [8.0] [cxt 0] Bytes parsed: 14
+[04:17:40.728] [bmv2] [D] [thread 4435] [8.0] [cxt 0] Parser 'parser': end
+[04:17:40.728] [bmv2] [D] [thread 4435] [8.0] [cxt 0] Pipeline 'ingress': start
+[04:17:40.728] [bmv2] [T] [thread 4435] [8.0] [cxt 0] ms2-3.p4(219) Condition "hdr.response[0].isValid()" (node_2) is false
+[04:17:40.728] [bmv2] [D] [thread 4435] [8.0] [cxt 0] Pipeline 'ingress': end
+[04:17:40.728] [bmv2] [D] [thread 4435] [8.0] [cxt 0] Egress port is 0
+[04:17:40.728] [bmv2] [D] [thread 4436] [8.0] [cxt 0] Pipeline 'egress': start
+[04:17:40.728] [bmv2] [D] [thread 4436] [8.0] [cxt 0] Pipeline 'egress': end
+[04:17:40.728] [bmv2] [D] [thread 4436] [8.0] [cxt 0] Deparser 'deparser': start
+[04:17:40.728] [bmv2] [T] [thread 4436] [8.0] [cxt 0] Skipping checksum 'cksum' update because condition not met
+[04:17:40.728] [bmv2] [D] [thread 4436] [8.0] [cxt 0] Deparsing header 'ethernet'
+[04:17:40.728] [bmv2] [D] [thread 4436] [8.0] [cxt 0] Deparser 'deparser': end
+[04:17:40.728] [bmv2] [D] [thread 4440] [8.0] [cxt 0] Transmitting packet of size 107 out of port 0
+[04:17:41.576] [bmv2] [D] [thread 4435] [9.0] [cxt 0] Processing packet received on port 1
+[04:17:41.576] [bmv2] [D] [thread 4435] [9.0] [cxt 0] Parser 'parser': start
+[04:17:41.576] [bmv2] [D] [thread 4435] [9.0] [cxt 0] Parser 'parser' entering state 'start'
+[04:17:41.576] [bmv2] [D] [thread 4435] [9.0] [cxt 0] Extracting header 'ethernet'
+[04:17:41.576] [bmv2] [D] [thread 4435] [9.0] [cxt 0] Parser state 'start': key is 86dd
+[04:17:41.576] [bmv2] [T] [thread 4435] [9.0] [cxt 0] Bytes parsed: 14
+[04:17:41.576] [bmv2] [D] [thread 4435] [9.0] [cxt 0] Parser 'parser': end
+[04:17:41.576] [bmv2] [D] [thread 4435] [9.0] [cxt 0] Pipeline 'ingress': start
+[04:17:41.576] [bmv2] [T] [thread 4435] [9.0] [cxt 0] ms2-3.p4(219) Condition "hdr.response[0].isValid()" (node_2) is false
+[04:17:41.576] [bmv2] [D] [thread 4435] [9.0] [cxt 0] Pipeline 'ingress': end
+[04:17:41.576] [bmv2] [D] [thread 4435] [9.0] [cxt 0] Egress port is 0
+[04:17:41.576] [bmv2] [D] [thread 4436] [9.0] [cxt 0] Pipeline 'egress': start
+[04:17:41.576] [bmv2] [D] [thread 4436] [9.0] [cxt 0] Pipeline 'egress': end
+[04:17:41.577] [bmv2] [D] [thread 4436] [9.0] [cxt 0] Deparser 'deparser': start
+[04:17:41.577] [bmv2] [T] [thread 4436] [9.0] [cxt 0] Skipping checksum 'cksum' update because condition not met
+[04:17:41.577] [bmv2] [D] [thread 4436] [9.0] [cxt 0] Deparsing header 'ethernet'
+[04:17:41.577] [bmv2] [D] [thread 4436] [9.0] [cxt 0] Deparser 'deparser': end
+[04:17:41.577] [bmv2] [D] [thread 4440] [9.0] [cxt 0] Transmitting packet of size 70 out of port 0
+[04:17:41.735] [bmv2] [D] [thread 4435] [10.0] [cxt 0] Processing packet received on port 1
+[04:17:41.735] [bmv2] [D] [thread 4435] [10.0] [cxt 0] Parser 'parser': start
+[04:17:41.735] [bmv2] [D] [thread 4435] [10.0] [cxt 0] Parser 'parser' entering state 'start'
+[04:17:41.735] [bmv2] [D] [thread 4435] [10.0] [cxt 0] Extracting header 'ethernet'
+[04:17:41.735] [bmv2] [D] [thread 4435] [10.0] [cxt 0] Parser state 'start': key is 86dd
+[04:17:41.735] [bmv2] [T] [thread 4435] [10.0] [cxt 0] Bytes parsed: 14
+[04:17:41.735] [bmv2] [D] [thread 4435] [10.0] [cxt 0] Parser 'parser': end
+[04:17:41.735] [bmv2] [D] [thread 4435] [10.0] [cxt 0] Pipeline 'ingress': start
+[04:17:41.735] [bmv2] [T] [thread 4435] [10.0] [cxt 0] ms2-3.p4(219) Condition "hdr.response[0].isValid()" (node_2) is false
+[04:17:41.735] [bmv2] [D] [thread 4435] [10.0] [cxt 0] Pipeline 'ingress': end
+[04:17:41.735] [bmv2] [D] [thread 4435] [10.0] [cxt 0] Egress port is 0
+[04:17:41.736] [bmv2] [D] [thread 4436] [10.0] [cxt 0] Pipeline 'egress': start
+[04:17:41.736] [bmv2] [D] [thread 4436] [10.0] [cxt 0] Pipeline 'egress': end
+[04:17:41.736] [bmv2] [D] [thread 4436] [10.0] [cxt 0] Deparser 'deparser': start
+[04:17:41.736] [bmv2] [T] [thread 4436] [10.0] [cxt 0] Skipping checksum 'cksum' update because condition not met
+[04:17:41.736] [bmv2] [D] [thread 4436] [10.0] [cxt 0] Deparsing header 'ethernet'
+[04:17:41.736] [bmv2] [D] [thread 4436] [10.0] [cxt 0] Deparser 'deparser': end
+[04:17:41.736] [bmv2] [D] [thread 4440] [10.0] [cxt 0] Transmitting packet of size 70 out of port 0
+[04:17:41.966] [bmv2] [D] [thread 4435] [11.0] [cxt 0] Processing packet received on port 1
+[04:17:41.966] [bmv2] [D] [thread 4435] [11.0] [cxt 0] Parser 'parser': start
+[04:17:41.966] [bmv2] [D] [thread 4435] [11.0] [cxt 0] Parser 'parser' entering state 'start'
+[04:17:41.966] [bmv2] [D] [thread 4435] [11.0] [cxt 0] Extracting header 'ethernet'
+[04:17:41.966] [bmv2] [D] [thread 4435] [11.0] [cxt 0] Parser state 'start': key is 86dd
+[04:17:41.966] [bmv2] [T] [thread 4435] [11.0] [cxt 0] Bytes parsed: 14
+[04:17:41.966] [bmv2] [D] [thread 4435] [11.0] [cxt 0] Parser 'parser': end
+[04:17:41.966] [bmv2] [D] [thread 4435] [11.0] [cxt 0] Pipeline 'ingress': start
+[04:17:41.966] [bmv2] [T] [thread 4435] [11.0] [cxt 0] ms2-3.p4(219) Condition "hdr.response[0].isValid()" (node_2) is false
+[04:17:41.966] [bmv2] [D] [thread 4435] [11.0] [cxt 0] Pipeline 'ingress': end
+[04:17:41.966] [bmv2] [D] [thread 4435] [11.0] [cxt 0] Egress port is 0
+[04:17:41.966] [bmv2] [D] [thread 4436] [11.0] [cxt 0] Pipeline 'egress': start
+[04:17:41.966] [bmv2] [D] [thread 4436] [11.0] [cxt 0] Pipeline 'egress': end
+[04:17:41.966] [bmv2] [D] [thread 4436] [11.0] [cxt 0] Deparser 'deparser': start
+[04:17:41.966] [bmv2] [T] [thread 4436] [11.0] [cxt 0] Skipping checksum 'cksum' update because condition not met
+[04:17:41.966] [bmv2] [D] [thread 4436] [11.0] [cxt 0] Deparsing header 'ethernet'
+[04:17:41.966] [bmv2] [D] [thread 4436] [11.0] [cxt 0] Deparser 'deparser': end
+[04:17:41.966] [bmv2] [D] [thread 4440] [11.0] [cxt 0] Transmitting packet of size 196 out of port 0
+[04:17:42.122] [bmv2] [D] [thread 4435] [12.0] [cxt 0] Processing packet received on port 1
+[04:17:42.122] [bmv2] [D] [thread 4435] [12.0] [cxt 0] Parser 'parser': start
+[04:17:42.122] [bmv2] [D] [thread 4435] [12.0] [cxt 0] Parser 'parser' entering state 'start'
+[04:17:42.122] [bmv2] [D] [thread 4435] [12.0] [cxt 0] Extracting header 'ethernet'
+[04:17:42.122] [bmv2] [D] [thread 4435] [12.0] [cxt 0] Parser state 'start': key is 86dd
+[04:17:42.122] [bmv2] [T] [thread 4435] [12.0] [cxt 0] Bytes parsed: 14
+[04:17:42.122] [bmv2] [D] [thread 4435] [12.0] [cxt 0] Parser 'parser': end
+[04:17:42.122] [bmv2] [D] [thread 4435] [12.0] [cxt 0] Pipeline 'ingress': start
+[04:17:42.122] [bmv2] [T] [thread 4435] [12.0] [cxt 0] ms2-3.p4(219) Condition "hdr.response[0].isValid()" (node_2) is false
+[04:17:42.122] [bmv2] [D] [thread 4435] [12.0] [cxt 0] Pipeline 'ingress': end
+[04:17:42.122] [bmv2] [D] [thread 4435] [12.0] [cxt 0] Egress port is 0
+[04:17:42.122] [bmv2] [D] [thread 4436] [12.0] [cxt 0] Pipeline 'egress': start
+[04:17:42.122] [bmv2] [D] [thread 4436] [12.0] [cxt 0] Pipeline 'egress': end
+[04:17:42.122] [bmv2] [D] [thread 4436] [12.0] [cxt 0] Deparser 'deparser': start
+[04:17:42.122] [bmv2] [T] [thread 4436] [12.0] [cxt 0] Skipping checksum 'cksum' update because condition not met
+[04:17:42.122] [bmv2] [D] [thread 4436] [12.0] [cxt 0] Deparsing header 'ethernet'
+[04:17:42.122] [bmv2] [D] [thread 4436] [12.0] [cxt 0] Deparser 'deparser': end
+[04:17:42.122] [bmv2] [D] [thread 4440] [12.0] [cxt 0] Transmitting packet of size 196 out of port 0
+[04:17:44.700] [bmv2] [D] [thread 4435] [13.0] [cxt 0] Processing packet received on port 1
+[04:17:44.700] [bmv2] [D] [thread 4435] [13.0] [cxt 0] Parser 'parser': start
+[04:17:44.700] [bmv2] [D] [thread 4435] [13.0] [cxt 0] Parser 'parser' entering state 'start'
+[04:17:44.700] [bmv2] [D] [thread 4435] [13.0] [cxt 0] Extracting header 'ethernet'
+[04:17:44.700] [bmv2] [D] [thread 4435] [13.0] [cxt 0] Parser state 'start': key is 86dd
+[04:17:44.700] [bmv2] [T] [thread 4435] [13.0] [cxt 0] Bytes parsed: 14
+[04:17:44.700] [bmv2] [D] [thread 4435] [13.0] [cxt 0] Parser 'parser': end
+[04:17:44.700] [bmv2] [D] [thread 4435] [13.0] [cxt 0] Pipeline 'ingress': start
+[04:17:44.700] [bmv2] [T] [thread 4435] [13.0] [cxt 0] ms2-3.p4(219) Condition "hdr.response[0].isValid()" (node_2) is false
+[04:17:44.700] [bmv2] [D] [thread 4435] [13.0] [cxt 0] Pipeline 'ingress': end
+[04:17:44.700] [bmv2] [D] [thread 4435] [13.0] [cxt 0] Egress port is 0
+[04:17:44.700] [bmv2] [D] [thread 4436] [13.0] [cxt 0] Pipeline 'egress': start
+[04:17:44.700] [bmv2] [D] [thread 4436] [13.0] [cxt 0] Pipeline 'egress': end
+[04:17:44.700] [bmv2] [D] [thread 4436] [13.0] [cxt 0] Deparser 'deparser': start
+[04:17:44.700] [bmv2] [T] [thread 4436] [13.0] [cxt 0] Skipping checksum 'cksum' update because condition not met
+[04:17:44.700] [bmv2] [D] [thread 4436] [13.0] [cxt 0] Deparsing header 'ethernet'
+[04:17:44.700] [bmv2] [D] [thread 4436] [13.0] [cxt 0] Deparser 'deparser': end
+[04:17:44.700] [bmv2] [D] [thread 4440] [13.0] [cxt 0] Transmitting packet of size 107 out of port 0
+[04:17:45.583] [bmv2] [D] [thread 4435] [14.0] [cxt 0] Processing packet received on port 1
+[04:17:45.583] [bmv2] [D] [thread 4435] [14.0] [cxt 0] Parser 'parser': start
+[04:17:45.583] [bmv2] [D] [thread 4435] [14.0] [cxt 0] Parser 'parser' entering state 'start'
+[04:17:45.583] [bmv2] [D] [thread 4435] [14.0] [cxt 0] Extracting header 'ethernet'
+[04:17:45.583] [bmv2] [D] [thread 4435] [14.0] [cxt 0] Parser state 'start': key is 86dd
+[04:17:45.583] [bmv2] [T] [thread 4435] [14.0] [cxt 0] Bytes parsed: 14
+[04:17:45.583] [bmv2] [D] [thread 4435] [14.0] [cxt 0] Parser 'parser': end
+[04:17:45.583] [bmv2] [D] [thread 4435] [14.0] [cxt 0] Pipeline 'ingress': start
+[04:17:45.583] [bmv2] [T] [thread 4435] [14.0] [cxt 0] ms2-3.p4(219) Condition "hdr.response[0].isValid()" (node_2) is false
+[04:17:45.583] [bmv2] [D] [thread 4435] [14.0] [cxt 0] Pipeline 'ingress': end
+[04:17:45.583] [bmv2] [D] [thread 4435] [14.0] [cxt 0] Egress port is 0
+[04:17:45.583] [bmv2] [D] [thread 4436] [14.0] [cxt 0] Pipeline 'egress': start
+[04:17:45.583] [bmv2] [D] [thread 4436] [14.0] [cxt 0] Pipeline 'egress': end
+[04:17:45.583] [bmv2] [D] [thread 4436] [14.0] [cxt 0] Deparser 'deparser': start
+[04:17:45.583] [bmv2] [T] [thread 4436] [14.0] [cxt 0] Skipping checksum 'cksum' update because condition not met
+[04:17:45.583] [bmv2] [D] [thread 4436] [14.0] [cxt 0] Deparsing header 'ethernet'
+[04:17:45.583] [bmv2] [D] [thread 4436] [14.0] [cxt 0] Deparser 'deparser': end
+[04:17:45.583] [bmv2] [D] [thread 4440] [14.0] [cxt 0] Transmitting packet of size 70 out of port 0
+[04:17:45.746] [bmv2] [D] [thread 4435] [15.0] [cxt 0] Processing packet received on port 1
+[04:17:45.746] [bmv2] [D] [thread 4435] [15.0] [cxt 0] Parser 'parser': start
+[04:17:45.746] [bmv2] [D] [thread 4435] [15.0] [cxt 0] Parser 'parser' entering state 'start'
+[04:17:45.746] [bmv2] [D] [thread 4435] [15.0] [cxt 0] Extracting header 'ethernet'
+[04:17:45.746] [bmv2] [D] [thread 4435] [15.0] [cxt 0] Parser state 'start': key is 86dd
+[04:17:45.746] [bmv2] [T] [thread 4435] [15.0] [cxt 0] Bytes parsed: 14
+[04:17:45.746] [bmv2] [D] [thread 4435] [15.0] [cxt 0] Parser 'parser': end
+[04:17:45.746] [bmv2] [D] [thread 4435] [15.0] [cxt 0] Pipeline 'ingress': start
+[04:17:45.746] [bmv2] [T] [thread 4435] [15.0] [cxt 0] ms2-3.p4(219) Condition "hdr.response[0].isValid()" (node_2) is false
+[04:17:45.746] [bmv2] [D] [thread 4435] [15.0] [cxt 0] Pipeline 'ingress': end
+[04:17:45.746] [bmv2] [D] [thread 4435] [15.0] [cxt 0] Egress port is 0
+[04:17:45.747] [bmv2] [D] [thread 4436] [15.0] [cxt 0] Pipeline 'egress': start
+[04:17:45.747] [bmv2] [D] [thread 4436] [15.0] [cxt 0] Pipeline 'egress': end
+[04:17:45.747] [bmv2] [D] [thread 4436] [15.0] [cxt 0] Deparser 'deparser': start
+[04:17:45.747] [bmv2] [T] [thread 4436] [15.0] [cxt 0] Skipping checksum 'cksum' update because condition not met
+[04:17:45.747] [bmv2] [D] [thread 4436] [15.0] [cxt 0] Deparsing header 'ethernet'
+[04:17:45.747] [bmv2] [D] [thread 4436] [15.0] [cxt 0] Deparser 'deparser': end
+[04:17:45.747] [bmv2] [D] [thread 4440] [15.0] [cxt 0] Transmitting packet of size 70 out of port 0
+[04:17:52.700] [bmv2] [D] [thread 4435] [16.0] [cxt 0] Processing packet received on port 1
+[04:17:52.700] [bmv2] [D] [thread 4435] [16.0] [cxt 0] Parser 'parser': start
+[04:17:52.700] [bmv2] [D] [thread 4435] [16.0] [cxt 0] Parser 'parser' entering state 'start'
+[04:17:52.700] [bmv2] [D] [thread 4435] [16.0] [cxt 0] Extracting header 'ethernet'
+[04:17:52.700] [bmv2] [D] [thread 4435] [16.0] [cxt 0] Parser state 'start': key is 86dd
+[04:17:52.700] [bmv2] [T] [thread 4435] [16.0] [cxt 0] Bytes parsed: 14
+[04:17:52.700] [bmv2] [D] [thread 4435] [16.0] [cxt 0] Parser 'parser': end
+[04:17:52.701] [bmv2] [D] [thread 4435] [16.0] [cxt 0] Pipeline 'ingress': start
+[04:17:52.701] [bmv2] [T] [thread 4435] [16.0] [cxt 0] ms2-3.p4(219) Condition "hdr.response[0].isValid()" (node_2) is false
+[04:17:52.701] [bmv2] [D] [thread 4435] [16.0] [cxt 0] Pipeline 'ingress': end
+[04:17:52.701] [bmv2] [D] [thread 4435] [16.0] [cxt 0] Egress port is 0
+[04:17:52.701] [bmv2] [D] [thread 4436] [16.0] [cxt 0] Pipeline 'egress': start
+[04:17:52.701] [bmv2] [D] [thread 4436] [16.0] [cxt 0] Pipeline 'egress': end
+[04:17:52.701] [bmv2] [D] [thread 4436] [16.0] [cxt 0] Deparser 'deparser': start
+[04:17:52.701] [bmv2] [T] [thread 4436] [16.0] [cxt 0] Skipping checksum 'cksum' update because condition not met
+[04:17:52.701] [bmv2] [D] [thread 4436] [16.0] [cxt 0] Deparsing header 'ethernet'
+[04:17:52.702] [bmv2] [D] [thread 4436] [16.0] [cxt 0] Deparser 'deparser': end
+[04:17:52.702] [bmv2] [D] [thread 4440] [16.0] [cxt 0] Transmitting packet of size 107 out of port 0
+[04:18:08.703] [bmv2] [D] [thread 4435] [17.0] [cxt 0] Processing packet received on port 1
+[04:18:08.703] [bmv2] [D] [thread 4435] [17.0] [cxt 0] Parser 'parser': start
+[04:18:08.703] [bmv2] [D] [thread 4435] [17.0] [cxt 0] Parser 'parser' entering state 'start'
+[04:18:08.703] [bmv2] [D] [thread 4435] [17.0] [cxt 0] Extracting header 'ethernet'
+[04:18:08.703] [bmv2] [D] [thread 4435] [17.0] [cxt 0] Parser state 'start': key is 86dd
+[04:18:08.703] [bmv2] [T] [thread 4435] [17.0] [cxt 0] Bytes parsed: 14
+[04:18:08.703] [bmv2] [D] [thread 4435] [17.0] [cxt 0] Parser 'parser': end
+[04:18:08.703] [bmv2] [D] [thread 4435] [17.0] [cxt 0] Pipeline 'ingress': start
+[04:18:08.703] [bmv2] [T] [thread 4435] [17.0] [cxt 0] ms2-3.p4(219) Condition "hdr.response[0].isValid()" (node_2) is false
+[04:18:08.704] [bmv2] [D] [thread 4435] [17.0] [cxt 0] Pipeline 'ingress': end
+[04:18:08.704] [bmv2] [D] [thread 4435] [17.0] [cxt 0] Egress port is 0
+[04:18:08.706] [bmv2] [D] [thread 4436] [17.0] [cxt 0] Pipeline 'egress': start
+[04:18:08.706] [bmv2] [D] [thread 4436] [17.0] [cxt 0] Pipeline 'egress': end
+[04:18:08.706] [bmv2] [D] [thread 4436] [17.0] [cxt 0] Deparser 'deparser': start
+[04:18:08.706] [bmv2] [T] [thread 4436] [17.0] [cxt 0] Skipping checksum 'cksum' update because condition not met
+[04:18:08.706] [bmv2] [D] [thread 4436] [17.0] [cxt 0] Deparsing header 'ethernet'
+[04:18:08.706] [bmv2] [D] [thread 4436] [17.0] [cxt 0] Deparser 'deparser': end
+[04:18:08.706] [bmv2] [D] [thread 4440] [17.0] [cxt 0] Transmitting packet of size 107 out of port 0
+[04:18:25.624] [bmv2] [D] [thread 4435] [18.0] [cxt 0] Processing packet received on port 1
+[04:18:25.624] [bmv2] [D] [thread 4435] [18.0] [cxt 0] Parser 'parser': start
+[04:18:25.624] [bmv2] [D] [thread 4435] [18.0] [cxt 0] Parser 'parser' entering state 'start'
+[04:18:25.624] [bmv2] [D] [thread 4435] [18.0] [cxt 0] Extracting header 'ethernet'
+[04:18:25.624] [bmv2] [D] [thread 4435] [18.0] [cxt 0] Parser state 'start': key is 1234
+[04:18:25.624] [bmv2] [T] [thread 4435] [18.0] [cxt 0] Bytes parsed: 14
+[04:18:25.624] [bmv2] [D] [thread 4435] [18.0] [cxt 0] Parser 'parser' entering state 'parse_response'
+[04:18:25.624] [bmv2] [D] [thread 4435] [18.0] [cxt 0] Extracting to header stack 0, next header is 6
+[04:18:25.624] [bmv2] [D] [thread 4435] [18.0] [cxt 0] Parser state 'parse_response': key is 01
+[04:18:25.624] [bmv2] [T] [thread 4435] [18.0] [cxt 0] Bytes parsed: 19
+[04:18:25.624] [bmv2] [D] [thread 4435] [18.0] [cxt 0] Parser 'parser' entering state 'parse_ipv4'
+[04:18:25.624] [bmv2] [D] [thread 4435] [18.0] [cxt 0] Extracting header 'ipv4'
+[04:18:25.624] [bmv2] [D] [thread 4435] [18.0] [cxt 0] Parser state 'parse_ipv4': key is fc
+[04:18:25.624] [bmv2] [T] [thread 4435] [18.0] [cxt 0] Bytes parsed: 39
+[04:18:25.624] [bmv2] [D] [thread 4435] [18.0] [cxt 0] Parser 'parser' entering state 'parse_kvsQuery'
+[04:18:25.624] [bmv2] [D] [thread 4435] [18.0] [cxt 0] Extracting header 'kvsQuery'
+[04:18:25.624] [bmv2] [D] [thread 4435] [18.0] [cxt 0] Parser state 'parse_kvsQuery': key is 06
+[04:18:25.624] [bmv2] [T] [thread 4435] [18.0] [cxt 0] Bytes parsed: 53
+[04:18:25.624] [bmv2] [D] [thread 4435] [18.0] [cxt 0] Parser 'parser' entering state 'parse_tcp'
+[04:18:25.624] [bmv2] [D] [thread 4435] [18.0] [cxt 0] Extracting header 'tcp'
+[04:18:25.624] [bmv2] [D] [thread 4435] [18.0] [cxt 0] Parser state 'parse_tcp' has no switch, going to default next state
+[04:18:25.624] [bmv2] [T] [thread 4435] [18.0] [cxt 0] Bytes parsed: 73
+[04:18:25.624] [bmv2] [D] [thread 4435] [18.0] [cxt 0] Parser 'parser': end
+[04:18:25.625] [bmv2] [D] [thread 4435] [18.0] [cxt 0] Pipeline 'ingress': start
+[04:18:25.625] [bmv2] [T] [thread 4435] [18.0] [cxt 0] ms2-3.p4(219) Condition "hdr.response[0].isValid()" (node_2) is true
+[04:18:25.625] [bmv2] [T] [thread 4435] [18.0] [cxt 0] Applying table 'MyIngress.Ops'
+[04:18:25.625] [bmv2] [D] [thread 4435] [18.0] [cxt 0] Looking up key:
+* hdr.kvsQuery.queryType: 01
+
+[04:18:25.625] [bmv2] [D] [thread 4435] [18.0] [cxt 0] Table 'MyIngress.Ops': hit with handle 1
+[04:18:25.625] [bmv2] [D] [thread 4435] [18.0] [cxt 0] Dumping entry 1
+Match key:
+* hdr.kvsQuery.queryType: EXACT     01
+Action entry: MyIngress.put - 
+
+[04:18:25.625] [bmv2] [D] [thread 4435] [18.0] [cxt 0] Action entry is MyIngress.put - 
+[04:18:25.625] [bmv2] [T] [thread 4435] [18.0] [cxt 0] Action MyIngress.put
+[04:18:25.626] [bmv2] [T] [thread 4435] [18.0] [cxt 0] ms2-3.p4(189) Primitive database.write(hdr.kvsQuery.key, hdr.kvsQuery.value)
+[04:18:25.626] [bmv2] [T] [thread 4435] [18.0] [cxt 0] Wrote register 'MyIngress.database' at index 0 with value 0
+[04:18:25.626] [bmv2] [T] [thread 4435] [18.0] [cxt 0] ms2-3.p4(190) Primitive isFilled.write(hdr.kvsQuery.key, 1)
+[04:18:25.626] [bmv2] [T] [thread 4435] [18.0] [cxt 0] Wrote register 'MyIngress.isFilled' at index 0 with value 1
+[04:18:25.626] [bmv2] [T] [thread 4435] [18.0] [cxt 0] Applying table 'tbl_act'
+[04:18:25.626] [bmv2] [D] [thread 4435] [18.0] [cxt 0] Looking up key:
+
+[04:18:25.626] [bmv2] [D] [thread 4435] [18.0] [cxt 0] Table 'tbl_act': miss
+[04:18:25.626] [bmv2] [D] [thread 4435] [18.0] [cxt 0] Action entry is act_0 - 
+[04:18:25.626] [bmv2] [T] [thread 4435] [18.0] [cxt 0] Action act_0
+[04:18:25.626] [bmv2] [T] [thread 4435] [18.0] [cxt 0] ms2-3.p4(221) Primitive hdr.kvsQuery.padding = 1
+[04:18:25.626] [bmv2] [T] [thread 4435] [18.0] [cxt 0] ms2-3.p4(222) Primitive hdr.kvsQuery.switchID = 3
+[04:18:25.626] [bmv2] [T] [thread 4435] [18.0] [cxt 0] ms2-3.p4(224) Condition "hdr.kvsQuery.pingPong == 1" (node_5) is true
+[04:18:25.626] [bmv2] [T] [thread 4435] [18.0] [cxt 0] Applying table 'tbl_act_0'
+[04:18:25.626] [bmv2] [D] [thread 4435] [18.0] [cxt 0] Looking up key:
+
+[04:18:25.626] [bmv2] [D] [thread 4435] [18.0] [cxt 0] Table 'tbl_act_0': miss
+[04:18:25.626] [bmv2] [D] [thread 4435] [18.0] [cxt 0] Action entry is act - 
+[04:18:25.626] [bmv2] [T] [thread 4435] [18.0] [cxt 0] Action act
+[04:18:25.626] [bmv2] [T] [thread 4435] [18.0] [cxt 0] ms2-3.p4(225) Primitive hdr.kvsQuery.pingPong = 2
+[04:18:25.626] [bmv2] [T] [thread 4435] [18.0] [cxt 0] ms2-3.p4(229) Condition "hdr.kvsQuery.queryType == 2 && hdr.kvsQuery.pingPong != 2" (node_7) is false
+[04:18:25.626] [bmv2] [D] [thread 4435] [18.0] [cxt 0] Pipeline 'ingress': end
+[04:18:25.626] [bmv2] [D] [thread 4435] [18.0] [cxt 0] Egress port is 0
+[04:18:25.628] [bmv2] [D] [thread 4436] [18.0] [cxt 0] Pipeline 'egress': start
+[04:18:25.628] [bmv2] [D] [thread 4436] [18.0] [cxt 0] Pipeline 'egress': end
+[04:18:25.628] [bmv2] [D] [thread 4436] [18.0] [cxt 0] Deparser 'deparser': start
+[04:18:25.628] [bmv2] [D] [thread 4436] [18.0] [cxt 0] Updating checksum 'cksum'
+[04:18:25.628] [bmv2] [D] [thread 4436] [18.0] [cxt 0] Deparsing header 'ethernet'
+[04:18:25.628] [bmv2] [D] [thread 4436] [18.0] [cxt 0] Deparsing header 'response[0]'
+[04:18:25.628] [bmv2] [D] [thread 4436] [18.0] [cxt 0] Deparsing header 'ipv4'
+[04:18:25.628] [bmv2] [D] [thread 4436] [18.0] [cxt 0] Deparsing header 'kvsQuery'
+[04:18:25.628] [bmv2] [D] [thread 4436] [18.0] [cxt 0] Deparsing header 'tcp'
+[04:18:25.628] [bmv2] [D] [thread 4436] [18.0] [cxt 0] Deparser 'deparser': end
+[04:18:25.628] [bmv2] [D] [thread 4440] [18.0] [cxt 0] Transmitting packet of size 76 out of port 0
+[04:18:25.809] [bmv2] [D] [thread 4435] [19.0] [cxt 0] Processing packet received on port 1
+[04:18:25.809] [bmv2] [D] [thread 4435] [19.0] [cxt 0] Parser 'parser': start
+[04:18:25.809] [bmv2] [D] [thread 4435] [19.0] [cxt 0] Parser 'parser' entering state 'start'
+[04:18:25.809] [bmv2] [D] [thread 4435] [19.0] [cxt 0] Extracting header 'ethernet'
+[04:18:25.809] [bmv2] [D] [thread 4435] [19.0] [cxt 0] Parser state 'start': key is 1234
+[04:18:25.809] [bmv2] [T] [thread 4435] [19.0] [cxt 0] Bytes parsed: 14
+[04:18:25.809] [bmv2] [D] [thread 4435] [19.0] [cxt 0] Parser 'parser' entering state 'parse_response'
+[04:18:25.809] [bmv2] [D] [thread 4435] [19.0] [cxt 0] Extracting to header stack 0, next header is 6
+[04:18:25.809] [bmv2] [D] [thread 4435] [19.0] [cxt 0] Parser state 'parse_response': key is 01
+[04:18:25.809] [bmv2] [T] [thread 4435] [19.0] [cxt 0] Bytes parsed: 19
+[04:18:25.809] [bmv2] [D] [thread 4435] [19.0] [cxt 0] Parser 'parser' entering state 'parse_ipv4'
+[04:18:25.809] [bmv2] [D] [thread 4435] [19.0] [cxt 0] Extracting header 'ipv4'
+[04:18:25.809] [bmv2] [D] [thread 4435] [19.0] [cxt 0] Parser state 'parse_ipv4': key is fc
+[04:18:25.809] [bmv2] [T] [thread 4435] [19.0] [cxt 0] Bytes parsed: 39
+[04:18:25.809] [bmv2] [D] [thread 4435] [19.0] [cxt 0] Parser 'parser' entering state 'parse_kvsQuery'
+[04:18:25.809] [bmv2] [D] [thread 4435] [19.0] [cxt 0] Extracting header 'kvsQuery'
+[04:18:25.809] [bmv2] [D] [thread 4435] [19.0] [cxt 0] Parser state 'parse_kvsQuery': key is 06
+[04:18:25.809] [bmv2] [T] [thread 4435] [19.0] [cxt 0] Bytes parsed: 53
+[04:18:25.809] [bmv2] [D] [thread 4435] [19.0] [cxt 0] Parser 'parser' entering state 'parse_tcp'
+[04:18:25.809] [bmv2] [D] [thread 4435] [19.0] [cxt 0] Extracting header 'tcp'
+[04:18:25.809] [bmv2] [D] [thread 4435] [19.0] [cxt 0] Parser state 'parse_tcp' has no switch, going to default next state
+[04:18:25.809] [bmv2] [T] [thread 4435] [19.0] [cxt 0] Bytes parsed: 73
+[04:18:25.809] [bmv2] [D] [thread 4435] [19.0] [cxt 0] Parser 'parser': end
+[04:18:25.809] [bmv2] [D] [thread 4435] [19.0] [cxt 0] Pipeline 'ingress': start
+[04:18:25.809] [bmv2] [T] [thread 4435] [19.0] [cxt 0] ms2-3.p4(219) Condition "hdr.response[0].isValid()" (node_2) is true
+[04:18:25.809] [bmv2] [T] [thread 4435] [19.0] [cxt 0] Applying table 'MyIngress.Ops'
+[04:18:25.809] [bmv2] [D] [thread 4435] [19.0] [cxt 0] Looking up key:
+* hdr.kvsQuery.queryType: 01
+
+[04:18:25.809] [bmv2] [D] [thread 4435] [19.0] [cxt 0] Table 'MyIngress.Ops': hit with handle 1
+[04:18:25.809] [bmv2] [D] [thread 4435] [19.0] [cxt 0] Dumping entry 1
+Match key:
+* hdr.kvsQuery.queryType: EXACT     01
+Action entry: MyIngress.put - 
+
+[04:18:25.809] [bmv2] [D] [thread 4435] [19.0] [cxt 0] Action entry is MyIngress.put - 
+[04:18:25.809] [bmv2] [T] [thread 4435] [19.0] [cxt 0] Action MyIngress.put
+[04:18:25.809] [bmv2] [T] [thread 4435] [19.0] [cxt 0] ms2-3.p4(189) Primitive database.write(hdr.kvsQuery.key, hdr.kvsQuery.value)
+[04:18:25.809] [bmv2] [T] [thread 4435] [19.0] [cxt 0] Wrote register 'MyIngress.database' at index 1 with value 1
+[04:18:25.809] [bmv2] [T] [thread 4435] [19.0] [cxt 0] ms2-3.p4(190) Primitive isFilled.write(hdr.kvsQuery.key, 1)
+[04:18:25.809] [bmv2] [T] [thread 4435] [19.0] [cxt 0] Wrote register 'MyIngress.isFilled' at index 1 with value 1
+[04:18:25.809] [bmv2] [T] [thread 4435] [19.0] [cxt 0] Applying table 'tbl_act'
+[04:18:25.809] [bmv2] [D] [thread 4435] [19.0] [cxt 0] Looking up key:
+
+[04:18:25.809] [bmv2] [D] [thread 4435] [19.0] [cxt 0] Table 'tbl_act': miss
+[04:18:25.809] [bmv2] [D] [thread 4435] [19.0] [cxt 0] Action entry is act_0 - 
+[04:18:25.809] [bmv2] [T] [thread 4435] [19.0] [cxt 0] Action act_0
+[04:18:25.809] [bmv2] [T] [thread 4435] [19.0] [cxt 0] ms2-3.p4(221) Primitive hdr.kvsQuery.padding = 1
+[04:18:25.809] [bmv2] [T] [thread 4435] [19.0] [cxt 0] ms2-3.p4(222) Primitive hdr.kvsQuery.switchID = 3
+[04:18:25.809] [bmv2] [T] [thread 4435] [19.0] [cxt 0] ms2-3.p4(224) Condition "hdr.kvsQuery.pingPong == 1" (node_5) is true
+[04:18:25.809] [bmv2] [T] [thread 4435] [19.0] [cxt 0] Applying table 'tbl_act_0'
+[04:18:25.810] [bmv2] [D] [thread 4435] [19.0] [cxt 0] Looking up key:
+
+[04:18:25.810] [bmv2] [D] [thread 4435] [19.0] [cxt 0] Table 'tbl_act_0': miss
+[04:18:25.810] [bmv2] [D] [thread 4435] [19.0] [cxt 0] Action entry is act - 
+[04:18:25.810] [bmv2] [T] [thread 4435] [19.0] [cxt 0] Action act
+[04:18:25.810] [bmv2] [T] [thread 4435] [19.0] [cxt 0] ms2-3.p4(225) Primitive hdr.kvsQuery.pingPong = 2
+[04:18:25.810] [bmv2] [T] [thread 4435] [19.0] [cxt 0] ms2-3.p4(229) Condition "hdr.kvsQuery.queryType == 2 && hdr.kvsQuery.pingPong != 2" (node_7) is false
+[04:18:25.810] [bmv2] [D] [thread 4435] [19.0] [cxt 0] Pipeline 'ingress': end
+[04:18:25.810] [bmv2] [D] [thread 4435] [19.0] [cxt 0] Egress port is 0
+[04:18:25.810] [bmv2] [D] [thread 4436] [19.0] [cxt 0] Pipeline 'egress': start
+[04:18:25.810] [bmv2] [D] [thread 4436] [19.0] [cxt 0] Pipeline 'egress': end
+[04:18:25.810] [bmv2] [D] [thread 4436] [19.0] [cxt 0] Deparser 'deparser': start
+[04:18:25.810] [bmv2] [D] [thread 4436] [19.0] [cxt 0] Updating checksum 'cksum'
+[04:18:25.810] [bmv2] [D] [thread 4436] [19.0] [cxt 0] Deparsing header 'ethernet'
+[04:18:25.810] [bmv2] [D] [thread 4436] [19.0] [cxt 0] Deparsing header 'response[0]'
+[04:18:25.810] [bmv2] [D] [thread 4436] [19.0] [cxt 0] Deparsing header 'ipv4'
+[04:18:25.810] [bmv2] [D] [thread 4436] [19.0] [cxt 0] Deparsing header 'kvsQuery'
+[04:18:25.810] [bmv2] [D] [thread 4436] [19.0] [cxt 0] Deparsing header 'tcp'
+[04:18:25.810] [bmv2] [D] [thread 4436] [19.0] [cxt 0] Deparser 'deparser': end
+[04:18:25.810] [bmv2] [D] [thread 4440] [19.0] [cxt 0] Transmitting packet of size 76 out of port 0
+[04:18:26.003] [bmv2] [D] [thread 4435] [20.0] [cxt 0] Processing packet received on port 1
+[04:18:26.003] [bmv2] [D] [thread 4435] [20.0] [cxt 0] Parser 'parser': start
+[04:18:26.003] [bmv2] [D] [thread 4435] [20.0] [cxt 0] Parser 'parser' entering state 'start'
+[04:18:26.003] [bmv2] [D] [thread 4435] [20.0] [cxt 0] Extracting header 'ethernet'
+[04:18:26.003] [bmv2] [D] [thread 4435] [20.0] [cxt 0] Parser state 'start': key is 1234
+[04:18:26.004] [bmv2] [T] [thread 4435] [20.0] [cxt 0] Bytes parsed: 14
+[04:18:26.004] [bmv2] [D] [thread 4435] [20.0] [cxt 0] Parser 'parser' entering state 'parse_response'
+[04:18:26.004] [bmv2] [D] [thread 4435] [20.0] [cxt 0] Extracting to header stack 0, next header is 6
+[04:18:26.004] [bmv2] [D] [thread 4435] [20.0] [cxt 0] Parser state 'parse_response': key is 01
+[04:18:26.004] [bmv2] [T] [thread 4435] [20.0] [cxt 0] Bytes parsed: 19
+[04:18:26.004] [bmv2] [D] [thread 4435] [20.0] [cxt 0] Parser 'parser' entering state 'parse_ipv4'
+[04:18:26.004] [bmv2] [D] [thread 4435] [20.0] [cxt 0] Extracting header 'ipv4'
+[04:18:26.004] [bmv2] [D] [thread 4435] [20.0] [cxt 0] Parser state 'parse_ipv4': key is fc
+[04:18:26.004] [bmv2] [T] [thread 4435] [20.0] [cxt 0] Bytes parsed: 39
+[04:18:26.004] [bmv2] [D] [thread 4435] [20.0] [cxt 0] Parser 'parser' entering state 'parse_kvsQuery'
+[04:18:26.004] [bmv2] [D] [thread 4435] [20.0] [cxt 0] Extracting header 'kvsQuery'
+[04:18:26.004] [bmv2] [D] [thread 4435] [20.0] [cxt 0] Parser state 'parse_kvsQuery': key is 06
+[04:18:26.004] [bmv2] [T] [thread 4435] [20.0] [cxt 0] Bytes parsed: 53
+[04:18:26.004] [bmv2] [D] [thread 4435] [20.0] [cxt 0] Parser 'parser' entering state 'parse_tcp'
+[04:18:26.004] [bmv2] [D] [thread 4435] [20.0] [cxt 0] Extracting header 'tcp'
+[04:18:26.004] [bmv2] [D] [thread 4435] [20.0] [cxt 0] Parser state 'parse_tcp' has no switch, going to default next state
+[04:18:26.004] [bmv2] [T] [thread 4435] [20.0] [cxt 0] Bytes parsed: 73
+[04:18:26.004] [bmv2] [D] [thread 4435] [20.0] [cxt 0] Parser 'parser': end
+[04:18:26.004] [bmv2] [D] [thread 4435] [20.0] [cxt 0] Pipeline 'ingress': start
+[04:18:26.004] [bmv2] [T] [thread 4435] [20.0] [cxt 0] ms2-3.p4(219) Condition "hdr.response[0].isValid()" (node_2) is true
+[04:18:26.004] [bmv2] [T] [thread 4435] [20.0] [cxt 0] Applying table 'MyIngress.Ops'
+[04:18:26.004] [bmv2] [D] [thread 4435] [20.0] [cxt 0] Looking up key:
+* hdr.kvsQuery.queryType: 01
+
+[04:18:26.004] [bmv2] [D] [thread 4435] [20.0] [cxt 0] Table 'MyIngress.Ops': hit with handle 1
+[04:18:26.004] [bmv2] [D] [thread 4435] [20.0] [cxt 0] Dumping entry 1
+Match key:
+* hdr.kvsQuery.queryType: EXACT     01
+Action entry: MyIngress.put - 
+
+[04:18:26.004] [bmv2] [D] [thread 4435] [20.0] [cxt 0] Action entry is MyIngress.put - 
+[04:18:26.004] [bmv2] [T] [thread 4435] [20.0] [cxt 0] Action MyIngress.put
+[04:18:26.004] [bmv2] [T] [thread 4435] [20.0] [cxt 0] ms2-3.p4(189) Primitive database.write(hdr.kvsQuery.key, hdr.kvsQuery.value)
+[04:18:26.004] [bmv2] [T] [thread 4435] [20.0] [cxt 0] Wrote register 'MyIngress.database' at index 2 with value 2
+[04:18:26.004] [bmv2] [T] [thread 4435] [20.0] [cxt 0] ms2-3.p4(190) Primitive isFilled.write(hdr.kvsQuery.key, 1)
+[04:18:26.004] [bmv2] [T] [thread 4435] [20.0] [cxt 0] Wrote register 'MyIngress.isFilled' at index 2 with value 1
+[04:18:26.004] [bmv2] [T] [thread 4435] [20.0] [cxt 0] Applying table 'tbl_act'
+[04:18:26.004] [bmv2] [D] [thread 4435] [20.0] [cxt 0] Looking up key:
+
+[04:18:26.004] [bmv2] [D] [thread 4435] [20.0] [cxt 0] Table 'tbl_act': miss
+[04:18:26.004] [bmv2] [D] [thread 4435] [20.0] [cxt 0] Action entry is act_0 - 
+[04:18:26.004] [bmv2] [T] [thread 4435] [20.0] [cxt 0] Action act_0
+[04:18:26.004] [bmv2] [T] [thread 4435] [20.0] [cxt 0] ms2-3.p4(221) Primitive hdr.kvsQuery.padding = 1
+[04:18:26.004] [bmv2] [T] [thread 4435] [20.0] [cxt 0] ms2-3.p4(222) Primitive hdr.kvsQuery.switchID = 3
+[04:18:26.004] [bmv2] [T] [thread 4435] [20.0] [cxt 0] ms2-3.p4(224) Condition "hdr.kvsQuery.pingPong == 1" (node_5) is true
+[04:18:26.004] [bmv2] [T] [thread 4435] [20.0] [cxt 0] Applying table 'tbl_act_0'
+[04:18:26.004] [bmv2] [D] [thread 4435] [20.0] [cxt 0] Looking up key:
+
+[04:18:26.004] [bmv2] [D] [thread 4435] [20.0] [cxt 0] Table 'tbl_act_0': miss
+[04:18:26.004] [bmv2] [D] [thread 4435] [20.0] [cxt 0] Action entry is act - 
+[04:18:26.004] [bmv2] [T] [thread 4435] [20.0] [cxt 0] Action act
+[04:18:26.004] [bmv2] [T] [thread 4435] [20.0] [cxt 0] ms2-3.p4(225) Primitive hdr.kvsQuery.pingPong = 2
+[04:18:26.004] [bmv2] [T] [thread 4435] [20.0] [cxt 0] ms2-3.p4(229) Condition "hdr.kvsQuery.queryType == 2 && hdr.kvsQuery.pingPong != 2" (node_7) is false
+[04:18:26.004] [bmv2] [D] [thread 4435] [20.0] [cxt 0] Pipeline 'ingress': end
+[04:18:26.004] [bmv2] [D] [thread 4435] [20.0] [cxt 0] Egress port is 0
+[04:18:26.004] [bmv2] [D] [thread 4436] [20.0] [cxt 0] Pipeline 'egress': start
+[04:18:26.004] [bmv2] [D] [thread 4436] [20.0] [cxt 0] Pipeline 'egress': end
+[04:18:26.004] [bmv2] [D] [thread 4436] [20.0] [cxt 0] Deparser 'deparser': start
+[04:18:26.004] [bmv2] [D] [thread 4436] [20.0] [cxt 0] Updating checksum 'cksum'
+[04:18:26.004] [bmv2] [D] [thread 4436] [20.0] [cxt 0] Deparsing header 'ethernet'
+[04:18:26.004] [bmv2] [D] [thread 4436] [20.0] [cxt 0] Deparsing header 'response[0]'
+[04:18:26.004] [bmv2] [D] [thread 4436] [20.0] [cxt 0] Deparsing header 'ipv4'
+[04:18:26.004] [bmv2] [D] [thread 4436] [20.0] [cxt 0] Deparsing header 'kvsQuery'
+[04:18:26.004] [bmv2] [D] [thread 4436] [20.0] [cxt 0] Deparsing header 'tcp'
+[04:18:26.004] [bmv2] [D] [thread 4436] [20.0] [cxt 0] Deparser 'deparser': end
+[04:18:26.004] [bmv2] [D] [thread 4440] [20.0] [cxt 0] Transmitting packet of size 76 out of port 0
+[04:18:26.185] [bmv2] [D] [thread 4435] [21.0] [cxt 0] Processing packet received on port 1
+[04:18:26.185] [bmv2] [D] [thread 4435] [21.0] [cxt 0] Parser 'parser': start
+[04:18:26.185] [bmv2] [D] [thread 4435] [21.0] [cxt 0] Parser 'parser' entering state 'start'
+[04:18:26.185] [bmv2] [D] [thread 4435] [21.0] [cxt 0] Extracting header 'ethernet'
+[04:18:26.185] [bmv2] [D] [thread 4435] [21.0] [cxt 0] Parser state 'start': key is 1234
+[04:18:26.185] [bmv2] [T] [thread 4435] [21.0] [cxt 0] Bytes parsed: 14
+[04:18:26.185] [bmv2] [D] [thread 4435] [21.0] [cxt 0] Parser 'parser' entering state 'parse_response'
+[04:18:26.185] [bmv2] [D] [thread 4435] [21.0] [cxt 0] Extracting to header stack 0, next header is 6
+[04:18:26.185] [bmv2] [D] [thread 4435] [21.0] [cxt 0] Parser state 'parse_response': key is 01
+[04:18:26.185] [bmv2] [T] [thread 4435] [21.0] [cxt 0] Bytes parsed: 19
+[04:18:26.185] [bmv2] [D] [thread 4435] [21.0] [cxt 0] Parser 'parser' entering state 'parse_ipv4'
+[04:18:26.185] [bmv2] [D] [thread 4435] [21.0] [cxt 0] Extracting header 'ipv4'
+[04:18:26.185] [bmv2] [D] [thread 4435] [21.0] [cxt 0] Parser state 'parse_ipv4': key is fc
+[04:18:26.185] [bmv2] [T] [thread 4435] [21.0] [cxt 0] Bytes parsed: 39
+[04:18:26.185] [bmv2] [D] [thread 4435] [21.0] [cxt 0] Parser 'parser' entering state 'parse_kvsQuery'
+[04:18:26.185] [bmv2] [D] [thread 4435] [21.0] [cxt 0] Extracting header 'kvsQuery'
+[04:18:26.185] [bmv2] [D] [thread 4435] [21.0] [cxt 0] Parser state 'parse_kvsQuery': key is 06
+[04:18:26.185] [bmv2] [T] [thread 4435] [21.0] [cxt 0] Bytes parsed: 53
+[04:18:26.185] [bmv2] [D] [thread 4435] [21.0] [cxt 0] Parser 'parser' entering state 'parse_tcp'
+[04:18:26.185] [bmv2] [D] [thread 4435] [21.0] [cxt 0] Extracting header 'tcp'
+[04:18:26.185] [bmv2] [D] [thread 4435] [21.0] [cxt 0] Parser state 'parse_tcp' has no switch, going to default next state
+[04:18:26.185] [bmv2] [T] [thread 4435] [21.0] [cxt 0] Bytes parsed: 73
+[04:18:26.185] [bmv2] [D] [thread 4435] [21.0] [cxt 0] Parser 'parser': end
+[04:18:26.185] [bmv2] [D] [thread 4435] [21.0] [cxt 0] Pipeline 'ingress': start
+[04:18:26.185] [bmv2] [T] [thread 4435] [21.0] [cxt 0] ms2-3.p4(219) Condition "hdr.response[0].isValid()" (node_2) is true
+[04:18:26.185] [bmv2] [T] [thread 4435] [21.0] [cxt 0] Applying table 'MyIngress.Ops'
+[04:18:26.186] [bmv2] [D] [thread 4435] [21.0] [cxt 0] Looking up key:
+* hdr.kvsQuery.queryType: 01
+
+[04:18:26.186] [bmv2] [D] [thread 4435] [21.0] [cxt 0] Table 'MyIngress.Ops': hit with handle 1
+[04:18:26.186] [bmv2] [D] [thread 4435] [21.0] [cxt 0] Dumping entry 1
+Match key:
+* hdr.kvsQuery.queryType: EXACT     01
+Action entry: MyIngress.put - 
+
+[04:18:26.186] [bmv2] [D] [thread 4435] [21.0] [cxt 0] Action entry is MyIngress.put - 
+[04:18:26.186] [bmv2] [T] [thread 4435] [21.0] [cxt 0] Action MyIngress.put
+[04:18:26.186] [bmv2] [T] [thread 4435] [21.0] [cxt 0] ms2-3.p4(189) Primitive database.write(hdr.kvsQuery.key, hdr.kvsQuery.value)
+[04:18:26.186] [bmv2] [T] [thread 4435] [21.0] [cxt 0] Wrote register 'MyIngress.database' at index 513 with value 513
+[04:18:26.186] [bmv2] [T] [thread 4435] [21.0] [cxt 0] ms2-3.p4(190) Primitive isFilled.write(hdr.kvsQuery.key, 1)
+[04:18:26.186] [bmv2] [T] [thread 4435] [21.0] [cxt 0] Wrote register 'MyIngress.isFilled' at index 513 with value 1
+[04:18:26.186] [bmv2] [T] [thread 4435] [21.0] [cxt 0] Applying table 'tbl_act'
+[04:18:26.186] [bmv2] [D] [thread 4435] [21.0] [cxt 0] Looking up key:
+
+[04:18:26.186] [bmv2] [D] [thread 4435] [21.0] [cxt 0] Table 'tbl_act': miss
+[04:18:26.186] [bmv2] [D] [thread 4435] [21.0] [cxt 0] Action entry is act_0 - 
+[04:18:26.186] [bmv2] [T] [thread 4435] [21.0] [cxt 0] Action act_0
+[04:18:26.186] [bmv2] [T] [thread 4435] [21.0] [cxt 0] ms2-3.p4(221) Primitive hdr.kvsQuery.padding = 1
+[04:18:26.186] [bmv2] [T] [thread 4435] [21.0] [cxt 0] ms2-3.p4(222) Primitive hdr.kvsQuery.switchID = 3
+[04:18:26.186] [bmv2] [T] [thread 4435] [21.0] [cxt 0] ms2-3.p4(224) Condition "hdr.kvsQuery.pingPong == 1" (node_5) is true
+[04:18:26.186] [bmv2] [T] [thread 4435] [21.0] [cxt 0] Applying table 'tbl_act_0'
+[04:18:26.186] [bmv2] [D] [thread 4435] [21.0] [cxt 0] Looking up key:
+
+[04:18:26.186] [bmv2] [D] [thread 4435] [21.0] [cxt 0] Table 'tbl_act_0': miss
+[04:18:26.186] [bmv2] [D] [thread 4435] [21.0] [cxt 0] Action entry is act - 
+[04:18:26.186] [bmv2] [T] [thread 4435] [21.0] [cxt 0] Action act
+[04:18:26.186] [bmv2] [T] [thread 4435] [21.0] [cxt 0] ms2-3.p4(225) Primitive hdr.kvsQuery.pingPong = 2
+[04:18:26.186] [bmv2] [T] [thread 4435] [21.0] [cxt 0] ms2-3.p4(229) Condition "hdr.kvsQuery.queryType == 2 && hdr.kvsQuery.pingPong != 2" (node_7) is false
+[04:18:26.186] [bmv2] [D] [thread 4435] [21.0] [cxt 0] Pipeline 'ingress': end
+[04:18:26.186] [bmv2] [D] [thread 4435] [21.0] [cxt 0] Egress port is 0
+[04:18:26.186] [bmv2] [D] [thread 4436] [21.0] [cxt 0] Pipeline 'egress': start
+[04:18:26.186] [bmv2] [D] [thread 4436] [21.0] [cxt 0] Pipeline 'egress': end
+[04:18:26.186] [bmv2] [D] [thread 4436] [21.0] [cxt 0] Deparser 'deparser': start
+[04:18:26.186] [bmv2] [D] [thread 4436] [21.0] [cxt 0] Updating checksum 'cksum'
+[04:18:26.186] [bmv2] [D] [thread 4436] [21.0] [cxt 0] Deparsing header 'ethernet'
+[04:18:26.186] [bmv2] [D] [thread 4436] [21.0] [cxt 0] Deparsing header 'response[0]'
+[04:18:26.186] [bmv2] [D] [thread 4436] [21.0] [cxt 0] Deparsing header 'ipv4'
+[04:18:26.186] [bmv2] [D] [thread 4436] [21.0] [cxt 0] Deparsing header 'kvsQuery'
+[04:18:26.186] [bmv2] [D] [thread 4436] [21.0] [cxt 0] Deparsing header 'tcp'
+[04:18:26.186] [bmv2] [D] [thread 4436] [21.0] [cxt 0] Deparser 'deparser': end
+[04:18:26.186] [bmv2] [D] [thread 4440] [21.0] [cxt 0] Transmitting packet of size 76 out of port 0
+[04:18:26.378] [bmv2] [D] [thread 4435] [22.0] [cxt 0] Processing packet received on port 1
+[04:18:26.378] [bmv2] [D] [thread 4435] [22.0] [cxt 0] Parser 'parser': start
+[04:18:26.378] [bmv2] [D] [thread 4435] [22.0] [cxt 0] Parser 'parser' entering state 'start'
+[04:18:26.378] [bmv2] [D] [thread 4435] [22.0] [cxt 0] Extracting header 'ethernet'
+[04:18:26.378] [bmv2] [D] [thread 4435] [22.0] [cxt 0] Parser state 'start': key is 1234
+[04:18:26.378] [bmv2] [T] [thread 4435] [22.0] [cxt 0] Bytes parsed: 14
+[04:18:26.378] [bmv2] [D] [thread 4435] [22.0] [cxt 0] Parser 'parser' entering state 'parse_response'
+[04:18:26.378] [bmv2] [D] [thread 4435] [22.0] [cxt 0] Extracting to header stack 0, next header is 6
+[04:18:26.378] [bmv2] [D] [thread 4435] [22.0] [cxt 0] Parser state 'parse_response': key is 01
+[04:18:26.378] [bmv2] [T] [thread 4435] [22.0] [cxt 0] Bytes parsed: 19
+[04:18:26.378] [bmv2] [D] [thread 4435] [22.0] [cxt 0] Parser 'parser' entering state 'parse_ipv4'
+[04:18:26.378] [bmv2] [D] [thread 4435] [22.0] [cxt 0] Extracting header 'ipv4'
+[04:18:26.378] [bmv2] [D] [thread 4435] [22.0] [cxt 0] Parser state 'parse_ipv4': key is fc
+[04:18:26.378] [bmv2] [T] [thread 4435] [22.0] [cxt 0] Bytes parsed: 39
+[04:18:26.378] [bmv2] [D] [thread 4435] [22.0] [cxt 0] Parser 'parser' entering state 'parse_kvsQuery'
+[04:18:26.378] [bmv2] [D] [thread 4435] [22.0] [cxt 0] Extracting header 'kvsQuery'
+[04:18:26.378] [bmv2] [D] [thread 4435] [22.0] [cxt 0] Parser state 'parse_kvsQuery': key is 06
+[04:18:26.378] [bmv2] [T] [thread 4435] [22.0] [cxt 0] Bytes parsed: 53
+[04:18:26.378] [bmv2] [D] [thread 4435] [22.0] [cxt 0] Parser 'parser' entering state 'parse_tcp'
+[04:18:26.378] [bmv2] [D] [thread 4435] [22.0] [cxt 0] Extracting header 'tcp'
+[04:18:26.378] [bmv2] [D] [thread 4435] [22.0] [cxt 0] Parser state 'parse_tcp' has no switch, going to default next state
+[04:18:26.378] [bmv2] [T] [thread 4435] [22.0] [cxt 0] Bytes parsed: 73
+[04:18:26.378] [bmv2] [D] [thread 4435] [22.0] [cxt 0] Parser 'parser': end
+[04:18:26.378] [bmv2] [D] [thread 4435] [22.0] [cxt 0] Pipeline 'ingress': start
+[04:18:26.378] [bmv2] [T] [thread 4435] [22.0] [cxt 0] ms2-3.p4(219) Condition "hdr.response[0].isValid()" (node_2) is true
+[04:18:26.378] [bmv2] [T] [thread 4435] [22.0] [cxt 0] Applying table 'MyIngress.Ops'
+[04:18:26.378] [bmv2] [D] [thread 4435] [22.0] [cxt 0] Looking up key:
+* hdr.kvsQuery.queryType: 01
+
+[04:18:26.378] [bmv2] [D] [thread 4435] [22.0] [cxt 0] Table 'MyIngress.Ops': hit with handle 1
+[04:18:26.378] [bmv2] [D] [thread 4435] [22.0] [cxt 0] Dumping entry 1
+Match key:
+* hdr.kvsQuery.queryType: EXACT     01
+Action entry: MyIngress.put - 
+
+[04:18:26.378] [bmv2] [D] [thread 4435] [22.0] [cxt 0] Action entry is MyIngress.put - 
+[04:18:26.378] [bmv2] [T] [thread 4435] [22.0] [cxt 0] Action MyIngress.put
+[04:18:26.378] [bmv2] [T] [thread 4435] [22.0] [cxt 0] ms2-3.p4(189) Primitive database.write(hdr.kvsQuery.key, hdr.kvsQuery.value)
+[04:18:26.378] [bmv2] [T] [thread 4435] [22.0] [cxt 0] Wrote register 'MyIngress.database' at index 514 with value 514
+[04:18:26.378] [bmv2] [T] [thread 4435] [22.0] [cxt 0] ms2-3.p4(190) Primitive isFilled.write(hdr.kvsQuery.key, 1)
+[04:18:26.378] [bmv2] [T] [thread 4435] [22.0] [cxt 0] Wrote register 'MyIngress.isFilled' at index 514 with value 1
+[04:18:26.378] [bmv2] [T] [thread 4435] [22.0] [cxt 0] Applying table 'tbl_act'
+[04:18:26.378] [bmv2] [D] [thread 4435] [22.0] [cxt 0] Looking up key:
+
+[04:18:26.378] [bmv2] [D] [thread 4435] [22.0] [cxt 0] Table 'tbl_act': miss
+[04:18:26.378] [bmv2] [D] [thread 4435] [22.0] [cxt 0] Action entry is act_0 - 
+[04:18:26.378] [bmv2] [T] [thread 4435] [22.0] [cxt 0] Action act_0
+[04:18:26.378] [bmv2] [T] [thread 4435] [22.0] [cxt 0] ms2-3.p4(221) Primitive hdr.kvsQuery.padding = 1
+[04:18:26.378] [bmv2] [T] [thread 4435] [22.0] [cxt 0] ms2-3.p4(222) Primitive hdr.kvsQuery.switchID = 3
+[04:18:26.378] [bmv2] [T] [thread 4435] [22.0] [cxt 0] ms2-3.p4(224) Condition "hdr.kvsQuery.pingPong == 1" (node_5) is true
+[04:18:26.378] [bmv2] [T] [thread 4435] [22.0] [cxt 0] Applying table 'tbl_act_0'
+[04:18:26.378] [bmv2] [D] [thread 4435] [22.0] [cxt 0] Looking up key:
+
+[04:18:26.378] [bmv2] [D] [thread 4435] [22.0] [cxt 0] Table 'tbl_act_0': miss
+[04:18:26.378] [bmv2] [D] [thread 4435] [22.0] [cxt 0] Action entry is act - 
+[04:18:26.378] [bmv2] [T] [thread 4435] [22.0] [cxt 0] Action act
+[04:18:26.378] [bmv2] [T] [thread 4435] [22.0] [cxt 0] ms2-3.p4(225) Primitive hdr.kvsQuery.pingPong = 2
+[04:18:26.378] [bmv2] [T] [thread 4435] [22.0] [cxt 0] ms2-3.p4(229) Condition "hdr.kvsQuery.queryType == 2 && hdr.kvsQuery.pingPong != 2" (node_7) is false
+[04:18:26.378] [bmv2] [D] [thread 4435] [22.0] [cxt 0] Pipeline 'ingress': end
+[04:18:26.379] [bmv2] [D] [thread 4435] [22.0] [cxt 0] Egress port is 0
+[04:18:26.379] [bmv2] [D] [thread 4436] [22.0] [cxt 0] Pipeline 'egress': start
+[04:18:26.379] [bmv2] [D] [thread 4436] [22.0] [cxt 0] Pipeline 'egress': end
+[04:18:26.379] [bmv2] [D] [thread 4436] [22.0] [cxt 0] Deparser 'deparser': start
+[04:18:26.379] [bmv2] [D] [thread 4436] [22.0] [cxt 0] Updating checksum 'cksum'
+[04:18:26.379] [bmv2] [D] [thread 4436] [22.0] [cxt 0] Deparsing header 'ethernet'
+[04:18:26.379] [bmv2] [D] [thread 4436] [22.0] [cxt 0] Deparsing header 'response[0]'
+[04:18:26.379] [bmv2] [D] [thread 4436] [22.0] [cxt 0] Deparsing header 'ipv4'
+[04:18:26.379] [bmv2] [D] [thread 4436] [22.0] [cxt 0] Deparsing header 'kvsQuery'
+[04:18:26.379] [bmv2] [D] [thread 4436] [22.0] [cxt 0] Deparsing header 'tcp'
+[04:18:26.379] [bmv2] [D] [thread 4436] [22.0] [cxt 0] Deparser 'deparser': end
+[04:18:26.379] [bmv2] [D] [thread 4440] [22.0] [cxt 0] Transmitting packet of size 76 out of port 0
+[04:18:26.605] [bmv2] [D] [thread 4435] [23.0] [cxt 0] Processing packet received on port 1
+[04:18:26.605] [bmv2] [D] [thread 4435] [23.0] [cxt 0] Parser 'parser': start
+[04:18:26.605] [bmv2] [D] [thread 4435] [23.0] [cxt 0] Parser 'parser' entering state 'start'
+[04:18:26.605] [bmv2] [D] [thread 4435] [23.0] [cxt 0] Extracting header 'ethernet'
+[04:18:26.605] [bmv2] [D] [thread 4435] [23.0] [cxt 0] Parser state 'start': key is 1234
+[04:18:26.606] [bmv2] [T] [thread 4435] [23.0] [cxt 0] Bytes parsed: 14
+[04:18:26.606] [bmv2] [D] [thread 4435] [23.0] [cxt 0] Parser 'parser' entering state 'parse_response'
+[04:18:26.606] [bmv2] [D] [thread 4435] [23.0] [cxt 0] Extracting to header stack 0, next header is 6
+[04:18:26.606] [bmv2] [D] [thread 4435] [23.0] [cxt 0] Parser state 'parse_response': key is 01
+[04:18:26.606] [bmv2] [T] [thread 4435] [23.0] [cxt 0] Bytes parsed: 19
+[04:18:26.606] [bmv2] [D] [thread 4435] [23.0] [cxt 0] Parser 'parser' entering state 'parse_ipv4'
+[04:18:26.606] [bmv2] [D] [thread 4435] [23.0] [cxt 0] Extracting header 'ipv4'
+[04:18:26.606] [bmv2] [D] [thread 4435] [23.0] [cxt 0] Parser state 'parse_ipv4': key is fc
+[04:18:26.606] [bmv2] [T] [thread 4435] [23.0] [cxt 0] Bytes parsed: 39
+[04:18:26.606] [bmv2] [D] [thread 4435] [23.0] [cxt 0] Parser 'parser' entering state 'parse_kvsQuery'
+[04:18:26.606] [bmv2] [D] [thread 4435] [23.0] [cxt 0] Extracting header 'kvsQuery'
+[04:18:26.606] [bmv2] [D] [thread 4435] [23.0] [cxt 0] Parser state 'parse_kvsQuery': key is 06
+[04:18:26.606] [bmv2] [T] [thread 4435] [23.0] [cxt 0] Bytes parsed: 53
+[04:18:26.606] [bmv2] [D] [thread 4435] [23.0] [cxt 0] Parser 'parser' entering state 'parse_tcp'
+[04:18:26.606] [bmv2] [D] [thread 4435] [23.0] [cxt 0] Extracting header 'tcp'
+[04:18:26.606] [bmv2] [D] [thread 4435] [23.0] [cxt 0] Parser state 'parse_tcp' has no switch, going to default next state
+[04:18:26.606] [bmv2] [T] [thread 4435] [23.0] [cxt 0] Bytes parsed: 73
+[04:18:26.606] [bmv2] [D] [thread 4435] [23.0] [cxt 0] Parser 'parser': end
+[04:18:26.606] [bmv2] [D] [thread 4435] [23.0] [cxt 0] Pipeline 'ingress': start
+[04:18:26.606] [bmv2] [T] [thread 4435] [23.0] [cxt 0] ms2-3.p4(219) Condition "hdr.response[0].isValid()" (node_2) is true
+[04:18:26.606] [bmv2] [T] [thread 4435] [23.0] [cxt 0] Applying table 'MyIngress.Ops'
+[04:18:26.606] [bmv2] [D] [thread 4435] [23.0] [cxt 0] Looking up key:
+* hdr.kvsQuery.queryType: 01
+
+[04:18:26.606] [bmv2] [D] [thread 4435] [23.0] [cxt 0] Table 'MyIngress.Ops': hit with handle 1
+[04:18:26.606] [bmv2] [D] [thread 4435] [23.0] [cxt 0] Dumping entry 1
+Match key:
+* hdr.kvsQuery.queryType: EXACT     01
+Action entry: MyIngress.put - 
+
+[04:18:26.606] [bmv2] [D] [thread 4435] [23.0] [cxt 0] Action entry is MyIngress.put - 
+[04:18:26.606] [bmv2] [T] [thread 4435] [23.0] [cxt 0] Action MyIngress.put
+[04:18:26.606] [bmv2] [T] [thread 4435] [23.0] [cxt 0] ms2-3.p4(189) Primitive database.write(hdr.kvsQuery.key, hdr.kvsQuery.value)
+[04:18:26.606] [bmv2] [T] [thread 4435] [23.0] [cxt 0] Wrote register 'MyIngress.database' at index 1023 with value 1023
+[04:18:26.606] [bmv2] [T] [thread 4435] [23.0] [cxt 0] ms2-3.p4(190) Primitive isFilled.write(hdr.kvsQuery.key, 1)
+[04:18:26.606] [bmv2] [T] [thread 4435] [23.0] [cxt 0] Wrote register 'MyIngress.isFilled' at index 1023 with value 1
+[04:18:26.606] [bmv2] [T] [thread 4435] [23.0] [cxt 0] Applying table 'tbl_act'
+[04:18:26.606] [bmv2] [D] [thread 4435] [23.0] [cxt 0] Looking up key:
+
+[04:18:26.606] [bmv2] [D] [thread 4435] [23.0] [cxt 0] Table 'tbl_act': miss
+[04:18:26.606] [bmv2] [D] [thread 4435] [23.0] [cxt 0] Action entry is act_0 - 
+[04:18:26.606] [bmv2] [T] [thread 4435] [23.0] [cxt 0] Action act_0
+[04:18:26.606] [bmv2] [T] [thread 4435] [23.0] [cxt 0] ms2-3.p4(221) Primitive hdr.kvsQuery.padding = 1
+[04:18:26.606] [bmv2] [T] [thread 4435] [23.0] [cxt 0] ms2-3.p4(222) Primitive hdr.kvsQuery.switchID = 3
+[04:18:26.606] [bmv2] [T] [thread 4435] [23.0] [cxt 0] ms2-3.p4(224) Condition "hdr.kvsQuery.pingPong == 1" (node_5) is true
+[04:18:26.606] [bmv2] [T] [thread 4435] [23.0] [cxt 0] Applying table 'tbl_act_0'
+[04:18:26.606] [bmv2] [D] [thread 4435] [23.0] [cxt 0] Looking up key:
+
+[04:18:26.606] [bmv2] [D] [thread 4435] [23.0] [cxt 0] Table 'tbl_act_0': miss
+[04:18:26.606] [bmv2] [D] [thread 4435] [23.0] [cxt 0] Action entry is act - 
+[04:18:26.606] [bmv2] [T] [thread 4435] [23.0] [cxt 0] Action act
+[04:18:26.606] [bmv2] [T] [thread 4435] [23.0] [cxt 0] ms2-3.p4(225) Primitive hdr.kvsQuery.pingPong = 2
+[04:18:26.606] [bmv2] [T] [thread 4435] [23.0] [cxt 0] ms2-3.p4(229) Condition "hdr.kvsQuery.queryType == 2 && hdr.kvsQuery.pingPong != 2" (node_7) is false
+[04:18:26.606] [bmv2] [D] [thread 4435] [23.0] [cxt 0] Pipeline 'ingress': end
+[04:18:26.606] [bmv2] [D] [thread 4435] [23.0] [cxt 0] Egress port is 0
+[04:18:26.606] [bmv2] [D] [thread 4436] [23.0] [cxt 0] Pipeline 'egress': start
+[04:18:26.606] [bmv2] [D] [thread 4436] [23.0] [cxt 0] Pipeline 'egress': end
+[04:18:26.606] [bmv2] [D] [thread 4436] [23.0] [cxt 0] Deparser 'deparser': start
+[04:18:26.606] [bmv2] [D] [thread 4436] [23.0] [cxt 0] Updating checksum 'cksum'
+[04:18:26.607] [bmv2] [D] [thread 4436] [23.0] [cxt 0] Deparsing header 'ethernet'
+[04:18:26.607] [bmv2] [D] [thread 4436] [23.0] [cxt 0] Deparsing header 'response[0]'
+[04:18:26.607] [bmv2] [D] [thread 4436] [23.0] [cxt 0] Deparsing header 'ipv4'
+[04:18:26.607] [bmv2] [D] [thread 4436] [23.0] [cxt 0] Deparsing header 'kvsQuery'
+[04:18:26.607] [bmv2] [D] [thread 4436] [23.0] [cxt 0] Deparsing header 'tcp'
+[04:18:26.607] [bmv2] [D] [thread 4436] [23.0] [cxt 0] Deparser 'deparser': end
+[04:18:26.607] [bmv2] [D] [thread 4440] [23.0] [cxt 0] Transmitting packet of size 76 out of port 0
+[04:18:26.793] [bmv2] [D] [thread 4435] [24.0] [cxt 0] Processing packet received on port 1
+[04:18:26.793] [bmv2] [D] [thread 4435] [24.0] [cxt 0] Parser 'parser': start
+[04:18:26.793] [bmv2] [D] [thread 4435] [24.0] [cxt 0] Parser 'parser' entering state 'start'
+[04:18:26.793] [bmv2] [D] [thread 4435] [24.0] [cxt 0] Extracting header 'ethernet'
+[04:18:26.793] [bmv2] [D] [thread 4435] [24.0] [cxt 0] Parser state 'start': key is 1234
+[04:18:26.793] [bmv2] [T] [thread 4435] [24.0] [cxt 0] Bytes parsed: 14
+[04:18:26.793] [bmv2] [D] [thread 4435] [24.0] [cxt 0] Parser 'parser' entering state 'parse_response'
+[04:18:26.793] [bmv2] [D] [thread 4435] [24.0] [cxt 0] Extracting to header stack 0, next header is 6
+[04:18:26.793] [bmv2] [D] [thread 4435] [24.0] [cxt 0] Parser state 'parse_response': key is 01
+[04:18:26.793] [bmv2] [T] [thread 4435] [24.0] [cxt 0] Bytes parsed: 19
+[04:18:26.793] [bmv2] [D] [thread 4435] [24.0] [cxt 0] Parser 'parser' entering state 'parse_ipv4'
+[04:18:26.793] [bmv2] [D] [thread 4435] [24.0] [cxt 0] Extracting header 'ipv4'
+[04:18:26.793] [bmv2] [D] [thread 4435] [24.0] [cxt 0] Parser state 'parse_ipv4': key is fc
+[04:18:26.793] [bmv2] [T] [thread 4435] [24.0] [cxt 0] Bytes parsed: 39
+[04:18:26.793] [bmv2] [D] [thread 4435] [24.0] [cxt 0] Parser 'parser' entering state 'parse_kvsQuery'
+[04:18:26.793] [bmv2] [D] [thread 4435] [24.0] [cxt 0] Extracting header 'kvsQuery'
+[04:18:26.793] [bmv2] [D] [thread 4435] [24.0] [cxt 0] Parser state 'parse_kvsQuery': key is 06
+[04:18:26.793] [bmv2] [T] [thread 4435] [24.0] [cxt 0] Bytes parsed: 53
+[04:18:26.794] [bmv2] [D] [thread 4435] [24.0] [cxt 0] Parser 'parser' entering state 'parse_tcp'
+[04:18:26.794] [bmv2] [D] [thread 4435] [24.0] [cxt 0] Extracting header 'tcp'
+[04:18:26.794] [bmv2] [D] [thread 4435] [24.0] [cxt 0] Parser state 'parse_tcp' has no switch, going to default next state
+[04:18:26.794] [bmv2] [T] [thread 4435] [24.0] [cxt 0] Bytes parsed: 73
+[04:18:26.794] [bmv2] [D] [thread 4435] [24.0] [cxt 0] Parser 'parser': end
+[04:18:26.794] [bmv2] [D] [thread 4435] [24.0] [cxt 0] Pipeline 'ingress': start
+[04:18:26.794] [bmv2] [T] [thread 4435] [24.0] [cxt 0] ms2-3.p4(219) Condition "hdr.response[0].isValid()" (node_2) is true
+[04:18:26.794] [bmv2] [T] [thread 4435] [24.0] [cxt 0] Applying table 'MyIngress.Ops'
+[04:18:26.794] [bmv2] [D] [thread 4435] [24.0] [cxt 0] Looking up key:
+* hdr.kvsQuery.queryType: 01
+
+[04:18:26.794] [bmv2] [D] [thread 4435] [24.0] [cxt 0] Table 'MyIngress.Ops': hit with handle 1
+[04:18:26.794] [bmv2] [D] [thread 4435] [24.0] [cxt 0] Dumping entry 1
+Match key:
+* hdr.kvsQuery.queryType: EXACT     01
+Action entry: MyIngress.put - 
+
+[04:18:26.794] [bmv2] [D] [thread 4435] [24.0] [cxt 0] Action entry is MyIngress.put - 
+[04:18:26.794] [bmv2] [T] [thread 4435] [24.0] [cxt 0] Action MyIngress.put
+[04:18:26.794] [bmv2] [T] [thread 4435] [24.0] [cxt 0] ms2-3.p4(189) Primitive database.write(hdr.kvsQuery.key, hdr.kvsQuery.value)
+[04:18:26.794] [bmv2] [T] [thread 4435] [24.0] [cxt 0] Wrote register 'MyIngress.database' at index 1024 with value 1024
+[04:18:26.794] [bmv2] [T] [thread 4435] [24.0] [cxt 0] ms2-3.p4(190) Primitive isFilled.write(hdr.kvsQuery.key, 1)
+[04:18:26.794] [bmv2] [T] [thread 4435] [24.0] [cxt 0] Wrote register 'MyIngress.isFilled' at index 1024 with value 1
+[04:18:26.794] [bmv2] [T] [thread 4435] [24.0] [cxt 0] Applying table 'tbl_act'
+[04:18:26.794] [bmv2] [D] [thread 4435] [24.0] [cxt 0] Looking up key:
+
+[04:18:26.794] [bmv2] [D] [thread 4435] [24.0] [cxt 0] Table 'tbl_act': miss
+[04:18:26.794] [bmv2] [D] [thread 4435] [24.0] [cxt 0] Action entry is act_0 - 
+[04:18:26.794] [bmv2] [T] [thread 4435] [24.0] [cxt 0] Action act_0
+[04:18:26.794] [bmv2] [T] [thread 4435] [24.0] [cxt 0] ms2-3.p4(221) Primitive hdr.kvsQuery.padding = 1
+[04:18:26.794] [bmv2] [T] [thread 4435] [24.0] [cxt 0] ms2-3.p4(222) Primitive hdr.kvsQuery.switchID = 3
+[04:18:26.794] [bmv2] [T] [thread 4435] [24.0] [cxt 0] ms2-3.p4(224) Condition "hdr.kvsQuery.pingPong == 1" (node_5) is true
+[04:18:26.794] [bmv2] [T] [thread 4435] [24.0] [cxt 0] Applying table 'tbl_act_0'
+[04:18:26.794] [bmv2] [D] [thread 4435] [24.0] [cxt 0] Looking up key:
+
+[04:18:26.794] [bmv2] [D] [thread 4435] [24.0] [cxt 0] Table 'tbl_act_0': miss
+[04:18:26.794] [bmv2] [D] [thread 4435] [24.0] [cxt 0] Action entry is act - 
+[04:18:26.795] [bmv2] [T] [thread 4435] [24.0] [cxt 0] Action act
+[04:18:26.795] [bmv2] [T] [thread 4435] [24.0] [cxt 0] ms2-3.p4(225) Primitive hdr.kvsQuery.pingPong = 2
+[04:18:26.795] [bmv2] [T] [thread 4435] [24.0] [cxt 0] ms2-3.p4(229) Condition "hdr.kvsQuery.queryType == 2 && hdr.kvsQuery.pingPong != 2" (node_7) is false
+[04:18:26.795] [bmv2] [D] [thread 4435] [24.0] [cxt 0] Pipeline 'ingress': end
+[04:18:26.795] [bmv2] [D] [thread 4435] [24.0] [cxt 0] Egress port is 0
+[04:18:26.795] [bmv2] [D] [thread 4436] [24.0] [cxt 0] Pipeline 'egress': start
+[04:18:26.795] [bmv2] [D] [thread 4436] [24.0] [cxt 0] Pipeline 'egress': end
+[04:18:26.795] [bmv2] [D] [thread 4436] [24.0] [cxt 0] Deparser 'deparser': start
+[04:18:26.795] [bmv2] [D] [thread 4436] [24.0] [cxt 0] Updating checksum 'cksum'
+[04:18:26.795] [bmv2] [D] [thread 4436] [24.0] [cxt 0] Deparsing header 'ethernet'
+[04:18:26.795] [bmv2] [D] [thread 4436] [24.0] [cxt 0] Deparsing header 'response[0]'
+[04:18:26.795] [bmv2] [D] [thread 4436] [24.0] [cxt 0] Deparsing header 'ipv4'
+[04:18:26.795] [bmv2] [D] [thread 4436] [24.0] [cxt 0] Deparsing header 'kvsQuery'
+[04:18:26.795] [bmv2] [D] [thread 4436] [24.0] [cxt 0] Deparsing header 'tcp'
+[04:18:26.795] [bmv2] [D] [thread 4436] [24.0] [cxt 0] Deparser 'deparser': end
+[04:18:26.795] [bmv2] [D] [thread 4440] [24.0] [cxt 0] Transmitting packet of size 76 out of port 0
+[04:18:27.398] [bmv2] [D] [thread 4435] [25.0] [cxt 0] Processing packet received on port 1
+[04:18:27.398] [bmv2] [D] [thread 4435] [25.0] [cxt 0] Parser 'parser': start
+[04:18:27.398] [bmv2] [D] [thread 4435] [25.0] [cxt 0] Parser 'parser' entering state 'start'
+[04:18:27.398] [bmv2] [D] [thread 4435] [25.0] [cxt 0] Extracting header 'ethernet'
+[04:18:27.398] [bmv2] [D] [thread 4435] [25.0] [cxt 0] Parser state 'start': key is 1234
+[04:18:27.398] [bmv2] [T] [thread 4435] [25.0] [cxt 0] Bytes parsed: 14
+[04:18:27.398] [bmv2] [D] [thread 4435] [25.0] [cxt 0] Parser 'parser' entering state 'parse_response'
+[04:18:27.398] [bmv2] [D] [thread 4435] [25.0] [cxt 0] Extracting to header stack 0, next header is 6
+[04:18:27.398] [bmv2] [D] [thread 4435] [25.0] [cxt 0] Parser state 'parse_response': key is 01
+[04:18:27.398] [bmv2] [T] [thread 4435] [25.0] [cxt 0] Bytes parsed: 19
+[04:18:27.398] [bmv2] [D] [thread 4435] [25.0] [cxt 0] Parser 'parser' entering state 'parse_ipv4'
+[04:18:27.398] [bmv2] [D] [thread 4435] [25.0] [cxt 0] Extracting header 'ipv4'
+[04:18:27.398] [bmv2] [D] [thread 4435] [25.0] [cxt 0] Parser state 'parse_ipv4': key is fc
+[04:18:27.398] [bmv2] [T] [thread 4435] [25.0] [cxt 0] Bytes parsed: 39
+[04:18:27.398] [bmv2] [D] [thread 4435] [25.0] [cxt 0] Parser 'parser' entering state 'parse_kvsQuery'
+[04:18:27.398] [bmv2] [D] [thread 4435] [25.0] [cxt 0] Extracting header 'kvsQuery'
+[04:18:27.398] [bmv2] [D] [thread 4435] [25.0] [cxt 0] Parser state 'parse_kvsQuery': key is 06
+[04:18:27.398] [bmv2] [T] [thread 4435] [25.0] [cxt 0] Bytes parsed: 53
+[04:18:27.398] [bmv2] [D] [thread 4435] [25.0] [cxt 0] Parser 'parser' entering state 'parse_tcp'
+[04:18:27.398] [bmv2] [D] [thread 4435] [25.0] [cxt 0] Extracting header 'tcp'
+[04:18:27.398] [bmv2] [D] [thread 4435] [25.0] [cxt 0] Parser state 'parse_tcp' has no switch, going to default next state
+[04:18:27.398] [bmv2] [T] [thread 4435] [25.0] [cxt 0] Bytes parsed: 73
+[04:18:27.398] [bmv2] [D] [thread 4435] [25.0] [cxt 0] Parser 'parser': end
+[04:18:27.398] [bmv2] [D] [thread 4435] [25.0] [cxt 0] Pipeline 'ingress': start
+[04:18:27.398] [bmv2] [T] [thread 4435] [25.0] [cxt 0] ms2-3.p4(219) Condition "hdr.response[0].isValid()" (node_2) is true
+[04:18:27.398] [bmv2] [T] [thread 4435] [25.0] [cxt 0] Applying table 'MyIngress.Ops'
+[04:18:27.398] [bmv2] [D] [thread 4435] [25.0] [cxt 0] Looking up key:
+* hdr.kvsQuery.queryType: 00
+
+[04:18:27.398] [bmv2] [D] [thread 4435] [25.0] [cxt 0] Table 'MyIngress.Ops': hit with handle 0
+[04:18:27.398] [bmv2] [D] [thread 4435] [25.0] [cxt 0] Dumping entry 0
+Match key:
+* hdr.kvsQuery.queryType: EXACT     00
+Action entry: MyIngress.get - 
+
+[04:18:27.398] [bmv2] [D] [thread 4435] [25.0] [cxt 0] Action entry is MyIngress.get - 
+[04:18:27.398] [bmv2] [T] [thread 4435] [25.0] [cxt 0] Action MyIngress.get
+[04:18:27.398] [bmv2] [T] [thread 4435] [25.0] [cxt 0] ms2-3.p4(182) Primitive database.read(hdr.response[0].value, hdr.kvsQuery.key)
+[04:18:27.398] [bmv2] [T] [thread 4435] [25.0] [cxt 0] Read register 'MyIngress.database' at index 10 read value 0
+[04:18:27.398] [bmv2] [T] [thread 4435] [25.0] [cxt 0] ms2-3.p4(184) Primitive isFilled.read(hdr.response[0].isNull, hdr.kvsQuery.key)
+[04:18:27.398] [bmv2] [T] [thread 4435] [25.0] [cxt 0] Read register 'MyIngress.isFilled' at index 10 read value 0
+[04:18:27.398] [bmv2] [T] [thread 4435] [25.0] [cxt 0] Applying table 'tbl_act'
+[04:18:27.398] [bmv2] [D] [thread 4435] [25.0] [cxt 0] Looking up key:
+
+[04:18:27.398] [bmv2] [D] [thread 4435] [25.0] [cxt 0] Table 'tbl_act': miss
+[04:18:27.398] [bmv2] [D] [thread 4435] [25.0] [cxt 0] Action entry is act_0 - 
+[04:18:27.398] [bmv2] [T] [thread 4435] [25.0] [cxt 0] Action act_0
+[04:18:27.398] [bmv2] [T] [thread 4435] [25.0] [cxt 0] ms2-3.p4(221) Primitive hdr.kvsQuery.padding = 1
+[04:18:27.398] [bmv2] [T] [thread 4435] [25.0] [cxt 0] ms2-3.p4(222) Primitive hdr.kvsQuery.switchID = 3
+[04:18:27.398] [bmv2] [T] [thread 4435] [25.0] [cxt 0] ms2-3.p4(224) Condition "hdr.kvsQuery.pingPong == 1" (node_5) is true
+[04:18:27.398] [bmv2] [T] [thread 4435] [25.0] [cxt 0] Applying table 'tbl_act_0'
+[04:18:27.398] [bmv2] [D] [thread 4435] [25.0] [cxt 0] Looking up key:
+
+[04:18:27.398] [bmv2] [D] [thread 4435] [25.0] [cxt 0] Table 'tbl_act_0': miss
+[04:18:27.398] [bmv2] [D] [thread 4435] [25.0] [cxt 0] Action entry is act - 
+[04:18:27.398] [bmv2] [T] [thread 4435] [25.0] [cxt 0] Action act
+[04:18:27.398] [bmv2] [T] [thread 4435] [25.0] [cxt 0] ms2-3.p4(225) Primitive hdr.kvsQuery.pingPong = 2
+[04:18:27.398] [bmv2] [T] [thread 4435] [25.0] [cxt 0] ms2-3.p4(229) Condition "hdr.kvsQuery.queryType == 2 && hdr.kvsQuery.pingPong != 2" (node_7) is false
+[04:18:27.398] [bmv2] [D] [thread 4435] [25.0] [cxt 0] Pipeline 'ingress': end
+[04:18:27.398] [bmv2] [D] [thread 4435] [25.0] [cxt 0] Egress port is 0
+[04:18:27.398] [bmv2] [D] [thread 4436] [25.0] [cxt 0] Pipeline 'egress': start
+[04:18:27.398] [bmv2] [D] [thread 4436] [25.0] [cxt 0] Pipeline 'egress': end
+[04:18:27.398] [bmv2] [D] [thread 4436] [25.0] [cxt 0] Deparser 'deparser': start
+[04:18:27.398] [bmv2] [D] [thread 4436] [25.0] [cxt 0] Updating checksum 'cksum'
+[04:18:27.398] [bmv2] [D] [thread 4436] [25.0] [cxt 0] Deparsing header 'ethernet'
+[04:18:27.399] [bmv2] [D] [thread 4436] [25.0] [cxt 0] Deparsing header 'response[0]'
+[04:18:27.399] [bmv2] [D] [thread 4436] [25.0] [cxt 0] Deparsing header 'ipv4'
+[04:18:27.399] [bmv2] [D] [thread 4436] [25.0] [cxt 0] Deparsing header 'kvsQuery'
+[04:18:27.399] [bmv2] [D] [thread 4436] [25.0] [cxt 0] Deparsing header 'tcp'
+[04:18:27.399] [bmv2] [D] [thread 4436] [25.0] [cxt 0] Deparser 'deparser': end
+[04:18:27.399] [bmv2] [D] [thread 4440] [25.0] [cxt 0] Transmitting packet of size 76 out of port 0
+[04:18:29.947] [bmv2] [D] [thread 4435] [26.0] [cxt 0] Processing packet received on port 1
+[04:18:29.947] [bmv2] [D] [thread 4435] [26.0] [cxt 0] Parser 'parser': start
+[04:18:29.947] [bmv2] [D] [thread 4435] [26.0] [cxt 0] Parser 'parser' entering state 'start'
+[04:18:29.948] [bmv2] [D] [thread 4435] [26.0] [cxt 0] Extracting header 'ethernet'
+[04:18:29.948] [bmv2] [D] [thread 4435] [26.0] [cxt 0] Parser state 'start': key is 1234
+[04:18:29.948] [bmv2] [T] [thread 4435] [26.0] [cxt 0] Bytes parsed: 14
+[04:18:29.948] [bmv2] [D] [thread 4435] [26.0] [cxt 0] Parser 'parser' entering state 'parse_response'
+[04:18:29.948] [bmv2] [D] [thread 4435] [26.0] [cxt 0] Extracting to header stack 0, next header is 6
+[04:18:29.948] [bmv2] [D] [thread 4435] [26.0] [cxt 0] Parser state 'parse_response': key is 01
+[04:18:29.948] [bmv2] [T] [thread 4435] [26.0] [cxt 0] Bytes parsed: 19
+[04:18:29.948] [bmv2] [D] [thread 4435] [26.0] [cxt 0] Parser 'parser' entering state 'parse_ipv4'
+[04:18:29.948] [bmv2] [D] [thread 4435] [26.0] [cxt 0] Extracting header 'ipv4'
+[04:18:29.948] [bmv2] [D] [thread 4435] [26.0] [cxt 0] Parser state 'parse_ipv4': key is fc
+[04:18:29.948] [bmv2] [T] [thread 4435] [26.0] [cxt 0] Bytes parsed: 39
+[04:18:29.948] [bmv2] [D] [thread 4435] [26.0] [cxt 0] Parser 'parser' entering state 'parse_kvsQuery'
+[04:18:29.948] [bmv2] [D] [thread 4435] [26.0] [cxt 0] Extracting header 'kvsQuery'
+[04:18:29.948] [bmv2] [D] [thread 4435] [26.0] [cxt 0] Parser state 'parse_kvsQuery': key is 06
+[04:18:29.948] [bmv2] [T] [thread 4435] [26.0] [cxt 0] Bytes parsed: 53
+[04:18:29.948] [bmv2] [D] [thread 4435] [26.0] [cxt 0] Parser 'parser' entering state 'parse_tcp'
+[04:18:29.948] [bmv2] [D] [thread 4435] [26.0] [cxt 0] Extracting header 'tcp'
+[04:18:29.948] [bmv2] [D] [thread 4435] [26.0] [cxt 0] Parser state 'parse_tcp' has no switch, going to default next state
+[04:18:29.948] [bmv2] [T] [thread 4435] [26.0] [cxt 0] Bytes parsed: 73
+[04:18:29.948] [bmv2] [D] [thread 4435] [26.0] [cxt 0] Parser 'parser': end
+[04:18:29.948] [bmv2] [D] [thread 4435] [26.0] [cxt 0] Pipeline 'ingress': start
+[04:18:29.948] [bmv2] [T] [thread 4435] [26.0] [cxt 0] ms2-3.p4(219) Condition "hdr.response[0].isValid()" (node_2) is true
+[04:18:29.948] [bmv2] [T] [thread 4435] [26.0] [cxt 0] Applying table 'MyIngress.Ops'
+[04:18:29.948] [bmv2] [D] [thread 4435] [26.0] [cxt 0] Looking up key:
+* hdr.kvsQuery.queryType: 02
+
+[04:18:29.948] [bmv2] [D] [thread 4435] [26.0] [cxt 0] Table 'MyIngress.Ops': hit with handle 2
+[04:18:29.948] [bmv2] [D] [thread 4435] [26.0] [cxt 0] Dumping entry 2
+Match key:
+* hdr.kvsQuery.queryType: EXACT     02
+Action entry: MyIngress.rangeGet - 
+
+[04:18:29.948] [bmv2] [D] [thread 4435] [26.0] [cxt 0] Action entry is MyIngress.rangeGet - 
+[04:18:29.948] [bmv2] [T] [thread 4435] [26.0] [cxt 0] Action MyIngress.rangeGet
+[04:18:29.948] [bmv2] [T] [thread 4435] [26.0] [cxt 0] ms2-3.p4(195) Primitive hdr.response.push_front(1)
+[04:18:29.949] [bmv2] [T] [thread 4435] [26.0] [cxt 0] ms2-3.p4(196) Primitive hdr.response[0].setValid()
+[04:18:29.949] [bmv2] [T] [thread 4435] [26.0] [cxt 0] ms2-3.p4(198) Primitive database.read(hdr.response[0].value, hdr.kvsQuery.key)
+[04:18:29.949] [bmv2] [T] [thread 4435] [26.0] [cxt 0] Read register 'MyIngress.database' at index 1022 read value 0
+[04:18:29.949] [bmv2] [T] [thread 4435] [26.0] [cxt 0] ms2-3.p4(199) Primitive isFilled.read(hdr.response[0].isNull, hdr.kvsQuery.key)
+[04:18:29.949] [bmv2] [T] [thread 4435] [26.0] [cxt 0] Read register 'MyIngress.isFilled' at index 1022 read value 0
+[04:18:29.949] [bmv2] [T] [thread 4435] [26.0] [cxt 0] ms2-3.p4(201) Primitive hdr.kvsQuery.key = hdr.kvsQuery.key + 1
+[04:18:29.949] [bmv2] [T] [thread 4435] [26.0] [cxt 0] Applying table 'tbl_act'
+[04:18:29.949] [bmv2] [D] [thread 4435] [26.0] [cxt 0] Looking up key:
+
+[04:18:29.949] [bmv2] [D] [thread 4435] [26.0] [cxt 0] Table 'tbl_act': miss
+[04:18:29.949] [bmv2] [D] [thread 4435] [26.0] [cxt 0] Action entry is act_0 - 
+[04:18:29.949] [bmv2] [T] [thread 4435] [26.0] [cxt 0] Action act_0
+[04:18:29.949] [bmv2] [T] [thread 4435] [26.0] [cxt 0] ms2-3.p4(221) Primitive hdr.kvsQuery.padding = 1
+[04:18:29.949] [bmv2] [T] [thread 4435] [26.0] [cxt 0] ms2-3.p4(222) Primitive hdr.kvsQuery.switchID = 3
+[04:18:29.949] [bmv2] [T] [thread 4435] [26.0] [cxt 0] ms2-3.p4(224) Condition "hdr.kvsQuery.pingPong == 1" (node_5) is true
+[04:18:29.949] [bmv2] [T] [thread 4435] [26.0] [cxt 0] Applying table 'tbl_act_0'
+[04:18:29.949] [bmv2] [D] [thread 4435] [26.0] [cxt 0] Looking up key:
+
+[04:18:29.949] [bmv2] [D] [thread 4435] [26.0] [cxt 0] Table 'tbl_act_0': miss
+[04:18:29.949] [bmv2] [D] [thread 4435] [26.0] [cxt 0] Action entry is act - 
+[04:18:29.949] [bmv2] [T] [thread 4435] [26.0] [cxt 0] Action act
+[04:18:29.950] [bmv2] [T] [thread 4435] [26.0] [cxt 0] ms2-3.p4(225) Primitive hdr.kvsQuery.pingPong = 2
+[04:18:29.950] [bmv2] [T] [thread 4435] [26.0] [cxt 0] ms2-3.p4(229) Condition "hdr.kvsQuery.queryType == 2 && hdr.kvsQuery.pingPong != 2" (node_7) is false
+[04:18:29.950] [bmv2] [D] [thread 4435] [26.0] [cxt 0] Pipeline 'ingress': end
+[04:18:29.950] [bmv2] [D] [thread 4435] [26.0] [cxt 0] Egress port is 0
+[04:18:29.950] [bmv2] [D] [thread 4436] [26.0] [cxt 0] Pipeline 'egress': start
+[04:18:29.950] [bmv2] [D] [thread 4436] [26.0] [cxt 0] Pipeline 'egress': end
+[04:18:29.950] [bmv2] [D] [thread 4436] [26.0] [cxt 0] Deparser 'deparser': start
+[04:18:29.950] [bmv2] [D] [thread 4436] [26.0] [cxt 0] Updating checksum 'cksum'
+[04:18:29.950] [bmv2] [D] [thread 4436] [26.0] [cxt 0] Deparsing header 'ethernet'
+[04:18:29.950] [bmv2] [D] [thread 4436] [26.0] [cxt 0] Deparsing header 'response[0]'
+[04:18:29.950] [bmv2] [D] [thread 4436] [26.0] [cxt 0] Deparsing header 'response[1]'
+[04:18:29.950] [bmv2] [D] [thread 4436] [26.0] [cxt 0] Deparsing header 'ipv4'
+[04:18:29.950] [bmv2] [D] [thread 4436] [26.0] [cxt 0] Deparsing header 'kvsQuery'
+[04:18:29.950] [bmv2] [D] [thread 4436] [26.0] [cxt 0] Deparsing header 'tcp'
+[04:18:29.950] [bmv2] [D] [thread 4436] [26.0] [cxt 0] Deparser 'deparser': end
+[04:18:29.950] [bmv2] [D] [thread 4440] [26.0] [cxt 0] Transmitting packet of size 83 out of port 0
+[04:18:40.712] [bmv2] [D] [thread 4435] [27.0] [cxt 0] Processing packet received on port 1
+[04:18:40.712] [bmv2] [D] [thread 4435] [27.0] [cxt 0] Parser 'parser': start
+[04:18:40.712] [bmv2] [D] [thread 4435] [27.0] [cxt 0] Parser 'parser' entering state 'start'
+[04:18:40.712] [bmv2] [D] [thread 4435] [27.0] [cxt 0] Extracting header 'ethernet'
+[04:18:40.712] [bmv2] [D] [thread 4435] [27.0] [cxt 0] Parser state 'start': key is 86dd
+[04:18:40.712] [bmv2] [T] [thread 4435] [27.0] [cxt 0] Bytes parsed: 14
+[04:18:40.712] [bmv2] [D] [thread 4435] [27.0] [cxt 0] Parser 'parser': end
+[04:18:40.712] [bmv2] [D] [thread 4435] [27.0] [cxt 0] Pipeline 'ingress': start
+[04:18:40.712] [bmv2] [T] [thread 4435] [27.0] [cxt 0] ms2-3.p4(219) Condition "hdr.response[0].isValid()" (node_2) is false
+[04:18:40.712] [bmv2] [D] [thread 4435] [27.0] [cxt 0] Pipeline 'ingress': end
+[04:18:40.712] [bmv2] [D] [thread 4435] [27.0] [cxt 0] Egress port is 0
+[04:18:40.712] [bmv2] [D] [thread 4436] [27.0] [cxt 0] Pipeline 'egress': start
+[04:18:40.712] [bmv2] [D] [thread 4436] [27.0] [cxt 0] Pipeline 'egress': end
+[04:18:40.712] [bmv2] [D] [thread 4436] [27.0] [cxt 0] Deparser 'deparser': start
+[04:18:40.712] [bmv2] [T] [thread 4436] [27.0] [cxt 0] Skipping checksum 'cksum' update because condition not met
+[04:18:40.712] [bmv2] [D] [thread 4436] [27.0] [cxt 0] Deparsing header 'ethernet'
+[04:18:40.712] [bmv2] [D] [thread 4436] [27.0] [cxt 0] Deparser 'deparser': end
+[04:18:40.712] [bmv2] [D] [thread 4440] [27.0] [cxt 0] Transmitting packet of size 107 out of port 0
+open: No such file or directory
